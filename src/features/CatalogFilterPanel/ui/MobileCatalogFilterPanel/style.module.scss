@@ -1,0 +1,31 @@
+@use '@/app/styles/helpers' as *;
+
+.header {
+    display: flex;
+    column-gap: rem(10);
+}
+
+.aside-menu {
+    --padding: 30px;
+    width: 360px;
+    padding: var(--padding);
+    padding-top: calc(var(--padding) + rem(40));
+    row-gap: rem(20);
+    display: flex;
+    flex-direction: column;
+    @include max-width(550) {
+        width: 100%;
+    }
+}
+
+.reset-button {
+    margin-top: rem(40);
+    flex-shrink: 0;
+}
+
+.close-button {
+    --position: calc(var(--padding) - var(--button-height-s) / 4);
+    position: absolute;
+    top: var(--position);
+    right: var(--position);
+}

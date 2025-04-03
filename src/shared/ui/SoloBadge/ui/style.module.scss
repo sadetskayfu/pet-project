@@ -1,0 +1,22 @@
+@use '@/app/styles/helpers' as *;
+
+.solo-badge {
+    width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: rem(25);
+    min-width: rem(25);
+    padding-inline: rem(5);
+    color: var(--font-color-hard);
+    border-radius: var(--border-radius-s);
+    &.grey {
+        background-color: var(--color-grey-500);
+    }
+    &.green-light {
+        background-color: var(--color-green-400);
+    }
+    &.green {
+        background-color: var(--color-green-500);
+    }
+}

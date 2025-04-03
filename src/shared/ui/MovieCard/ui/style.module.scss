@@ -1,0 +1,98 @@
+@use '@/app/styles/helpers' as *;
+
+.card {
+    --padding: #{rem(8)};
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--padding);
+}
+
+.image-container {
+    position: relative;
+    border-radius: var(--border-radius-m);
+    transition: box-shadow 0.2s;
+    @include hover {
+        .details {
+            opacity: 1;
+            
+        }
+        .age-limit-badge {
+            opacity: 1;
+        }
+    }
+    &:focus-within {
+        .details {
+            opacity: 1;
+        }
+        .age-limit-badge {
+            opacity: 1;
+        }
+    }
+    &:focus-visible {
+        box-shadow: 0 0 0 var(--border-weight-soft) var(--theme-color-primary-main);
+    }
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 14; 
+}
+
+.details {
+    opacity: 0;
+    border-radius: inherit;
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-dark-opacity-hard);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: var(--padding);
+    transition: opacity 0.2s;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    padding-left: var(--padding);
+}
+
+.rating-badge {
+    position: absolute;
+    top: var(--padding);
+    left: var(--padding);
+}
+
+.age-limit-badge {
+    position: absolute;
+    bottom: var(--padding);
+    right: var(--padding);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.actions {
+    position: absolute;
+    top: var(--padding);
+    right: var(--padding);
+    display: flex;
+    flex-direction: column;
+}
+
+.skeleton {
+    width: 100%;
+    row-gap: rem(8);
+    display: flex;
+    flex-direction: column;
+    &__image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 9 / 14; 
+    }
+    &__description {
+        width: 100%;
+        height: rem(45);
+    }
+}

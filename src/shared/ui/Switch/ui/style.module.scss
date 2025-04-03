@@ -1,0 +1,120 @@
+@use '@/app/styles/helpers' as *;
+
+.switch {
+  --height: ;
+  --offset: calc(var(--height) / 4 * -1);
+  --paddingInline: calc(var(--offset) * -1);
+  --width: var(--height);
+  height: var(--height);
+  width: max-content;
+  padding-inline: var(--paddingInline);
+  display: flex;
+  align-items: center;
+  color: var(--theme-color-primary-main);
+  position: relative;
+  @include hover {
+    .thumb {
+      box-shadow: 0 0 0 var(--border-weight-soft) var(--border-color-grey);
+    }
+  }
+}
+
+.track {
+  --translateX: calc((var(--width) - var(--height) / 2) / 2);
+  --trackColor: var(--theme-color-grey-dark);
+  --borderColor: var(--border-color-grey);
+  --thumbColor: var(--color-grey-500);
+  height: 30%;
+  width: var(--width);
+  background-color: var(--trackColor);
+  border-radius: var(--border-radius-full);
+  transition-duration: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-weight-soft) solid var(--borderColor);
+}
+
+.thumb {
+  transform: translateX(calc(var(--translateX) * -1));
+  height: var(--height);
+  width: var(--height);
+  border-radius: 50%;
+  transition-duration: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &:before {
+    content: '';
+    height: 50%;
+    width: 50%;
+    border-radius: inherit;
+    background-color: var(--thumbColor);
+    transition-duration: inherit;
+  }
+}
+
+.input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  opacity: 0;
+  margin: 0px;
+  cursor: pointer;
+  &:focus-visible + .track {
+    .thumb {
+      box-shadow: 0 0 0 var(--border-weight-soft) var(--theme-color-primary-main);
+    }
+  }
+  &:checked + .track {
+    --trackColor: var(--theme-color-primary-main);
+    --borderColor: var(--theme-color-primary-main);
+    --thumbColor: var(--theme-color-primary-light);
+    .thumb {
+      transform: translateX(var(--translateX));
+      &:before {
+        box-shadow: 0 0 0 var(--border-weight-soft) var(--theme-color-primary-light);
+      }
+    }
+  }
+}
+
+// Mods
+.switch {
+  &.disabled {
+    @include disabled;
+  }
+}
+
+// Sizes
+.switch {
+  &.s {
+    --height: var(--button-height-xs);
+  }
+  &.m {
+    --height: var(--button-height-s);
+  }
+}
+
+// Offset
+.switch {
+	&.left {
+		margin-left: var(--offset);
+	}
+	&.right {
+		margin-right: var(--offset);
+	}
+	&.top {
+		margin-top: var(--offset);
+	}
+	&.bottom {
+		margin-bottom: var(--offset);
+	}
+  &.all {
+    margin: var(--offset);
+  }
+}

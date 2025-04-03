@@ -1,0 +1,18 @@
+.tabs {
+    display: flex;
+    position: relative;
+    &.full-width {
+        width: 100%;
+    }
+}
+
+// Orientation
+.tabs {
+    &.vertical {
+        flex-direction: column;
+        overflow-y: hidden;
+    }
+    &.horizontal {
+        overflow-x: hidden;
+    }
+}

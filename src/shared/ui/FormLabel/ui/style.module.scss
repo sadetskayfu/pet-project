@@ -1,0 +1,27 @@
+@use '@/app/styles/helpers' as *;
+
+.label-wrapper {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    &.disabled {
+        @include disabled;
+    }
+}
+
+// Placement
+.label-wrapper {
+    &.right {
+        column-gap: #{rem(3)};
+    }
+    &.left {
+        flex-direction: row-reverse;
+        column-gap: #{rem(3)};
+    }
+    &.top {
+        flex-direction: column-reverse;
+    }
+    &.bottom {
+        flex-direction: column;
+    }
+}

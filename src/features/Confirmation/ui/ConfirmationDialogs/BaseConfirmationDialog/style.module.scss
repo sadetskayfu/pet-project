@@ -1,0 +1,25 @@
+@use '@/app/styles/helpers' as *;
+
+.dialog {
+    --padding: #{rem(30)};
+    max-width: calc(var(--padding) * 2 + rem(320));
+    width: 100%;
+    @include max-width(420) {
+        --padding: #{rem(15)};
+        .content {
+            row-gap: rem(10);
+        }
+    }
+}
+
+.content {
+    padding: var(--padding);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: rem(20);
+}
+
+.send-code-section {
+    align-self: start;
+}

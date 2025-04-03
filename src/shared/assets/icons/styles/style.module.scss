@@ -1,0 +1,36 @@
+.icon {
+    --fill: ;
+    fill: var(--fill);
+    width: 1em;
+    aspect-ratio: 1;
+    flex-shrink: 0;
+  }
+  
+  // Colors
+  .icon {
+    &.inherit {
+      --fill: currentColor;
+    }
+    &.primary {
+      --fill: var(--theme-color-primary-main);
+    }
+  }
+  
+  // Sizes
+  .icon {
+    &.xxs {
+      font-size: var(--fz-icon-xxs);
+    }
+    &.xs {
+      font-size: var(--fz-icon-xs);
+    }
+    &.s {
+      font-size: var(--fz-icon-s);
+    }
+    &.m {
+      font-size: var(--fz-icon-m);
+    }
+    &.l {
+      font-size: var(--fz-icon-l);
+    }
+  }

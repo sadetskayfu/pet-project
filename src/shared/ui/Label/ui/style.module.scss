@@ -1,0 +1,25 @@
+@use '@/app/styles/helpers' as *;
+
+.label {
+	width: max-content;
+	transition: color 0.2s;
+	cursor: inherit;
+    &.soft {
+        color: var(--font-color-soft);
+    }
+    &.hard {
+        color: var(--font-color-hard);
+    }
+    &.focused {
+        color: var(--theme-color-primary-main);
+    }
+    &.errored {
+        color: var(--color-red-500);
+    }
+    &.disabled {
+        @include disabled;
+    }
+    &.legend {
+        padding: 0px;
+    }
+}

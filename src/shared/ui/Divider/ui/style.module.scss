@@ -1,0 +1,21 @@
+@use '@/app/styles/helpers' as *;
+
+.divider {
+    background-color: var(--border-color-grey);
+    border: none;
+}
+
+.divider {
+    &.vertical {
+        width: var(--border-weight-soft);
+        margin-inline: rem(5);
+        margin-block: 0px;
+        height: 100%;
+    }
+    &.horizontal {
+        height: var(--border-weight-soft);
+        margin-block: rem(5);
+        margin-inline: 0px;
+        width: 100%;
+    }
+}

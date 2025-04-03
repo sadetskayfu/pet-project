@@ -1,0 +1,83 @@
+@use '@/app/styles/helpers' as *;
+
+.tab {
+    --activeColor: var(--theme-color-primary-main);
+    --hoverBgColor: var(--color-grey-opacity-soft);
+    --activeBgColor: ;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: rem(8);
+    row-gap: rem(6);
+    background-color: transparent;
+    transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap;
+    color: inherit;
+    &.full-width {
+        width: 100%;
+    }
+}
+
+.icon {
+    display: inline-flex;
+    font-size: var(--fz-icon-s);
+}
+
+// Variants
+.tab {
+    &.filled {
+        --activeBgColor: var(--color-grey-opacity-medium);
+        border: var(--border-weight-soft) solid var(--border-color-grey);
+        border-radius: var(--border-radius-m);
+        &.selected {
+            --hoverBgColor: var(--color-grey-opacity-hard);
+        }
+    }
+    &.clear {
+        --activeBgColor: transparent;
+        border: none;
+    }
+}
+
+// Sizes
+.tab {
+    &.m {
+        padding-block: var(--button-padding-block-m);
+        padding-inline: var(--button-padding-inline-m);
+    }
+    &.l {
+        padding-block: var(--button-padding-block-l);
+        padding-inline: var(--button-padding-inline-l);
+    }
+}
+
+// Icon positions
+.tab {
+    &.right {
+        flex-direction: row-reverse;
+    }
+    &.top {
+        flex-direction: column;
+    }
+    &.bottom {
+        flex-direction: column-reverse;
+    }
+}
+
+// Mods
+.tab {
+    &:focus-visible {
+        @include focus-outline-inset;
+    }
+    &:disabled {
+        @include disabled;
+    }
+    &.selected {
+        background-color: var(--activeBgColor);
+        color: var(--activeColor);
+    }
+    @include hover {
+        background-color: var(--hoverBgColor);
+    }
+}

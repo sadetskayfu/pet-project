@@ -1,0 +1,12 @@
+@use '@/app/styles/helpers' as *;
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: rem(40); 
+}
+
+.actions {
+    display: flex;
+    column-gap: rem(10);
+}

@@ -1,0 +1,48 @@
+@use '@/app/styles/helpers' as *;
+
+.option {
+    --bgSelected: ;
+    --bgActive: var(--color-grey-opacity-medium);
+    position: relative;
+    display: flex;
+    align-items: center;
+    column-gap: var(--padding-15);
+    width: 100%;
+    padding-inline: var(--padding-15);
+    padding-block: var(--padding-10);
+    cursor: pointer;
+    text-align: start;
+    border-radius: var(--border-radius-m);
+    overflow: hidden;
+    &.selected {
+        color: var(--theme-color-primary-main);
+        background-color: var(--bgSelected); 
+    }
+    &.disabled {
+        @include disabled;
+    }
+    &.readonly {
+        pointer-events: none;
+    }
+    &.center-content {
+        justify-content: center;
+    }
+    &[data-active] {
+        background-color: var(--bgActive);
+    }
+}
+
+// Select variant
+.option {
+    &.bg {
+        --bgSelected: var(--color-primary-opacity-soft);
+        &.selected {
+            --bgActive: var(--color-primary-opacity-hard);
+        } 
+    }
+}
+
+.check-mark {
+    margin-left: auto;
+}
+

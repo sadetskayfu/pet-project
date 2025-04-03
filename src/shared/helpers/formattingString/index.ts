@@ -1,0 +1,8 @@
+export { getCleanNumber } from './getCleanNumber'
+export { parseTranslate3d } from './parseTranslate3d'
+export { getFirstLetter } from './getFirstLetter'
+export { capitalizeFirstLetter } from './capitalizeFirstLetter'
+export { getLastCharacters } from './getLastCharacters'
+export { formatTime } from './formatTime'
+export { getMinutesText } from './getMinutesText'
+export { cleanSpaces } from './cleanSpaces'

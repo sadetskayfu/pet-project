@@ -1,0 +1,10 @@
+@use '@/app/styles/helpers' as *;
+
+.movie-catalog {
+    display: flex;
+    flex-direction: column;
+}
+
+.list {
+    padding-top: rem(40);
+}

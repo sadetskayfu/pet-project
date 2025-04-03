@@ -1,0 +1,11 @@
+.page {
+    // background: url('@/shared/assets/images/auth-bg.jpg');
+    // background-size: cover;
+    // background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}

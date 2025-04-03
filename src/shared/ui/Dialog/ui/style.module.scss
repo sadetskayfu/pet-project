@@ -1,0 +1,19 @@
+.dialog {
+    margin-inline: var(--container-padding-x);
+}
+
+.content {
+    max-height: var(--full-height-with-padding);
+    overflow-y: auto;
+    background-color: var(--theme-color-dark);
+    border-radius: var(--border-radius-m);
+    border: var(--border-weight-soft) solid var(--border-color-grey);
+    transition: transform 0.2s;
+    transform: translateY(-50px);
+    &.open {
+        transform: translateY(0);
+    }
+    &.close {
+        transform: translateY(-50px);
+    }
+}

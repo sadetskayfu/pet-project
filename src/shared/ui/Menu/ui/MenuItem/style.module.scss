@@ -1,0 +1,31 @@
+@use '@/app/styles/helpers' as *;
+
+.item {
+    --color: var(--font-color-hard);
+    display: flex;
+    &.disabled {
+        @include disabled;
+    }
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    padding: 0px;
+}
+
+.button,
+.link {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius-m);
+    width: 100%;
+    &[data-open]{
+        background-color: var(--color-grey-opacity-soft);
+        --color: var(--theme-color-primary-main);
+    }
+    &:focus {
+        background-color: var(--color-grey-opacity-medium);
+    }
+}

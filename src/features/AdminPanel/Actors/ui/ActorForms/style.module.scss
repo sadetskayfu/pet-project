@@ -1,0 +1,14 @@
+@use '@/app/styles/helpers' as *;
+
+.form {
+    width: rem(300);
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(30);
+}
+
+.actions {
+    display: flex;
+    column-gap: rem(10);
+    align-self: end;
+}

@@ -1,0 +1,27 @@
+@use '@/app/styles/helpers' as *;
+
+.menu {
+    padding: rem(20);
+    width: rem(200);
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(10);
+}
+
+.select-render-value {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.setting-button {
+    svg {
+        transition: transform 0.6s;
+    }
+    &[data-open-popover] {
+        color: var(--theme-color-primary-main);
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+}

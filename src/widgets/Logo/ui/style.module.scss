@@ -1,0 +1,15 @@
+@use '@/app/styles/helpers' as *;
+
+.logo {
+    position: relative;
+    font-size: rem(30);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    &:focus-visible {
+        @include focus-outline-inset;
+    }
+    &:before {
+        @include header-circle-decoration;
+    }
+}

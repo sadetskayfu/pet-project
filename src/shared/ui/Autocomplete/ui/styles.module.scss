@@ -1,0 +1,95 @@
+@use '@/app/styles/helpers' as *;
+
+.autocomplete {
+    input {
+        color: var(--font-color-hard);
+        background-color: transparent;
+        text-overflow: ellipsis;
+        &::placeholder {
+            color: var(--font-color-soft);
+        }
+    }
+    &.open {
+        .arrow {
+            svg {
+                transform: rotate(180deg);
+            }
+        }
+    }
+    &.dirty {
+        @include hover {
+            .clear-button {
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
+        &.focused {
+            .clear-button {
+                opacity: 1;
+                pointer-events: all;
+            } 
+        }
+    }
+    &:not(.fixed-height) {
+        .content {
+            flex-wrap: wrap;
+        }
+    }
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: rem(5);
+    overflow-x: hidden;
+    input {
+        width: 0;
+        min-width: rem(40);
+        flex-grow: 1;
+        padding: 0px;
+        border: none;
+    }
+}
+
+.labels {
+    display: contents;
+}
+
+.arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--button-height-xxs);
+    height: var(--button-height-xxs);
+    z-index: 1;
+    svg {
+        transition: transform 0.2s;
+    }
+}
+
+.clear-button {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.menu {
+    width: 100%;
+    background-color: var(--theme-color-grey-dark);
+    border-radius: var(--border-radius-m);
+    box-shadow: var(--box-shadow-paper);
+    padding: rem(5);
+    opacity: 0;
+    animation: fade 0.2s forwards;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: grid;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

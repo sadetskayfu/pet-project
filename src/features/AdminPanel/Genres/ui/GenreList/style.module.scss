@@ -1,0 +1,16 @@
+@use '@/app/styles/helpers' as *;
+
+.section {
+    display: flex;
+    align-items: center;
+    gap: rem(10);
+    flex-wrap: wrap;
+    &.loading {
+        opacity: var(--opacity-disabled);
+    }
+}
+
+.item-list {
+    display: contents;
+}
+

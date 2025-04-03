@@ -1,0 +1,184 @@
+@use '@/app/styles/helpers' as *;
+
+.button {
+	--bgColorHover: ;
+	--borderColor: ;
+	--height: ;
+	--borderRadius: ;
+	height: var(--height);
+	width: var(--height);
+	border: none;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0px;
+	transition:
+		color 0.2s,
+		background-color 0.2s,
+		opacity 0.2s;
+	flex-shrink: 0;
+	font-weight: 500;
+	color: inherit;
+	overflow: hidden;
+	@include user-select-off;
+}
+
+// Colors
+.button {
+	&.primary {
+		--borderColor: var(--border-color-primary);
+		color: var(--theme-color-primary-main);
+	}
+	&.secondary {
+		--borderColor: var(--border-color-grey);
+		color: var(--font-color-hard);
+	}
+	&.green {
+		--borderColor: var(--border-color-green);
+		color: var(--theme-color-green-main);
+	}
+	&.red {
+		--borderColor: var(--border-color-red);
+		color: var(--theme-color-red-main);
+	}
+	&.light {
+		--border-color: var(--color-grey-800);
+		color: var(--color-light);
+	}
+	&.orange {
+		--borderColor: var(--border-color-orange);
+		color: var(--theme-color-orange-main);
+	}
+}
+
+// Variants
+.button {
+	&.filled {
+		&.primary {
+			--bgColorHover: var(--theme-color-primary-light);
+			color: var(--font-color-onDark);
+			background-color: var(--theme-color-primary-main);
+		}
+		&.secondary {
+			--bgColorHover: var(--theme-color-dark);
+			background-color: var(--theme-color-grey-dark);
+			border: var(--border-weight-soft) solid var(--borderColor);
+		}
+		&.green {
+			--bgColorHover: var(--theme-color-green-light);
+			background-color: var(--theme-color-green-main);
+			color: var(--font-color-onDark);
+		}
+		&.red {
+			--bgColorHover: var(--theme-color-red-light);
+			background-color: var(--theme-color-red-main);
+			color: var(--font-color-onDark);
+		}
+		&.orange {
+			--bgColorHover: var(--theme-color-orange-light);
+			background-color: var(--theme-color-orange-main);
+			color: var(--font-color-onDark);
+		}
+		&.light {
+			--bgColorHover: var(--color-grey-300);
+			color: var(--color-dark);
+			background-color: var(--color-light);
+		}
+		&:not(.inherit) {
+			@include hover {
+				background-color: var(--bgColorHover);
+			}
+		}
+	}
+	&.outlined {
+		border: var(--border-weight-soft) solid var(--borderColor);
+	}
+	&.clear,
+	&.outlined {
+		background-color: transparent;
+		&:after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background-color: transparent;
+			opacity: 0.1;
+			pointer-events: none;
+			transition: background-color 0.2s;
+		}
+		@include hover {
+			&:after {
+				background-color: currentColor;
+			}
+		}
+	}
+}
+
+// Sizes
+.button {
+	&.xxs {
+		--height: var(--button-height-xxs);
+		font-size: var(--fz-icon-xxs);
+	}
+	&.xs {
+		--height: var(--button-height-xs);
+		font-size: var(--fz-icon-xs);
+	}
+	&.s {
+		--height: var(--button-height-s);
+		font-size: var(--fz-icon-s);
+	}
+	&.m {
+		--height: var(--button-height-m);
+		font-size: var(--fz-icon-m);
+	}
+	&.l {
+		--height: var(--button-height-l);
+		font-size: var(--fz-icon-l);
+	}
+}
+
+// Border placement
+.button {
+	&.left {
+		border-radius: var(--borderRadius) 0 0 var(--borderRadius);
+	}
+	&.right {
+		border-radius: 0 var(--borderRadius) var(--borderRadius) 0;
+	}
+	&.top {
+		border-radius: var(--borderRadius) var(--borderRadius) 0 0;
+	}
+	&.bottom {
+		border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+	}
+	&.all {
+		border-radius: var(--borderRadius);
+	}
+}
+
+// Border radius
+.button {
+	&.border-radius-s {
+		--borderRadius: var(--border-radius-s);
+	}
+	&.border-radius-m {
+		--borderRadius: var(--border-radius-m);
+	}
+	&.border-radius-none {
+		--borderRadius: 0px;
+	}
+	&.border-radius-full {
+		--borderRadius: 50%;
+	}
+}
+
+// Mods
+.button {
+	&:focus-visible {
+		@include focus-outline;
+	}
+	&.disabled {
+		@include disabled;
+	}
+}

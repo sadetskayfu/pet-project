@@ -1,0 +1,57 @@
+@use '@/app/styles/helpers' as *;
+
+.field {
+    &.open {
+        .arrow {
+            svg {
+                transform: rotate(180deg);
+            }
+        }
+    }
+}
+
+.select {
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.arrow {
+    width: var(--button-height-xxs);
+    height: var(--button-height-xxs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    svg {
+        transition: transform 0.2s;
+    }
+}
+
+.labels {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(5);
+    overflow-x: hidden;
+}
+
+.menu {
+    width: 100%;
+    background-color: var(--theme-color-grey-dark);
+    border-radius: var(--border-radius-m);
+    box-shadow: var(--box-shadow-paper);
+    padding: rem(5);
+    transition: opacity 0.2s;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: grid;
+    opacity: 0;
+    &.open {
+        opacity: 1;
+    }
+    &.close {
+        opacity: 0;
+        pointer-events: none;
+    }
+}

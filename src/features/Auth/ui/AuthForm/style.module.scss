@@ -1,0 +1,13 @@
+@use '@/app/styles/helpers' as *;
+
+.form {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(30);
+    width: 100%;
+}
+
+.skeleton-button {
+    width: 100%;
+    height: var(--button-height-s);
+}

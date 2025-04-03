@@ -1,0 +1,26 @@
+@use '@/app/styles/helpers' as *;
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(15);
+    @include max-width(768) {
+        row-gap: rem(20);
+        .autocompletes {
+            display: contents;
+        }
+        .selects {
+            display: contents;
+        }
+    }
+}
+
+.autocompletes {
+    display: flex;
+    column-gap: rem(20);
+}
+
+.selects {
+    display: flex;
+    column-gap: rem(20);
+}

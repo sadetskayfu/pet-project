@@ -1,0 +1,30 @@
+@use '@/app/styles/helpers' as *;
+
+.form-group {
+	margin: 0px;
+	&:not(.errored) {
+		&:focus-within {
+			.label {
+				color: var(--theme-color-primary-main);
+			}
+		}
+	}
+}
+
+.item-group {
+	display: flex;
+}
+
+// Orientation
+.form-group {
+	&.horizontal {
+		.item-group {
+			column-gap: rem(10);
+		}
+	}
+	&.vertical {
+		.item-group {
+			flex-direction: column;
+		}
+	}
+}

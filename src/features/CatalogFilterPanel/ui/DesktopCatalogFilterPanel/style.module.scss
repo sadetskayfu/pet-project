@@ -1,0 +1,30 @@
+@use '@/app/styles/helpers' as *;
+
+.header {
+    display: flex;
+    column-gap: rem(10);
+}
+
+.collapse-trigger {
+    width: rem(200);
+    svg {
+        transition: transform 0.2s;
+    }
+    &[data-open] {
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.filters {
+    padding-top: rem(20);
+    row-gap: rem(20);
+    display: flex;
+    flex-direction: column;
+}
+
+.reset-button {
+    width: max-content;
+}
+

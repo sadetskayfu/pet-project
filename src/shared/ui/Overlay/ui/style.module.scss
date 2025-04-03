@@ -1,0 +1,16 @@
+.overlay {
+    background-color: var(--color-dark-opacity);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    &.open {
+        opacity: 1;
+    }
+    &.close {
+        opacity: 0;
+    }
+}
+
+

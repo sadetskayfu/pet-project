@@ -1,0 +1,88 @@
+@use '@/app/styles/helpers' as *;
+
+.button {
+    --selectedColor: ;
+    --selectedBgColor: ;
+    --hoverBgColor: var(--color-grey-opacity-soft);
+    --height: ;
+    --borderRadius: ;
+    min-height: var(--height);
+    min-width: var(--height);
+    padding-block: 0px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--border-weight-soft) solid var(--border-color-grey);
+    border-radius: var(--borderRadius);
+    background-color: transparent;
+    font-weight: 500;
+    color: inherit;
+    overflow: hidden;
+    &:focus-visible {
+        @include focus-outline;
+    }
+    &.selected {
+        background-color: var(--selectedBgColor);
+        color: var(--selectedColor);
+    }
+    @include hover {
+        background-color: var(--hoverBgColor);
+    }
+    &:disabled {
+        @include disabled;
+    }
+}
+
+// Colors
+.button {
+    &.primary {
+        --selectedColor: var(--theme-color-primary-main);
+        --selectedBgColor: var(--color-primary-opacity-medium);
+        &.selected {
+            --hoverBgColor: var(--color-primary-opacity-hard);
+        }
+    }
+    &.secondary {
+        --selectedBgColor: var(--color-grey-opacity-medium);
+        &.selected {
+            --hoverBgColor: var(--color-grey-opacity-hard);
+        }
+    }
+}
+
+// Border radius
+.button {
+	&.border-radius-s {
+		--borderRadius: var(--border-radius-s);
+	}
+	&.border-radius-m {
+		--borderRadius: var(--border-radius-m);
+	}
+	&.border-radius-none {
+		--borderRadius: 0px;
+	}
+	&.border-radius-full {
+		--borderRadius: var(--border-radius-full);
+	}
+}
+
+// Sizes
+.button {
+    &.xs {
+        --height: var(--button-height-xs);
+        padding-inline: rem(6);
+    }
+    &.s {
+        --height: var(--button-height-s);
+        padding-inline: var(--button-padding-block-s);
+    }
+    &.m {
+        --height: var(--button-height-m);
+        padding-inline: var(--button-padding-block-m);
+    }
+    &.l {
+        --height: var(--button-height-l);
+        padding-inline: var(--button-padding-block-l);
+    }
+}

@@ -1,0 +1,19 @@
+@use '@/app/styles/helpers' as *;
+
+.pin-code-field {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(5);
+    legend {
+        margin-bottom: rem(5);
+    }
+}
+
+.field {
+    width: var(--button-height-s);
+    height: var(--button-height-s);
+    input {
+        text-align: center;
+        min-height: var(--button-height-s);
+    }
+}

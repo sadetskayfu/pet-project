@@ -1,0 +1,58 @@
+@use '@/app/styles/helpers' as *;
+
+.link {
+    --color: ;
+    column-gap: rem(8);
+    display: flex;
+    align-items: center;
+    color: var(--color);
+    &:focus-visible {
+        @include focus-outline;
+    }
+}
+
+// Colors
+.link {
+    &.primary {
+        --color: var(--theme-color-primary-main);
+    }
+    &.inherit {
+        --color: inherit;
+    }
+}
+
+// Underline variant
+.link {
+    &.none {
+        @include hover {
+            color: var(--theme-color-primary-light);
+        }
+    }
+    &.hover,
+    &.always {
+        position: relative;
+        &:before {
+            content: '';
+            position: absolute;
+            bottom: rem(1);
+            width: 100%;
+            height: var(--border-weight-soft);
+            background-color: currentColor;
+        }
+        @include hover {
+            &:before {
+                opacity: 1;
+            }
+        }
+    }
+    &.hover {
+        &:before {
+            opacity: 0;
+        }
+    }
+    &.always {
+        &:before {
+            opacity: 0.5;
+        }
+    }
+}

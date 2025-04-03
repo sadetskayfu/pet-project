@@ -1,0 +1,14 @@
+@use '@/app/styles/helpers' as *;
+
+.dialog {
+    max-width: rem(900);
+    width: 100%;
+}
+
+.content {
+    padding: rem(30);
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(30);
+}
+

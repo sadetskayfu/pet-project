@@ -1,0 +1,16 @@
+@use '@/app/styles/helpers' as *;
+
+.modal {
+    padding: rem(20);
+    display: flex;
+    flex-direction: column;
+    max-width: rem(360);
+    width: 100%;
+}
+
+.actions {
+    margin-top: rem(10);
+    display: flex;
+    margin-left: auto;
+    column-gap: rem(10);
+}

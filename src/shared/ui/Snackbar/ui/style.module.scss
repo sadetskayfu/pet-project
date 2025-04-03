@@ -1,0 +1,18 @@
+.snackbar {
+	position: relative;
+	box-shadow: var(--box-shadow-paper);
+	&.m {
+		border-radius: var(--border-radius-m);
+	}
+	&.l {
+		border-radius: var(--border-radius-l);
+	}
+}
+
+.progress {
+	position: absolute;
+	top: 0;
+	right: 0;
+	translate: 50% -50%;
+	background-color: var(--theme-color-grey-dark);
+}

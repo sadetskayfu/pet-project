@@ -1,0 +1,8 @@
+@use '@/app/styles/helpers' as *;
+
+.cursor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: rem(60);
+}

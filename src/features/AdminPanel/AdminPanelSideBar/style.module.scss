@@ -1,0 +1,11 @@
+@use '@/app/styles/helpers' as *;
+
+.side-bar {
+    max-width: rem(200);
+    width: 100%;
+    border-right: var(--border-weight-soft) solid var(--border-color-grey);
+}
+
+.list {
+    width: 100%;
+}

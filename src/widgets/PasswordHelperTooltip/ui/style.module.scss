@@ -1,0 +1,18 @@
+@use '@/app/styles/helpers' as *;
+
+.tooltip {
+    max-width: rem(400);
+    width: 100%;
+    z-index: 1;
+}
+
+.content {
+    --padding: #{rem(10)};
+    display: flex;
+    width: 100%;
+    justify-content: start;
+    flex-direction: column;
+    row-gap: var(--padding);
+    padding: var(--padding);
+    text-wrap: wrap;
+}

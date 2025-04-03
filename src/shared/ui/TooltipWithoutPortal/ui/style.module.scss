@@ -1,0 +1,81 @@
+@use '@/app/styles/helpers' as *;
+
+.tooltip {
+    --padding: #{rem(12)};
+    --bgColor: var(--theme-color-grey-light);
+    --borderRadius: ;
+    position: absolute;
+    min-width: rem(40);
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.2s, transform 0.2s;
+    &.open {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.body {
+    position: relative;
+    background-color: var(--bgColor);
+    color: var(--font-color-hard);
+    width: 100%;
+    padding-inline: rem(8);
+    padding-block: rem(5);
+    border-radius: var(--borderRadius);
+    box-shadow: var(--box-shadow-paper);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// Offset
+.tooltip {
+    &.offset-s {
+        --padding: #{rem(12)};
+    }
+    &.offset-m {
+        --padding: #{rem(16)};
+    }
+}
+
+// Border radius
+.tooltip {
+    &.s {
+        --borderRadius: #{rem(2)};
+    }
+    &.m {
+        --borderRadius: var(--border-radius-m);
+    }
+}
+
+// Position
+.tooltip {
+    &.top {
+        padding-bottom: var(--padding);
+        bottom: 100%;
+        left: 50%;
+        translate: -50%;
+    }
+    &.bottom {
+        padding-top: var(--padding);
+        top: 100%;
+        left: 50%;
+        translate: -50%;
+    }
+    &.left {
+        padding-right: var(--padding);
+        right: 100%;
+        top: 50%;
+        translate: 0 -50%;
+    }
+    &.right {
+        padding-left: var(--padding);
+        left: 100%;
+        top: 50%;
+        translate: 0 -50%;
+    }
+}

@@ -1,0 +1,38 @@
+@use '@/app/styles/helpers' as *;
+
+.tooltip {
+    min-width: rem(40);
+    padding-inline: rem(8);
+    padding-block: rem(5);
+    background-color: var(--theme-color-grey-light);
+    color: var(--font-color-hard);
+    box-shadow: var(--box-shadow-paper);
+    opacity: 0;
+    transform: scale(0.5);
+    &:not(.instant-phase) {
+        transition: opacity 0.2s, transform 0.2s;
+    }
+    &.instant-phase {
+        transition: opacity 0.1s, transform 0.1s;
+    }
+    &.open {
+        opacity: 1;
+        transform: scale(1);
+    }
+    &.close {
+        opacity: 0;
+        transform: scale(0.5);
+        pointer-events: none;
+    }
+}
+
+// Border radius
+.tooltip {
+    &.s {
+        border-radius: #{rem(2)};
+    }
+    &.m {
+        border-radius: var(--border-radius-m);
+    }
+}
+

@@ -1,0 +1,6 @@
+export { Dialog, type DialogProps } from './ui/Dialog'
+export { DialogContent } from './ui/DialogContent'
+export { DialogDescription } from './ui/DialogDescription'
+export { DialogHeading } from './ui/DialogHeading'
+export { DialogTrigger } from './ui/DialogTrigger'
+export { DialogClose } from './ui/DialogClose'

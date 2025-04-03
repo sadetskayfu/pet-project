@@ -1,0 +1,57 @@
+.skeleton {
+    --borderRadius: ;
+    display: block;
+    position: relative;
+    background-color: var(--theme-color-grey-light);
+    overflow: hidden;
+    animation: blinking 1s ease-in-out infinite;
+}
+
+// Variants
+.skeleton {
+    &.s {
+        --borderRadius: var(--border-radius-s);
+    }
+    &.m {
+        --borderRadius: var(--border-radius-m);
+    }
+    &.l {
+        --borderRadius: var(--border-radius-l);
+    }
+    &.circular {
+        --borderRadius: 50%;
+    }
+    &.full {
+        --borderRadius: var(--border-radius-full);
+    }
+}
+
+.skeleton {
+    &.left {
+        border-radius: var(--borderRadius) 0 0 var(--borderRadius);
+    }
+    &.top {
+        border-radius: var(--borderRadius) var(--borderRadius) 0 0;
+    }
+    &.right {
+        border-radius: 0 var(--borderRadius) var(--borderRadius) 0;
+    }
+    &.bottom {
+        border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+    }
+    &.all {
+        border-radius: var(--borderRadius);
+    }
+}
+
+@keyframes blinking {
+    0% {
+        background-color: var(--theme-color-grey-light);
+    }
+    50% {
+        background-color: var(--color-grey-500);
+    }
+    100% {
+        background-color: var(--theme-color-grey-light);
+    }
+}

@@ -1,0 +1,92 @@
+@use '@/app/styles/helpers' as *;
+
+.typography {
+    &.no-wrap {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+    }
+}
+
+.typography {
+    &.font-weight-normal {
+        font-weight: normal;
+    }
+    &.font-weight-bold {
+        font-weight: bold;
+    }
+}
+
+// Text align
+.typography {
+    &.center {
+        text-align: center;
+    }
+    &.start {
+        text-align: start;
+    }
+    &.end {
+        text-align: end;
+    }
+}
+
+// Overflow wrap
+.typography {
+    &.overflow-wrap-normal {
+        overflow-wrap: normal;
+    }
+    &.overflow-wrap-anywhere {
+        overflow-wrap: anywhere;
+    }
+}
+
+// Variants
+.typography {
+    &.h1 {
+        font-size: #{fluid-text(70, 42)};
+    }
+    &.h2 {
+        font-size: #{fluid-text(50, 36)};
+    }
+    &.h3 {
+        font-size: #{fluid-text(40, 30)};
+    }
+    &.h4 {
+        font-size: #{fluid-text(26, 24)};
+    }
+    &.h5 {
+        font-size: #{rem(24)};
+    }
+    &.h6 {
+        font-size: #{rem(22)};
+    }
+    &.default {
+        font-size: var(--font-size-default);
+    }
+    &.helper {
+        font-size: var(--font-size-s);
+    }
+}
+
+// Colors
+.typography {
+    &.hard {
+        color: var(--font-color-hard);
+    }
+    &.soft {
+        color: var(--font-color-soft);
+    }
+    &.onDark {
+        color: var(--font-color-onDark);
+    }
+    &.error {
+        color: var(--color-red-500);
+    }
+    &.primary {
+        color: var(--theme-color-primary-main);
+    }
+    &.inherit {
+        color: inherit;
+    }
+}
+

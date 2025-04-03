@@ -1,0 +1,58 @@
+@use '@/app/styles/helpers' as *;
+
+.star-rating {
+	margin: 0px;
+	display: flex;
+	flex-direction: column;
+	&:not(.errored) {
+		&:focus-within {
+			.label {
+				color: var(--color-yellow);
+			}
+		}
+	}
+	&.success {
+		pointer-events: none;
+	}
+}
+
+.star-group {
+	display: inline-flex;
+	margin-inline: rem(-3);
+}
+
+.star {
+	&.success {
+		animation: success 1s;
+	}
+}
+
+@keyframes success {
+	0% {
+		transform: translateY(0%);
+	}
+	40% {
+		transform: translateY(-40%);
+	}
+	60% {
+		transform: translateX(0%);
+	}
+	65% {
+		transform: translateX(10%);
+	}
+	70% {
+		transform: translateX(-9%);
+	}
+	75% {
+		transform: translateX(7%);
+	}
+	80% {
+		transform: translateX(-5%);
+	}
+	90% {
+		transform: translateX(3%);
+	}
+	100% {
+		transform: translateX(0%);
+	}
+}

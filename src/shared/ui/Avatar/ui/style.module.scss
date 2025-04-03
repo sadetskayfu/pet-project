@@ -1,0 +1,76 @@
+@use '@/app/styles/helpers' as *;
+
+.avatar {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	box-sizing: content-box;
+	flex-shrink: 0;
+	@include user-select-off;
+	&.default-bg-color {
+		background-color: var(--theme-color-grey-light);
+	}
+}
+
+.img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;	
+}
+
+.skeleton {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+// Border
+.avatar {
+	&.dark {
+		border: var(--border-weight-hard) solid var(--theme-color-dark);
+	}
+	&.primary {
+		border: var(--border-weight-hard) solid var(--theme-color-primary-main);
+	}
+}
+
+// Sizes
+.avatar {
+	&.size-s {
+		--height: #{rem(40)};
+		width: var(--height);
+		height: var(--height);
+		font-size: calc(var(--height) / 1.75);
+	}
+	&.size-m {
+		--height: #{rem(60)};
+		width: var(--height);
+		height: var(--height);
+		font-size: calc(var(--height) / 1.75);
+	}
+	&.size-l {
+		--height: #{rem(80)};
+		width: var(--height);
+		height: var(--height);
+		font-size: calc(var(--height) / 1.75);
+	}
+}
+
+// Border radius
+.avatar {
+    &.s {
+        border-radius: var(--border-radius-s);
+    }
+    &.m {
+        border-radius: var(--border-radius-m);
+    }
+    &.l {
+        border-radius: var(--border-radius-l);
+    }
+    &.circular {
+        border-radius: 50%;
+    }
+}
+

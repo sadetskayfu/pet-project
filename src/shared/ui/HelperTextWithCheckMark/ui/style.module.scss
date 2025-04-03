@@ -1,0 +1,33 @@
+@use '@/app/styles/helpers' as *;
+
+.helper-text {
+    --color: var(--font-color-soft);
+    display: flex;
+    align-items: center;
+    column-gap: rem(15);
+    font-size: var(--font-size-s);
+    &.valid {
+        --color: var(--theme-color-green-main);
+        svg {
+            transform: scale(1);
+        }
+    }
+}
+
+.check-mark {
+    border-radius: 50%;
+    width: rem(20);
+    height: rem(20);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: var(--border-weight-soft) solid var(--color);
+    color: var(--color);
+    transition: border 0.2s;
+    font-size: rem(12);
+    flex-shrink: 0;
+    svg {
+        transform: scale(0);
+        transition: transform 0.2s;
+    }
+}

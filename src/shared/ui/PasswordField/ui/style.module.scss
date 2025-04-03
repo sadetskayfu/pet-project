@@ -1,0 +1,18 @@
+@use '@/app/styles/helpers' as *;
+
+.toggle-visibility-password-button {
+    &:before {
+        @include abs-center;
+        content: '';
+        width: 0%;
+        height: rem(1);
+        transform: rotate(-45deg);
+        transition: width 0.2s;
+        background-color: currentColor;
+    }
+    &.hidden-password {
+        &:before {
+            width: 60%;
+        }
+    }
+}

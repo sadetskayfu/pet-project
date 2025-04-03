@@ -1,0 +1,63 @@
+.indicator {
+	--weight: ;
+	position: absolute;
+	transition-duration: 0.2s;
+}
+
+// Color
+.indicator {
+	&.primary {
+		background-color: var(--theme-color-primary-main);
+	}
+	&.secondary {
+		background-color: var(--color-grey-500);
+	}
+}
+
+// Weight
+.indicator {
+	&.soft {
+		--weight: var(--border-weight-soft);
+	}
+	&.hard {
+		--weight: var(--border-weight-hard);
+	}
+}
+
+// Position
+.indicator {
+	&.top {
+		top: 0;
+	}
+	&.bottom {
+		bottom: 0;
+	}
+	&.left {
+		left: 0;
+	}
+	&.right {
+		right: 0;
+	}
+	&.top,
+	&.bottom {
+		height: var(--weight);
+		width: 0%;
+		left: 50%;
+		translate: -50% 0%;
+		&.active {
+			width: 100%;
+		}
+	}
+	&.left,
+	&.right {
+		width: var(--weight);
+		height: 0%;
+		top: 50%;
+		translate: 0 -50%;
+		transition: height 0.2s;
+		&.active {
+			height: 100%;
+		}
+	}
+}
+

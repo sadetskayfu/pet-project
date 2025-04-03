@@ -1,0 +1,45 @@
+@use '@/app/styles/helpers' as *;
+
+.calendar {
+    --gap: #{rem(5)};
+    width: rem(285);
+}
+
+.header {
+    display: flex;
+    column-gap: var(--gap);
+}
+
+.year-select {
+    width: rem(160);
+}
+
+.day-calendar {
+    height: rem(280);
+    margin-top: var(--gap);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: var(--gap);
+    &__header {
+        display: flex;
+        column-gap: var(--gap);
+    }
+    &__week-day {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: var(--button-height-xs);
+        height: var(--button-height-xs);
+    }
+    &__month-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: var(--gap);
+    }
+    &__week-container {
+        display: grid;
+        grid-template-columns: repeat(7, var(--button-height-xs));
+        gap: var(--gap);
+    }
+}

@@ -1,0 +1,48 @@
+@use '@/app/styles/helpers' as *;
+
+.header {
+    position: fixed;
+    width: 100%;
+    border-bottom: var(--border-weight-soft) solid var(--border-color-grey);
+    background-color: var(--theme-color-dark);
+    z-index: 1;
+}
+
+.inner {
+    --linkHeight: var(--header-height);
+    display: flex;
+    align-items: center;
+    column-gap: rem(50);
+}
+
+.logo {
+    height: var(--linkHeight);
+    display: flex;
+    align-items: center;
+}
+
+.link-list {
+    display: flex;
+}
+
+.link-item {
+    height: var(--linkHeight);
+}
+
+.actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    column-gap: rem(10);
+    &__skeleton-btn {
+        height: var(--button-height-s);
+        width: rem(80);
+    }
+}
+
+.modal {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}

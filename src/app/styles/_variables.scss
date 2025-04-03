@@ -1,0 +1,107 @@
+@use 'helpers' as *;
+
+:root {
+	// Colors
+	--color-dark: #141414;
+	--color-light: #fff;
+	--color-dark-opacity: rgba(0, 0, 0, 0.5);
+	--color-dark-opacity-hard: rgba(0, 0, 0, 0.8); 
+	--box-shadow-paper: 0 0 10px 1px rgb(0, 0, 0, 0.2);
+
+	--color-primary-800: #4f3c70; // border dark-theme
+	--color-primary-700: #6742a7;
+	--color-primary-600: #8c59e4; // main light-theme
+	--color-primary-500: #b28bf5; // main dark-theme
+	--color-primary-400: #d3bafd;
+	--color-primary-300: #c5b3e6; // border light-theme
+	--color-primary-100: #d1c4e9;
+
+	--color-primary-opacity-soft: hsl(262, 84%, 75%, 0.1);
+	--color-primary-opacity-medium: hsl(262, 84%, 75%, 0.2);
+	--color-primary-opacity-hard: hsl(262, 84%, 75%, 0.3);
+
+	--color-grey-900: #212121; // bg dark
+	--color-grey-800: #424242; // border dark-theme
+	--color-grey-500: #9e9e9e; // main
+	--color-grey-300: #cfcfcf; // border light-theme
+	--color-grey-100: #f0f0f0; // bg light
+	--color-grey-opacity-soft: hsl(0, 0%, 62%, 0.1);
+	--color-grey-opacity-medium: hsl(0, 0%, 62%, 0.2); 
+	--color-grey-opacity-hard: hsl(0, 0%, 62%, 0.3);
+
+	--color-green-700: #235c24; // border dark-theme
+	--color-green-600: #348536; // hover light
+	--color-green-500: #4caf4f; // main
+	--color-green-400: #90df92; // hover dark
+	--color-green-300: #a5e2a7; // border light-theme
+
+	--color-red-700: #8b2c2c; // border dark-theme
+	--color-red-600: #b41c1c; // hover light
+	--color-red-500: #eb2525; // main
+	--color-red-400: #f05555; // hover dark
+	--color-red-300: #e2a5a5; // border light-theme
+
+	--color-orange-700: #855312; // border dark-theme
+	--color-orange-600: #bd7e2c; // hover light
+	--color-orange-500: #eb9f3d; // main
+	--color-orange-400: #e9b879; // hover dark
+	--color-orange-300: #e9c290; // border light-theme
+
+	--color-yellow: #ffc400;
+
+	// Font
+	--font-family-base: 'Kumbh Sans', 'sans-serif';
+	--font-size-l: #{rem(20)};
+	--font-size-default: #{rem(16)};
+	--font-size-s: #{rem(14)};
+
+	// Border
+	--border-weight-soft: #{rem(1)};
+	--border-weight-hard: #{rem(2)};
+	--border-radius-s: #{rem(6)};
+	--border-radius-m: #{rem(9)};
+	--border-radius-l: #{rem(14)};
+	--border-radius-full: 9999px;
+
+	// Opacity
+	--opacity-disabled: 0.6;
+
+	// Button height
+	--button-height-xxs: #{rem(25)};
+	--button-height-xs: #{rem(35)};
+
+	// Button small
+	--button-height-s: #{rem(45)};
+	--button-padding-inline-s: #{rem(16)};
+	--button-padding-block-s: #{rem(10)};
+
+	// Button medium
+	--button-height-m: #{rem(55)};
+	--button-padding-inline-m: #{rem(20)};
+	--button-padding-block-m: #{rem(14)};
+
+	// Button large
+	--button-height-l: #{rem(65)};
+	--button-padding-inline-l: #{rem(24)};
+	--button-padding-block-l: #{rem(18)};
+
+	--actions-margin: calc(var(--button-height-xxs) / 4);
+
+	// Icon size
+	--fz-icon-xxs: calc(var(--button-height-xxs) / 2);
+	--fz-icon-xs: calc(var(--button-height-xs) / 2);
+	--fz-icon-s: calc(var(--button-height-s) / 2);
+	--fz-icon-m: calc(var(--button-height-m) / 2);
+	--fz-icon-l: calc(var(--button-height-l) / 2);
+
+	--container-width: #{rem(1200)};
+	--container-padding-x: #{rem(16)};
+
+	--header-height: #{rem(70)};
+	--full-height-with-padding: calc(100vh - var(--container-padding-x) * 2);
+	--section-padding: #{rem(60)};
+
+	--padding-20: #{rem(20)};
+	--padding-15: #{rem(15)};
+	--padding-10: #{rem(10)};
+}

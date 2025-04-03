@@ -1,0 +1,45 @@
+.ripple {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 0%;
+  aspect-ratio: 1;
+  background-color: currentColor;
+  border-radius: 50%;
+  &.default {
+    animation: ripple 1000ms;
+  }
+  &.small {
+    animation: ripple-small 600ms;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    width: 0%;
+    opacity: 0.8;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    width: 300%;
+    opacity: 0;
+  }
+}
+
+@keyframes ripple-small {
+  0% {
+    width: 0%;
+    opacity: 0.8;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    width: 110%;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,12 @@
+@use '@/app/styles/helpers' as *;
+
+.button {
+    color: var(--color-grey-500);
+    &.active {
+        color: var(--color-primary-500);
+        svg {
+            animation: scale 0.5s;
+        }
+    }
+}
+

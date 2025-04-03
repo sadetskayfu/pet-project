@@ -1,0 +1,170 @@
+@use '@/app/styles/helpers' as *;
+
+.button {
+	--bgColorHover: ;
+	--borderColor: ;
+	--borderRadius: ;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	white-space: nowrap;
+	color: var(--color);
+	padding-block: 0px;
+	overflow: hidden;
+	font-weight: 500;
+	transition:
+		background-color 0.2s,
+		color 0.2s,
+		opacity 0.2s;
+	@include user-select-off;
+}
+
+// Colors
+.button {
+	&.primary {
+		--borderColor: var(--border-color-primary);
+		color: var(--theme-color-primary-main);
+	}
+	&.secondary {
+		--borderColor: var(--border-color-grey);
+		color: var(--font-color-hard);
+	}
+	&.green {
+		--borderColor: var(--border-color-green);
+		color: var(--theme-color-green-main);
+	}
+	&.red {
+		--borderColor: var(--border-color-red);
+		color: var(--theme-color-red-main);
+	}
+	&.orange {
+		--borderColor: var(--border-color-orange);
+		color: var(--theme-color-orange-main);
+	}
+}
+
+// Variants
+.button {
+	&.filled {
+		&.primary {
+			--bgColorHover: var(--theme-color-primary-light);
+			color: var(--font-color-onDark);
+			background-color: var(--theme-color-primary-main);
+		}
+		&.secondary {
+			--bgColorHover: var(--theme-color-dark);
+			background-color: var(--theme-color-grey-dark);
+			border: var(--border-weight-soft) solid var(--borderColor);
+		}
+		&.green {
+			--bgColorHover: var(--theme-color-green-light);
+			background-color: var(--theme-color-green-main);
+			color: var(--font-color-onDark);
+		}
+		&.red {
+			--bgColorHover: var(--theme-color-red-light);
+			background-color: var(--theme-color-red-main);
+			color: var(--font-color-onDark);
+		}
+		&.orange {
+			--bgColorHover: var(--theme-color-orange-light);
+			background-color: var(--theme-color-orange-main);
+			color: var(--font-color-onDark);
+		}
+		@include hover {
+			background-color: var(--bgColorHover);
+		}
+	}
+	&.outlined {
+		border: var(--border-weight-soft) solid var(--borderColor);
+	}
+	&.clear,
+	&.outlined {
+		background-color: transparent;
+		&:after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background-color: transparent;
+			opacity: 0.1;
+			pointer-events: none;
+			transition: background-color 0.2s;
+		}
+		@include hover {
+			&:after {
+				background-color: currentColor;
+			}
+		}
+	}
+}
+
+// Sizes
+.button {
+	&.xs {
+		height: var(--button-height-xs);
+		padding-inline: rem(10);
+		gap: rem(4);
+	}
+	&.s {
+		height: var(--button-height-s);
+		padding-inline: var(--button-padding-inline-s);
+		gap: rem(6);
+	}
+	&.m {
+		height: var(--button-height-m);
+		padding-inline: var(--button-padding-inline-m);
+		gap: rem(8);
+	}
+	&.l {
+		height: var(--button-height-l);
+		padding-inline: var(--button-padding-inline-l);
+		gap: rem(10);
+	}
+}
+
+// Border placement
+.button {
+	&.left {
+		border-radius: var(--borderRadius) 0 0 var(--borderRadius);
+	}
+	&.right {
+		border-radius: 0 var(--borderRadius) var(--borderRadius) 0;
+	}
+	&.top {
+		border-radius: var(--borderRadius) var(--borderRadius) 0 0;
+	}
+	&.bottom {
+		border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+	}
+	&.all {
+		border-radius: var(--borderRadius);
+	}
+}
+
+// Border radius
+.button {
+	&.border-radius-s {
+		--borderRadius: var(--border-radius-s);
+	}
+	&.border-radius-m {
+		--borderRadius: var(--border-radius-m);
+	}
+	&.border-radius-none {
+		--borderRadius: 0px;
+	}
+	&.border-radius-full {
+		--borderRadius: var(--border-radius-full);
+	}
+}
+
+// Mods
+.button {
+	&:focus-visible {
+		@include focus-outline;
+	}
+	&.disabled {
+		@include disabled;
+	}
+}

@@ -1,0 +1,65 @@
+@use '@/app/styles/helpers' as *;
+
+.indicator {
+    --width: #{rem(100)};
+	position: absolute;
+    width: var(--width);
+    height: var(--width);
+	background-color: var(--color-dark-opacity);
+	color: var(--color-light);
+	border-radius: 50%;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	opacity: 0;
+	transition: opacity 0.5s;
+    pointer-events: none;
+    font-size: calc(var(--width) / 2.5);
+    z-index: 1;
+    &.visible {
+        opacity: 1;
+    }
+    @include max-width(650) {
+        --width: #{rem(80)};
+    }
+    @include max-width(550) {
+        --width: #{rem(70)};
+    }
+    @include max-width(470) {
+        --width: #{rem(60)};
+    }
+    @include max-width(420) {
+        --width: #{rem(50)};
+    }
+}
+
+.label {
+    font-size: calc(var(--width) / 3.5);
+}
+
+.indicator {
+    &.play,
+    &.pause,
+    &.restart {
+        @include abs-center;
+        transform: scale(1.2);
+    }
+    &.rewind,
+    &.fast-forward {
+        top: 50%;
+        translate: 0 -50%;
+    }
+    &.rewind {
+        left: 10%;
+        flex-direction: row-reverse;
+    }
+    &.fast-forward {
+        right: 10%;
+    }
+    &.volume {
+        left: 50%;
+        translate: -50% 0;
+        top: rem(10);
+        flex-direction: column;
+    }
+}

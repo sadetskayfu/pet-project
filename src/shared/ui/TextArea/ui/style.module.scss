@@ -1,0 +1,22 @@
+@use '@/app/styles/helpers' as *;
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.textarea {
+    width: 100%;
+	color: var(--font-color-hard);
+	background-color: transparent;
+	text-overflow: ellipsis;
+    resize: none;
+	overflow-y: auto;
+    border: none;
+    padding: 0px;
+	&::placeholder {
+		color: var(--font-color-soft);
+	}
+}
+
+

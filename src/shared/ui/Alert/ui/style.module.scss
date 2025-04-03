@@ -1,0 +1,87 @@
+@use '@/app/styles/helpers' as *;
+
+.alert {
+    --borderColor: ;
+    --actionsMargin: calc(var(--actions-margin) * -1);
+    display: flex;
+    align-items: center;
+    padding-inline: var(--padding-15);
+    padding-block: var(--padding-10);
+    gap: var(--padding-15);
+    &.have-actions {
+        .content {
+            margin-right: var(--actionsMargin);
+        }
+    }
+    &.full-width {
+        width: 100%;
+    }
+}
+
+.actions {
+     display: flex;
+     align-items: center;
+     margin-left: auto;
+     margin-right: var(--actionsMargin);
+}
+
+// Border radius
+.alert {
+    &.m {
+        border-radius: var(--border-radius-m);
+    }
+    &.l {
+        border-radius: var(--border-radius-l);
+    }
+}
+
+// Severity
+.alert {
+    &.success {
+        --borderColor: var(--border-color-green);
+        background-color: var(--color-green-300);
+        color: var(--color-green-700);  
+    }
+    &.info {
+        --borderColor: var(--border-color-grey);
+        background-color: var(--theme-color-grey-light);
+        color: var(--font-color-hard);
+    }
+    &.warning {
+        --borderColor: var(--border-color-orange);
+        background-color: var(--color-orange-300);
+        color: var(--color-orange-700);
+    }
+    &.error {
+        --borderColor: var(--border-color-red);
+        background-color: var(--color-red-300);
+        color: var(--color-red-700);
+    }
+}
+
+// Variants
+.alert {
+    &.outlined {
+        border: var(--border-weight-soft) solid var(--borderColor);
+        background-color: transparent;
+    }
+    &.clear {
+        background-color: transparent;
+    }
+    &.outlined,
+    &.clear {
+        &.success {
+            color: var(--color-green-500);
+        }
+        &.info {
+            color: var(--font-color-hard);
+        }
+        &.warning {
+            color: var(--color-orange-500);
+        }
+        &.error {
+            color: var(--color-red-500);
+        }
+    }
+}
+

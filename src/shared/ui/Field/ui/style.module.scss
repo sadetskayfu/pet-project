@@ -1,0 +1,213 @@
+@use '@/app/styles/helpers' as *;
+
+.field-container {
+	--height: ;
+	--bgColor: ;
+	--paddingBlock: ;
+	--paddingInline: #{rem(15)};
+	--borderRadius: var(--border-radius-m);
+	--adornmentPaddingLeft: ;
+	--inputPaddingLeft: ;
+	--inputPaddingRight: ;
+	--actionsPaddingRight: var(--paddingInline);
+	display: flex;
+	flex-direction: column;
+	row-gap: rem(5);
+	position: relative;
+	z-index: 0;
+}
+
+.field {
+	--borderColor: var(--border-color-grey);
+	position: relative;
+	display: flex;
+	align-items: center;
+	background-color: var(--bgColor);
+	transition-duration: 0.2s;
+	width: 100%;
+}
+
+.children {
+	min-height: var(--height);
+	padding-left: var(--inputPaddingLeft);
+	padding-right: var(--inputPaddingRight);
+	padding-block: var(--paddingBlock);
+	border-radius: inherit;
+	border: none;
+	width: 100%;
+}
+
+.start-adornment {
+	padding-left: var(--adornmentPaddingLeft);
+	padding-right: var(--paddingInline);
+	border-right: var(--border-weight-soft) solid var(--border-color-grey);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.actions {
+	display: flex;
+	padding-left: calc(var(--paddingInline) - var(--button-height-xxs) / 4);
+	padding-right: calc(var(--actionsPaddingRight) - var(--button-height-xxs) / 4);
+}
+
+// Border placement
+.field-container {
+	&.left {
+		.field {
+			border-radius: var(--borderRadius) 0 0 var(--borderRadius);
+		}
+	}
+	&.right {
+		.field {
+			border-radius: 0 var(--borderRadius) var(--borderRadius) 0;
+		}
+	}
+	&.all {
+		.field {
+			border-radius: var(--borderRadius);
+		}
+	}
+}
+
+// Field Variants
+.field-container {
+	&.filled {
+		--bgColor: var(--theme-color-grey-dark);
+		.field {
+			border: var(--border-weight-soft) solid var(--borderColor);
+			transition: border 0.2s;
+		}
+	}
+	&.standard {
+		.field {
+			--borderRadius: 0px;
+			border-bottom: var(--border-weight-soft) solid var(--borderColor);
+		}
+	}
+	&.outlined {
+		--bgColor: transparent;
+		--labelTranslateTop: #{rem(-10)};
+		.label {
+			position: absolute;
+			font-size: var(--font-size-s);
+			z-index: 1;
+			left: 0px;
+			top: 0px;
+			translate: var(--paddingInline) var(--labelTranslateTop);
+			cursor: text;
+		}
+		.fieldset {
+			position: absolute;
+			inset: var(--labelTranslateTop) 0 0;
+			border: var(--border-weight-soft) solid var(--borderColor);
+			border-radius: inherit;
+			margin: 0px;
+			pointer-events: none;
+			z-index: 1;
+			transition: border-color 0.2s;
+		}
+		.legend {
+			padding-inline: rem(7);
+			margin-left: calc(var(--paddingInline) - rem(8));
+			font-size: var(--font-size-s);
+			opacity: 0;
+			z-index: -1;
+		}
+		.helper-text {
+			margin-left: var(--paddingInline);
+		}
+		&.hidden-label {
+			.fieldset {
+				inset: 0;
+			}
+			.legend {
+				padding-inline: 0px;
+				margin-left: 0px;
+			}
+		}
+	}
+}
+
+// Sizes
+.field-container {
+	--inputPaddingLeft: var(--paddingInline);
+	--inputPaddingRight: var(--paddingInline);
+	--adornmentPaddingLeft: var(--paddingInline);
+	&.standard {
+		--inputPaddingLeft: 0px;
+		--inputPaddingRight: 0px;
+		--adornmentPaddingLeft: 0px;
+		--actionsPaddingRight: 0px;
+		&.with-adornment {
+			--inputPaddingLeft: var(--paddingInline);
+		}
+		&.m {
+			--height: var(--button-height-s);
+			--paddingBlock: #{rem(5)};
+		}
+		&.l {
+			--height: var(--button-height-m);
+			--paddingBlock: #{rem(10)};
+		}
+	}
+	&:not(.standard) {
+		&.m {
+			--height: var(--button-height-m);
+			--paddingBlock: #{rem(10)};
+		}
+		&.l {
+			--height: var(--button-height-l);
+			--paddingBlock: #{rem(15)};
+		}
+		&.with-actions {
+			--inputPaddingRight: 0px;
+		}
+	}
+}
+
+.field-container {
+	&.errored {
+		.field {
+			--borderColor: var(--border-color-red);
+		}
+		&.focused {
+			.field {
+				--borderColor: var(--color-red-500);
+			}
+		}
+	}
+	&:not(.errored) {
+		&.focused {
+			.field {
+				--borderColor: var(--theme-color-primary-main);
+			}
+		}
+	}
+	&:not(.focused):not(.errored) {
+		.field {
+			@include hover {
+				--borderColor: var(--font-color-hard);
+			}
+		}
+	}
+	&.disabled {
+		.field {
+			@include disabled;
+		}
+	}
+	&.full-width {
+		width: 100%;
+	}
+	&.text-field {
+		.field {
+			cursor: text;
+		}
+	}
+	&:not(.text-field) {
+		.field {
+			cursor: pointer;
+		}
+	}
+}

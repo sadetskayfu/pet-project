@@ -1,0 +1,31 @@
+@use '@/app/styles/helpers' as *;
+
+.data-picker {
+    &[data-open] {
+        .arrow {
+            svg {
+                transform: rotate(180deg);
+            }
+        }
+    }
+    &__content {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.popover-content {
+    padding: rem(10);
+}
+
+.arrow {
+    width: var(--button-height-xxs);
+    height: var(--button-height-xxs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    svg {
+        transition: transform 0.2s;
+    }
+}
