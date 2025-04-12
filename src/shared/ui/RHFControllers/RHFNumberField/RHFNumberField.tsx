@@ -26,7 +26,7 @@ export const RHFNumberField = <T extends FieldValues>(props: Props<T>) => {
 				fieldState: { error },
 			}) => (
 				<NumberField
-					onBlur={mergeEventHandlers(onBlur, externalOnBlur)}
+					onBlur={mergeEventHandlers([onBlur, externalOnBlur])}
                     clearButton={clearButton}
 					errored={!!error}
 					helperText={error ? error?.message : helperText}

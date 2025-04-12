@@ -65,7 +65,7 @@ export const TooltipContent = (props: TooltipContentProps) => {
 			<div
 				role="presentation"
 				ref={refs.setFloating}
-				style={{ ...floatingStyles, pointerEvents: interactive ? 'all' : 'none', zIndex, maxWidth }}
+				style={{ ...floatingStyles, pointerEvents: interactive ? 'all' : 'none', zIndex, maxWidth: maxWidth ? maxWidth / 16 + 'rem' : undefined }}
 			>
 				<div
 					id={tooltipId}

@@ -4,13 +4,17 @@ interface SkeletonsProps {
     className?: string
 	children: ReactElement
 	count: number
+    min?: number
+    max?: number
     withContainer?: boolean
 }
 
 export const Skeletons = (props: SkeletonsProps) => {
-    const { className, children, count, withContainer } = props
+    const { className, children, count, min, max, withContainer } = props
 
-    const array = Array.from({length: count}, (_, index) => index)
+    const countWithRange = min && max ? Math.max(min, Math.min(count, max)) : count
+
+    const array = Array.from({length: countWithRange}, (_, index) => index)
 
     const renderSkeletons = () => array.map((index) => <Fragment key={index}>{children}</Fragment>)
 

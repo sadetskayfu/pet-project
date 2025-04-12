@@ -5,13 +5,15 @@ import { AuthType } from '../model/Auth'
 interface AuthSchema {
 	userId: number | null
 	email: string | null
-	authType: AuthType
+	authType: AuthType,
+	isOpenConfirmRedirectDialog: boolean
 }
 
 const initialState: AuthSchema = {
 	userId: null,
 	email: null,
-	authType: 'register-by-email'
+	authType: 'register-by-email',
+	isOpenConfirmRedirectDialog: false
 }
 
 const authSlice = createSlice({
@@ -21,6 +23,7 @@ const authSlice = createSlice({
 		getUserId: (state) => state.userId,
 		getUserEmail: (state) => state.email,
 		getAuthType: (state) => state.authType,
+		getIsOpenConfirmRedirectDialog: (state) => state.isOpenConfirmRedirectDialog
 	},
 	reducers: {
 		onChangeAuthType: (state, action: PayloadAction<AuthType>) => {
@@ -31,7 +34,10 @@ const authSlice = createSlice({
 		},
 		setUserEmail: (state, action: PayloadAction<string>) => {
 			state.email = action.payload
-		}
+		},
+		setOpenConfirmRedirectDialog: (state, action: PayloadAction<boolean>) => {
+			state.isOpenConfirmRedirectDialog = action.payload
+		},
 	},
 }).injectInto(rootReducer)
 

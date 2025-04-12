@@ -6,8 +6,8 @@
 }
 
 .aside-menu {
-    --padding: 30px;
-    width: 360px;
+    --padding: #{rem(30)};
+    width: rem(360);
     padding: var(--padding);
     padding-top: calc(var(--padding) + rem(40));
     row-gap: rem(20);

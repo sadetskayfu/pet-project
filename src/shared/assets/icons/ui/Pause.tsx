@@ -20,6 +20,7 @@ export const Pause = memo((props: IconProps) => {
 			xmlns="http://www.w3.org/2000/svg"
 		>
 			<path
+				fill="CurrentColor"
 				stroke-width="2"
 				d="M3 21h6V3H3zm1-2h4V5H4zm1-2h2V7H5zm10 4h6V3h-6zm1-2h4V5h-4zm1-2h2V7h-2z"
 			/>

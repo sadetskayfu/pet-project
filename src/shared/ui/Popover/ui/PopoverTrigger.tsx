@@ -3,7 +3,7 @@ import { usePopoverContext } from '../model/usePopoverContext'
 import { useMergeRefs } from '@floating-ui/react'
 
 interface PopoverTriggerProps {
-	children: ReactElement
+	children: ReactElement<HTMLElement>
 }
 
 export const PopoverTrigger = (props: PopoverTriggerProps) => {

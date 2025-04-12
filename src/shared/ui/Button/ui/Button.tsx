@@ -16,7 +16,7 @@ import styles from './style.module.scss'
 
 type ButtonVariant = 'filled' | 'outlined' | 'clear'
 type ButtonColor = 'primary' | 'secondary' | 'red' | 'orange' | 'green'
-type ButtonSize = 'xs' | 's' | 'm' | 'l'
+type ButtonSize = 'xs' | 's' | 'm'
 type ButtonBorderPlacement =
 	| 'left'
 	| 'top'
@@ -49,6 +49,7 @@ interface ButtonProps extends HTMLProps {
 	type?: 'submit' | 'reset' | 'button'
 	buttonProps?: HTMLButtonProps
 	linkProps?: HTMLLinkProps
+	state?: any
 }
 
 export const Button = memo(
@@ -71,6 +72,7 @@ export const Button = memo(
 				borderPlacement = 'all',
 				tabIndex: externalTabIndex,
 				onClick,
+				state,
 				linkProps,
 				buttonProps,
 				...otherProps
@@ -111,6 +113,7 @@ export const Button = memo(
 						className={classNames(styles['button'], additionalClasses, mods)}
 						onClick={handleClick}
 						to={to}
+						state={state}
 						tabIndex={tabIndex}
 						aria-disabled={disabled ? 'true' : undefined}
 						ref={ref as React.ForwardedRef<HTMLAnchorElement>}

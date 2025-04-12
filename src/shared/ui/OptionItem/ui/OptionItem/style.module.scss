@@ -27,6 +27,11 @@
     &.center-content {
         justify-content: center;
     }
+    &:not(.center-content) {
+        .check-mark {
+            margin-left: auto;
+        }
+    }
     &[data-active] {
         background-color: var(--bgActive);
     }
@@ -42,7 +47,4 @@
     }
 }
 
-.check-mark {
-    margin-left: auto;
-}
 

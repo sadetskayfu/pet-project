@@ -1,15 +1,20 @@
 @use '@/app/styles/helpers' as *;
 
 .solo-badge {
+    --height: ;
+    height: var(--height);
+    min-width: var(--height);
     width: max-content;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: rem(25);
-    min-width: rem(25);
-    padding-inline: rem(5);
+    column-gap: rem(3);
     color: var(--font-color-hard);
     border-radius: var(--border-radius-s);
+    font-size: calc(var(--height) / 1.5);
+    svg {
+        font-size: calc(var(--height) / 1.75);
+    }
     &.grey {
         background-color: var(--color-grey-500);
     }
@@ -18,5 +23,17 @@
     }
     &.green {
         background-color: var(--color-green-500);
+    }
+}
+
+// Sizes
+.solo-badge {
+    &.s {
+        --height: #{rem(25)};
+        padding-inline: rem(5);
+    }
+    &.m {
+        --height: #{rem(35)};
+        padding-inline: rem(8);
     }
 }

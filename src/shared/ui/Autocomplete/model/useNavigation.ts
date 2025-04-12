@@ -9,11 +9,11 @@ import throttle from 'lodash/throttle'
 import { hasSelectedValue } from './hasSelectedValue'
 
 type UseNavigationProps<T> = {
-    optionsRef: React.MutableRefObject<HTMLLIElement[]>
-    optionListRef: React.RefObject<HTMLUListElement>
-    inputValueRef: React.MutableRefObject<string>
-    valueRef: React.MutableRefObject<T[] | T | null>
-    isOpenRef: React.MutableRefObject<boolean>
+    optionsRef: React.RefObject<HTMLLIElement[]>
+    optionListRef: React.RefObject<HTMLUListElement | null>
+    inputValueRef: React.RefObject<string>
+    valueRef: React.RefObject<T[] | T | null>
+    isOpenRef: React.RefObject<boolean>
     isOpen: boolean
     isLoading: boolean
     isOptionsReady: boolean

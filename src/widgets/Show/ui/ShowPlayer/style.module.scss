@@ -1,0 +1,10 @@
+@use '@/app/styles/helpers' as *;
+
+.section {
+    width: 50%;
+    padding-top: var(--section-padding);
+}
+
+.video-player {
+    margin-top: rem(20);
+}

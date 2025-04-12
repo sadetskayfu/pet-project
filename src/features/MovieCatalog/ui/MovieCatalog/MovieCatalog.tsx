@@ -15,8 +15,9 @@ import {
 	MovieInfinityListQueryParams,
 	MovieSort,
 } from '@/entities/movies'
-import { useTouchDevice, useWindowWidth } from '@/shared/hooks'
+import { useTouchDevice } from '@/shared/hooks'
 import styles from './style.module.scss'
+import { useWindowWidth } from '@/app/providers/windowWidth'
 
 const resetValues: CatalogFilterFormSchema = {
 	countries: [],

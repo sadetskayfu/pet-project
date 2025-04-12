@@ -54,7 +54,7 @@ export const RHFAutocompleteByValue = <T extends FieldValues, M extends boolean 
 
                         onChange(newValue)
                     }}
-                    onBlur={mergeEventHandlers(onBlur, externalOnBlur)}
+                    onBlur={mergeEventHandlers([onBlur, externalOnBlur])}
                     getOptionValue={(option) => option.value}
                     getOptionLabel={(option) => option.label}
                     errored={!!error}

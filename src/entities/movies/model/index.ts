@@ -22,6 +22,8 @@ export interface Movie extends MovieForCard {
     releaseDate: string
     description: string
     videoUrl: string
+    trailerUrl: string
+    posterUrl: string
     actors: Actor[]
 }
 

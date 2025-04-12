@@ -27,6 +27,7 @@
     "react-router-dom": "^7.0.2",
     "react-transition-group": "^4.4.5",
     "react-virtuoso": "^4.12.5",
+    "swiper": "^11.2.6",
     "zod": "^3.24.2"
   },
   "devDependencies": {

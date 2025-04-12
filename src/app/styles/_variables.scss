@@ -6,7 +6,7 @@
 	--color-light: #fff;
 	--color-dark-opacity: rgba(0, 0, 0, 0.5);
 	--color-dark-opacity-hard: rgba(0, 0, 0, 0.8); 
-	--box-shadow-paper: 0 0 10px 1px rgb(0, 0, 0, 0.2);
+	--box-shadow-paper: 0 0 10px 1px rgba(193, 176, 255, 0.233);
 
 	--color-primary-800: #4f3c70; // border dark-theme
 	--color-primary-700: #6742a7;
@@ -52,8 +52,8 @@
 	// Font
 	--font-family-base: 'Kumbh Sans', 'sans-serif';
 	--font-size-l: #{rem(20)};
-	--font-size-default: #{rem(16)};
-	--font-size-s: #{rem(14)};
+	--font-size-default: #{rem(18)};
+	--font-size-s: #{rem(16)};
 
 	// Border
 	--border-weight-soft: #{rem(1)};
@@ -94,14 +94,24 @@
 	--fz-icon-m: calc(var(--button-height-m) / 2);
 	--fz-icon-l: calc(var(--button-height-l) / 2);
 
-	--container-width: #{rem(1200)};
+	--container-width: #{rem(1600)};
 	--container-padding-x: #{rem(16)};
 
 	--header-height: #{rem(70)};
 	--full-height-with-padding: calc(100vh - var(--container-padding-x) * 2);
-	--section-padding: #{rem(60)};
+	--section-padding: #{rem(80)};
 
+	--padding-50: #{rem(50)};
+	--padding-30: #{rem(30)};
 	--padding-20: #{rem(20)};
 	--padding-15: #{rem(15)};
 	--padding-10: #{rem(10)};
+
+	@include mobile {
+		--padding-50: #{rem(40)};
+		--padding-30: #{rem(25)};
+		--padding-20: #{rem(15)};
+		--padding-15: #{rem(12)};
+		--padding-10: #{rem(8)};
+	}
 }

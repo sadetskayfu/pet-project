@@ -1,0 +1,34 @@
+@use '@/app/styles/helpers' as *;
+
+.scroll-button {
+    --height: var(--button-height-s);
+    position: fixed;
+    bottom: var(--container-padding-x);
+    left: var(--container-padding-x);
+    border-radius: 50%;
+    border: none;
+    background-color: var(--theme-color-dark);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    background-color: var(--theme-color-grey-light);
+    height: var(--button-height-s);
+    width: var(--button-height-s);
+    color: var(--font-color-hard);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(var(--height) / 2);
+    box-shadow: var(--box-shadow-paper);
+    &.visible {
+        opacity: 0.5;
+        pointer-events: all;
+    }
+    &:focus-visible {
+        @include focus-outline;
+        opacity: 1;
+    }
+    @include hover {
+        opacity: 1;
+    }
+}

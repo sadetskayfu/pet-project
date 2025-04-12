@@ -3,6 +3,7 @@
 .container {
     position: relative;
     display: inline-flex;
+    width: max-content;
 }
 .badge {
     --badgeWidth: ;
@@ -15,7 +16,7 @@
     align-items: center;
     transform: scale(0);
     transition-duration: 0.2s;
-    font-weight: 500;
+    pointer-events: none;
     @include user-select-off;
     &.visible {
         transform: scale(1);
@@ -60,6 +61,11 @@
         --badgeWidth: #{rem(20)};
         font-size: #{rem(12)};
         padding-inline: #{rem(4)};
+    }
+    &.l {
+        --badgeWidth: #{rem(25)};
+        font-size: #{rem(14)};
+        padding-inline: #{rem(6)}; 
     }
 }
 

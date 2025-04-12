@@ -55,7 +55,7 @@ export const ActorCard = memo((props: ActorCardProps) => {
 			<>
 				<Avatar
 					className={styles['photo']}
-					borderRadius="none"
+					borderRadius="circular"
 					src={photoUrl}
 					alt="Actor photo"
 				/>

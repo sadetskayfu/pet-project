@@ -34,6 +34,27 @@
 	}
 }
 
+@keyframes scale-with-snaking {
+	0% {
+		transform: scale(1) rotate(0deg);
+	}
+	30% {
+		transform: scale(1.4) rotate(0deg);
+	}
+	50% {
+		transform: scale(1) rotate(0deg);
+	}
+	70% {
+		transform: scale(1) rotate(10deg);
+	}
+	90% {
+		transform: scale(1) rotate(-10deg);
+	}
+	100% {
+		transform: scale(1) rotate(0deg);
+	}
+}
+
 @keyframes fade {
     from {
         opacity: 0;

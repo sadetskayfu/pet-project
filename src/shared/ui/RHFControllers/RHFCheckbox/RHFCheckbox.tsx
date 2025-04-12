@@ -43,7 +43,7 @@ export const RHFCheckbox = <T extends FieldValues>(props: Props<T>) => {
 							labelPlacement={labelPlacement}
 							control={
 								<Checkbox
-									onBlur={mergeEventHandlers(onBlur, externalOnBlur)}
+									onBlur={mergeEventHandlers([onBlur, externalOnBlur])}
 									{...otherFieldProps}
 									{...otherProps}
 								/>
@@ -53,7 +53,7 @@ export const RHFCheckbox = <T extends FieldValues>(props: Props<T>) => {
 				} else {
 					return (
 						<Checkbox
-							onBlur={mergeEventHandlers(onBlur, externalOnBlur)}
+							onBlur={mergeEventHandlers([onBlur, externalOnBlur])}
 							className={className}
 							disabled={disabled}
 							required={required}

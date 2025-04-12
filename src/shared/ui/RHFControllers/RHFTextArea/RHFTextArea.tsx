@@ -25,7 +25,7 @@ export const RHFTextArea = <T extends FieldValues>(props: Props<T>) => {
                 fieldState: { error },
             }) => (
                 <TextArea
-                    onBlur={mergeEventHandlers(onBlur, externalOnBlur)}
+                    onBlur={mergeEventHandlers([onBlur, externalOnBlur])}
                     onChange={onChange}
                     errored={!!error}
                     helperText={error ? error?.message : helperText}

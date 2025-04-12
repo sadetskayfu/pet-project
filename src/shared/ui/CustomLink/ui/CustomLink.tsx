@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import styles from './style.module.scss'
 
 type CustomLinkUnderline = 'none' | 'hover' | 'always'
-type CustomLinkColor = 'primary' | 'inherit'
+type CustomLinkColor = 'primary' | 'soft' | 'inherit'
 
 interface CustomLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 	children: ReactNode

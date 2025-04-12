@@ -49,12 +49,24 @@
 		width: var(--height);
 		height: var(--height);
 		font-size: calc(var(--height) / 1.75);
+		@include mobile {
+			--height: #{rem(50)};
+		}
+		@include mobile-s {
+			--height: #{rem(45)};
+		}
 	}
 	&.size-l {
 		--height: #{rem(80)};
 		width: var(--height);
 		height: var(--height);
 		font-size: calc(var(--height) / 1.75);
+		@include mobile {
+			--height: #{rem(70)};
+		}
+		@include mobile-s {
+			--height: #{rem(60)};
+		}
 	}
 }
 

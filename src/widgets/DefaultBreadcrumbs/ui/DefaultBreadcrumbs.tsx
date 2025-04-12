@@ -1,4 +1,3 @@
-import { ROUTES } from '@/shared/constants/routes'
 import { capitalizeFirstLetter } from '@/shared/helpers/formattingString'
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs'
 import { CustomLink } from '@/shared/ui/CustomLink'
@@ -12,10 +11,6 @@ export const DefaultBreadcrumbs = ({ className }: { className?: string }) => {
 
 	return (
 		<Breadcrumbs aria-label="Breadcrumbs" className={className}>
-			<CustomLink color="inherit" to={ROUTES.HOME}>
-				Home
-			</CustomLink>
-			<>
 				{paths.map((path, index) => {
 					const to = `/${paths.slice(0, index + 1).join('/')}`
 
@@ -24,7 +19,7 @@ export const DefaultBreadcrumbs = ({ className }: { className?: string }) => {
 					return (
 						<>
 							{!isActive ? (
-								<CustomLink key={path} to={to} color="inherit">
+								<CustomLink className={styles['link']} key={path} to={to} color="inherit">
 									{capitalizeFirstLetter(path)}
 								</CustomLink>
 							) : (
@@ -35,7 +30,6 @@ export const DefaultBreadcrumbs = ({ className }: { className?: string }) => {
 						</>
 					)
 				})}
-			</>
 		</Breadcrumbs>
 	)
 }

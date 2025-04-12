@@ -1,0 +1,16 @@
+@use '@/app/styles/helpers' as *;
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(20);
+    padding-top: var(--section-padding);
+}
+
+.meta {
+    color: var(--font-color-hard);
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: rem(35);
+    row-gap: rem(20);
+}

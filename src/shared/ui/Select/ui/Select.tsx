@@ -62,7 +62,7 @@ export interface SelectProps<T, V extends string | string[]> extends HTMLProps {
 	options: T[]
 	defaultValue?: V
 	value?: V
-	onChange?: (value: V extends string ? string : string[]) => void
+	onChange?: (value: V) => void
 	initialOpen?: boolean
 	open?: boolean
 	setOpen?: React.Dispatch<React.SetStateAction<boolean>>
@@ -83,6 +83,7 @@ export interface SelectProps<T, V extends string | string[]> extends HTMLProps {
 	readOnly?: boolean
 	required?: boolean
 	fullWidth?: boolean
+	centeringValue?: boolean
 	fixedHeight?: boolean
 	selectRef?: React.RefObject<HTMLDivElement>
 	fieldRef?: React.RefObject<HTMLElement>
@@ -122,6 +123,7 @@ export const Select = <T, V extends string | string[]>(props: SelectProps<T, V>)
 		readOnly,
 		required,
 		fullWidth,
+		centeringValue,
 		fixedHeight,
 		tabIndex = 0,
 		HTMLFieldProps = {},
@@ -392,6 +394,7 @@ export const Select = <T, V extends string | string[]>(props: SelectProps<T, V>)
 
 	const mods: Mods = {
 		[styles['open']]: isOpen,
+		[styles['centering-value']]: centeringValue
 	}
 
 	const menuMods: Mods = {

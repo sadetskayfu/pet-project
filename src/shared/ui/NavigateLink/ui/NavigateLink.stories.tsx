@@ -7,7 +7,6 @@ const meta: Meta<typeof NavigateLink> = {
 	component: NavigateLink,
 	args: {
 		to: '/example',
-		indicatorPosition: 'bottom',
 	},
 }
 

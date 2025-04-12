@@ -27,7 +27,7 @@ export const RHFAutocomplete = <T extends FieldValues, O, M extends boolean = fa
                 <Autocomplete
                     // @ts-ignore
                     inputRef={ref}
-                    onBlur={mergeEventHandlers(onBlur, externalOnBlur)}
+                    onBlur={mergeEventHandlers([onBlur, externalOnBlur])}
                     errored={!!error}
                     helperText={error ? error?.message : helperText}
                     {...otherFieldProps}

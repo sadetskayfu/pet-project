@@ -14,8 +14,9 @@ import { handleRipple, handleRippleCursorPosition } from '@/shared/lib/ripple'
 import { Link } from 'react-router-dom'
 import styles from './style.module.scss'
 
+type IconButtonOffset = 'left' | 'right' | 'bottom' | 'top'
 type IconButtonVariant = 'filled' | 'outlined' | 'clear'
-type IconButtonSize = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'custom'
+type IconButtonSize = 'xxs' | 'xs' | 's' | 'm' | 'custom'
 export type IconButtonColor =
 	| 'primary'
 	| 'secondary'
@@ -47,6 +48,7 @@ interface IconButtonProps extends HTMLProps {
 	variant?: IconButtonVariant
 	color?: IconButtonColor
 	size?: IconButtonSize
+	offset?: IconButtonOffset
 	borderRadius?: IconButtonBorderRadius
 	borderPlacement?: IconButtonBorderPlacement
 	stopPropagation?: boolean
@@ -76,6 +78,7 @@ const IconButton = memo(
 				href,
 				variant = 'filled',
 				size = 'xxs',
+				offset,
 				color = 'secondary',
 				borderRadius = 'full',
 				borderPlacement = 'all',
@@ -123,6 +126,7 @@ const IconButton = memo(
 				styles[variant],
 				styles[color],
 				styles[size],
+				offset && styles[`offset-${offset}`],
 				styles[`border-radius-${borderRadius}`],
 				styles[borderPlacement],
 			]

@@ -1,0 +1,85 @@
+@use "@/app/styles/helpers" as *;
+
+.star-rating {
+	display: flex;
+	column-gap: rem(5);
+}
+
+.star {
+	--height: ;
+	position: relative;
+	height: var(--height);
+	width: var(--height);
+	background-color: var(--theme-color-grey-light);
+	clip-path: polygon(
+		50% 0%,
+		61% 35%,
+		98% 35%,
+		68% 57%,
+		79% 91%,
+		50% 70%,
+		21% 91%,
+		32% 57%,
+		2% 35%,
+		39% 35%
+	);
+
+	&:before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 0%;
+		background-color: var(--color-yellow);
+		z-index: 1;
+	}
+}
+
+// Sizes
+.star-rating {
+	&.s {
+		.star {
+			--height: var(--button-height-xxs);
+			@include mobile {
+				--height: #{rem(20)};
+			}
+		}
+	}
+
+	&.m {
+        .star {
+			--height: var(--button-height-xs);
+			@include mobile {
+				--height: var(--button-height-xxs);
+			}
+		}
+	}
+}
+
+// Mods
+.star {
+	&.quarter-filled {
+		&:before {
+			width: 25%;
+		}
+	}
+
+	&.half-filled {
+		&:before {
+			width: 50%;
+		}
+	}
+
+	&.three-quarters-filled {
+		&:before {
+			width: 75%;
+		}
+	}
+
+	&.full-filled {
+		&:before {
+			width: 100%;
+		}
+	}
+}

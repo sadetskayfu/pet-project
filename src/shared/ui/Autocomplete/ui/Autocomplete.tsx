@@ -98,6 +98,7 @@ export interface AutocompleteProps<T, M extends boolean = false>
 	getOptionValue?: (option: T) => string
 	getOptionLabel?: (option: T) => string
 	getOptionDisabled?: (option: T) => boolean
+	filterOptions?: (inputValue: string, optionLabel: string) => boolean
 	renderOption?: (
 		option: T,
 		{ id, disabled, selected }: RenderOptionProps
@@ -144,6 +145,7 @@ export const AutocompleteComponent = <T, M extends boolean = false>(props: Autoc
 		getOptionValue = (option) => option as string,
 		getOptionLabel = (option) => option as string,
 		getOptionDisabled,
+		filterOptions,
 		renderOption,
 		renderValue,
 		...otherProps
@@ -399,7 +401,7 @@ export const AutocompleteComponent = <T, M extends boolean = false>(props: Autoc
 				const filteredOptions = renderOptions.filter((option) => {
 					const optionLabel = getOptionLabel(recordOptions[option.props.value])
 
-					return filterByIncludes(optionLabel, inputValue)
+					return  filterOptions ? filterOptions(inputValue, optionLabel) : filterByIncludes(optionLabel, inputValue)
 				})
 
 				if (filteredOptions.length === 0) {

@@ -1,0 +1,13 @@
+@use '@/app/styles/helpers' as *;
+
+.reviews {
+    //overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    &__rate-movie {
+        display: flex;
+        align-items: center;
+        column-gap: rem(5);
+        font-size: rem(20);
+    }
+}

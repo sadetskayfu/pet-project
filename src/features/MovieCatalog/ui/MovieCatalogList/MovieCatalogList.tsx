@@ -10,7 +10,7 @@ import { Typography } from "@/shared/ui/Typography"
 import { PaginationCursor } from "@/shared/ui/PaginationCursor"
 import { VirtuosoGrid } from "react-virtuoso"
 import { useCallback, useRef, useState } from "react"
-import { ReviewDialog } from "@/features/Review"
+import { ReviewDialog } from "@/features/Reviews"
 import { useSelector } from "react-redux"
 import { userSelectors } from "@/entities/user"
 import { useLocation, useNavigate } from "react-router-dom"
@@ -145,6 +145,7 @@ export const MovieCatalogList = ({
 				open={isOpenReviewDialog}
 				setOpen={setIsOpenReviewDialog}
 				returnFocus={reviewButtonRef}
+				onSuccess={() => setIsOpenReviewDialog(false)}
 			/>
 		</div>
 	)

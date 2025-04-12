@@ -4,34 +4,44 @@ import {
 	DialogContent,
 	DialogDescription,
 	DialogHeading,
-} from '@/shared/ui/Dialog'
-import { useCallback, useRef } from 'react'
-import { Typography } from '@/shared/ui/Typography'
-import { Button } from '@/shared/ui/Button'
-import styles from './style.module.scss'
+} from "@/shared/ui/Dialog"
+import { useCallback, useRef } from "react"
+import { Typography } from "@/shared/ui/Typography"
+import { Button } from "@/shared/ui/Button"
+import styles from "./style.module.scss"
+import { CircularProgress } from "@/shared/ui/CircularProgress"
 
 interface ConfirmationDeleteDialogProps {
 	title: string
 	description?: string
 	open: boolean
-	returnFocus?: React.RefObject<HTMLElement>
+	setOpen: (open: boolean) => void
+	returnFocus?: React.RefObject<HTMLElement | null> | boolean
+	referenceRef?: React.RefObject<HTMLElement | null>
 	loading?: boolean
 	closeAfterDelete?: boolean
-	setOpen: (open: boolean) => void
 	onDelete: () => void
 }
 
-export const ConfirmationDeleteDialog = (
-	props: ConfirmationDeleteDialogProps
-) => {
-	const { title, description, open, returnFocus, loading, closeAfterDelete = true, setOpen, onDelete } = props
+const ConfirmationDeleteDialog = (props: ConfirmationDeleteDialogProps) => {
+	const {
+		title,
+		description,
+		open,
+		returnFocus,
+		referenceRef,
+		loading,
+		closeAfterDelete,
+		setOpen,
+		onDelete,
+	} = props
 
 	const cancelButtonRef = useRef<HTMLButtonElement>(null)
 
 	const handleDelete = useCallback(() => {
 		onDelete()
 
-		if(closeAfterDelete) {
+		if (closeAfterDelete) {
 			setOpen(false)
 		}
 	}, [onDelete, setOpen, closeAfterDelete])
@@ -42,10 +52,11 @@ export const ConfirmationDeleteDialog = (
 			setOpen={setOpen}
 			initialFocus={cancelButtonRef}
 			returnFocus={returnFocus}
+			referenceRef={referenceRef}
 		>
-			<DialogContent className={styles['modal']}>
+			<DialogContent className={styles["modal"]}>
 				<DialogHeading>
-					<Typography size="h5" component="h2" color="hard">
+					<Typography size="h5" color="hard">
 						{title}
 					</Typography>
 				</DialogHeading>
@@ -56,7 +67,7 @@ export const ConfirmationDeleteDialog = (
 						</Typography>
 					</DialogDescription>
 				)}
-				<div className={styles['actions']}>
+				<div className={styles["actions"]}>
 					<DialogClose>
 						<Button
 							ref={cancelButtonRef}
@@ -64,14 +75,25 @@ export const ConfirmationDeleteDialog = (
 							color="secondary"
 							variant="outlined"
 						>
-							Cancel
+							Отмена
 						</Button>
 					</DialogClose>
-					<Button disabled={loading} onClick={handleDelete} variant="filled" size="xs" color="red">
-						Delete
-					</Button>
+					<div style={{ position: "relative" }}>
+						<Button
+							disabled={loading}
+							onClick={handleDelete}
+							variant="filled"
+							size="xs"
+							color="red"
+						>
+							Удалить
+						</Button>
+						{loading && <CircularProgress absCenter aria-label="Идет удаление" />}
+					</div>
 				</div>
 			</DialogContent>
 		</Dialog>
 	)
 }
+
+export default ConfirmationDeleteDialog

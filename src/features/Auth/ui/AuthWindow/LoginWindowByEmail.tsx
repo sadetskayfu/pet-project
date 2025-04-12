@@ -49,7 +49,7 @@ export const LoginWindowByEmail = () => {
 				<div className={styles['header']}>
 					<Typography
 						className={styles['title']}
-						component="h2"
+						component="h1"
 						size="h4"
 						color="primary"
 					>

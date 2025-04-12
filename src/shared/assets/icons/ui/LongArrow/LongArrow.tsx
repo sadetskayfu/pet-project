@@ -33,7 +33,7 @@ export const LongArrow = memo((props: LongArrowProps) => {
 			xmlns="http://www.w3.org/2000/svg"
 		>
 			<path
-				fill="#64df30"
+				fill="CurrentColor"
 				d="m14 26l1.41-1.41L7.83 17H28v-2H7.83l7.58-7.59L14 6L4 16z"
 			/>
 		</svg>

@@ -1,0 +1,20 @@
+@use "@/app/styles/helpers" as *;
+
+.update-comment-dialog {
+	max-width: rem(700);
+	width: 100%;
+	&__content {
+		padding: var(--padding-20);
+	}
+	&__form {
+		display: flex;
+		flex-direction: column;
+		padding-top: var(--padding-20);
+		row-gap: var(--padding-20);
+	}
+	&__actions {
+		display: flex;
+		column-gap: rem(10);
+        margin-left: auto;
+	}
+}

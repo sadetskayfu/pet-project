@@ -1,1 +1,2 @@
-export { PaginationCursor } from './ui/PaginationCursor'
+export { PaginationCursor } from "./ui/PaginationCursor"
+export { PaginationButton } from "./ui/PaginationButton"

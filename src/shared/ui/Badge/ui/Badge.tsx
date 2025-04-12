@@ -1,13 +1,13 @@
-import { memo, ReactElement } from 'react'
+import { HTMLAttributes, memo, ReactElement } from 'react'
 import { classNames, Mods } from '@/shared/helpers/classNames'
 import styles from './style.module.scss'
 
 type BadgePosition = 'top-left' | 'top-right' | 'bottom-right' | 'bottom-left'
 type BadgeColor = 'primary' | 'secondary' | 'green' | 'red'
 type BadgeOverlap = 'circular' | 'square'
-type BadgeSize = 's' | 'm'
+type BadgeSize = 's' | 'm' | 'l'
 
-interface BadgeProps {
+interface BadgeProps extends HTMLAttributes<HTMLElement> {
 	className?: string
 	children: ReactElement
 	position?: BadgePosition
@@ -46,6 +46,7 @@ export const Badge = memo((props: BadgeProps) => {
 		max,
 		className,
 		visible,
+		...otherProps
 	} = props
 
 	const additionalClasses: Array<string | undefined> = [
@@ -74,7 +75,7 @@ export const Badge = memo((props: BadgeProps) => {
 	return (
 		<div className={classNames(styles['container'], [className])}>
 			{children}
-			<span className={classNames(styles['badge'], additionalClasses, mods)}>
+			<span {...otherProps} className={classNames(styles['badge'], additionalClasses, mods)}>
 				{content}
 			</span>
 		</div>

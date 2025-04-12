@@ -148,6 +148,7 @@ export const MovieCard = memo((props: MovieCardProps) => {
 			countries={countries.map((country) => country.label)}
 			actions={actions}
 			title={title}
+			state={{ from: `${location.pathname}${location.search}` }}
 			{...otherMovieDataProps}
 		/>
 	)

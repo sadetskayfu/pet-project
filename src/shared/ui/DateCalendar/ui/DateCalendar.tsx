@@ -54,12 +54,12 @@ export const DateCalendar = memo((props: DateCalendarProps) => {
 		Number(selectedYear)
 	)
 
-	const handleChangeYear = useCallback((value: string | string[]) => {
-		setSelectedYear(value as string)
+	const handleChangeYear = useCallback((value: string) => {
+		setSelectedYear(value)
 	}, [])
 
-	const handleChangeMonth = useCallback((value: string | string[]) => {
-		setSelectedMonth(value as string)
+	const handleChangeMonth = useCallback((value: string) => {
+		setSelectedMonth(value)
 	}, [])
 
 	const handleChangeDay = useCallback(

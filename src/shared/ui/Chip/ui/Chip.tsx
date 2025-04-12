@@ -188,7 +188,7 @@ export const Chip = memo(
 					{icon && <span className={styles['icon']}>{icon}</span>}
 					<Typography
 						className={styles['label']}
-						size="default"
+						size="helper"
 						color="inherit"
 						noWrap
 					>

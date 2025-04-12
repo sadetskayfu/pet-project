@@ -26,7 +26,7 @@ export const RHFTextField = <T extends FieldValues>(props: Props<T>) => {
 				fieldState: { error },
 			}) => (
 				<TextField
-					onBlur={mergeEventHandlers(onBlur, externalOnBlur)}
+					onBlur={mergeEventHandlers([onBlur, externalOnBlur])}
                     onChange={onChange}
                     onClear={clearButton ? () => onChange('') : undefined}
                     clearButton={clearButton}

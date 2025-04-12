@@ -28,6 +28,7 @@ export const DialogContent = (props: DialogContentProps) => {
 		descriptionId,
 		initialFocus,
 		returnFocus,
+		referenceRef,
 		getFloatingProps,
 	} = useDialogContext()
 
@@ -38,6 +39,10 @@ export const DialogContent = (props: DialogContentProps) => {
 	const { isMounted, status } = useTransitionStatus(context, {
 		duration: 200,
 	})
+
+	if(referenceRef) {
+		refs.setReference(referenceRef.current)
+	}
 
 	useEffect(() => {
 		if(status === 'close') {

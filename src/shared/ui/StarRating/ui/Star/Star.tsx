@@ -47,8 +47,9 @@ export const Star = (props: StarProps) => {
 		onChangeHoverValue,
 	} = props
 
-	const halfLabelId = useId()
-	const labelId = useId()
+	const id = useId()
+	const halfLabelId = id + 'half-label'
+	const labelId = id + 'label'
 
 	const halfValue = value - 0.5
 	const halfLabel = `${halfValue} Stars`

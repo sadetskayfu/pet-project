@@ -11,6 +11,7 @@ import { MainLayout } from './MainLayout/MainLayout'
 import { AuthLayout } from './AuthLayout/AuthLayout'
 import { ActorPanel, GenrePanel, MoviePanel } from '@/features/adminPanel'
 import { MoviePage } from '@/pages/MoviePage'
+import { UserProfilePage } from '@/pages/UserProfilePage'
 
 export const router = createBrowserRouter([
 	{
@@ -29,11 +30,17 @@ export const router = createBrowserRouter([
 				element: <MoviePage />,
 			},
 			{
-				path: ROUTES.PROFILE,
+				path: `${ROUTES.PROFILE}/:userId`,
 				element: (
 					<ProtectedRoute>
 						<ProfilePage />
 					</ProtectedRoute>
+				),
+			},
+			{
+				path: `${ROUTES.USER_PROFILE}/:userId`,
+				element: (
+						<UserProfilePage />
 				),
 			},
 			{

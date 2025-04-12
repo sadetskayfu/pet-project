@@ -1,0 +1,10 @@
+@use '@/app/styles/helpers' as *;
+
+.review-dialog {
+    max-width: rem(700);
+    width: 100%;
+    &__content {
+        padding: var(--padding-20);
+    }
+}
+

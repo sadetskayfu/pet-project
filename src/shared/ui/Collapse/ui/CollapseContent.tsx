@@ -5,7 +5,7 @@ import { CSSTransition } from 'react-transition-group'
 import styles from './style.module.scss'
 
 export const CollapseContent = (props: HTMLAttributes<HTMLElement>) => {
-	const { className, children, role = 'region' } = props
+	const { className, children, role = 'region', ...otherProps } = props
 
 	const { open, bodyId, labelId, bodyRef, lazy, unmount } = useCollapseContent()
 
@@ -28,6 +28,7 @@ export const CollapseContent = (props: HTMLAttributes<HTMLElement>) => {
 				aria-labelledby={labelId}
 				role={role}
 				id={bodyId}
+				{...otherProps}
 			>
 				{children}
 			</div>

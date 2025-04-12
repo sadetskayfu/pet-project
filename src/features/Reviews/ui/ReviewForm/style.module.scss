@@ -1,0 +1,51 @@
+@use '@/app/styles/helpers' as *;
+
+.form {
+    padding-top: var(--padding-20);
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--padding-20);
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: rem(10);
+    &__reaction {
+        font-size: rem(30);
+        @include mobile {
+            font-size: rem(24);
+        }
+    }
+}
+
+.actions {
+    display: flex;
+    column-gap: rem(10);
+    align-self: end;
+}
+
+.skeleton {
+    &__rating {
+        width: rem(175);
+        height: var(--button-height-xs);
+        align-self: end;
+        margin-block: rem(5);
+    }
+    &__field {
+        width: 100%;
+        height: rem(101);
+        @include mobile {
+            height: rem(91);
+        }
+    }
+    &__button {
+        height: var(--button-height-s);
+        width: rem(100);
+        @include mobile {
+            height: rem(40);
+        }
+    }
+}
+

@@ -1,0 +1,35 @@
+@use '@/app/styles/helpers' as *;
+
+.review-filter-panel {
+    display: flex;
+    justify-content: space-between;
+    column-gap: var(--padding-20);
+    padding-block: var(--padding-20);
+    @include mobile {
+        flex-direction: column;
+        row-gap: var(--padding-20);
+        .select {
+            align-self: end;
+        }
+    }
+}
+
+.toggle-button-group {
+    width: 100%;
+    column-gap: var(--padding-20);
+    @include mobile-above {
+        display: contents;
+    }
+    button {
+        width: 100%;
+    }
+}
+
+.select {
+    width: rem(350);
+    min-width: rem(350);
+    @include max-width(520) {
+        width: 100%;
+        min-width: 0;
+    }
+}

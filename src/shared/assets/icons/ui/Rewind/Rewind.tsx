@@ -32,7 +32,7 @@ export const Rewind = memo((props: SeekProps) => {
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
 		>
-			<path d="M12 12V7l-7 5l7 5zm7-5l-7 5l7 5z" />
+			<path fill="CurrentColor" d="M12 12V7l-7 5l7 5zm7-5l-7 5l7 5z" />
 		</svg>
 	)
 })

@@ -1,9 +1,9 @@
-import { cloneElement, ReactElement } from 'react'
+import { cloneElement, HTMLAttributes, ReactElement } from 'react'
 import { useDialogContext } from '../model/useDialogContext'
 import { useMergeRefs } from '@floating-ui/react'
 
 interface DialogTriggerProps {
-	children: ReactElement
+	children: ReactElement<HTMLAttributes<HTMLElement>>
 }
 
 export const DialogTrigger = (props: DialogTriggerProps) => {

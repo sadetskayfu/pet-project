@@ -1,6 +1,4 @@
 .icon {
-    --fill: ;
-    fill: var(--fill);
     width: 1em;
     aspect-ratio: 1;
     flex-shrink: 0;
@@ -9,10 +7,10 @@
   // Colors
   .icon {
     &.inherit {
-      --fill: currentColor;
+      color: currentColor;
     }
     &.primary {
-      --fill: var(--theme-color-primary-main);
+      color: var(--theme-color-primary-main);
     }
   }
   

@@ -1,0 +1,51 @@
+@use '@/app/styles/helpers' as *;
+
+.actions {
+    display: flex;
+    column-gap: var(--padding-20);
+    align-self: start;
+    width: 100%;
+    @include max-width(560) {
+        flex-direction: column-reverse;
+        row-gap: var(--padding-10);
+    }
+}
+
+.buttons {
+    display: flex;
+    column-gap: var(--padding-10);
+}
+
+.comment-info-badge {
+    display: flex;
+    align-items: center;
+    column-gap: rem(5);
+    margin-left: auto;
+    font-size: var(--font-size-s);
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    span {
+        @include user-select-off;
+    }    
+}
+
+.like-button {
+    &.active {
+        color: var(--color-red-500);
+        svg {
+            animation: scale 0.3s;
+        }
+    }
+}
+
+.dislike-button {
+    &.active {
+        color: var(--color-red-500);
+        svg {
+            animation: scale-with-snaking 0.6s;
+        }
+    }
+}

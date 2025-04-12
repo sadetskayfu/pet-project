@@ -1,0 +1,12 @@
+@use '@/app/styles/helpers' as *;
+
+.create-comment-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(10);
+    &__buttons {
+        display: flex;
+        align-self: end;
+        column-gap: rem(10);
+    }
+}

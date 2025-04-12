@@ -1,4 +1,4 @@
-import { useWindowWidth } from "@/shared/hooks"
+import { useWindowWidth } from "@/app/providers/windowWidth"
 import { useEffect, useState } from "react"
 
 const getYearColumns = (width: number) => {

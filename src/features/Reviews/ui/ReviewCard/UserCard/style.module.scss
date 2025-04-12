@@ -1,0 +1,69 @@
+@use '@/app/styles/helpers' as *;
+
+.user-card {
+    display: flex;
+    column-gap: var(--padding-15);
+    align-items: center;
+    align-self: start;
+    flex-shrink: 0;
+    width: rem(350);
+    @include max-width(1000) {
+        width: rem(250);
+    }
+    @include mobile {
+        width: 100%;
+    }
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar-tooltip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.avatar-link {
+    border-radius: 50%;
+    &:focus-visible {
+        @include focus-outline;
+    }
+}
+
+.skeleton {
+    &__avatar {
+        --height: #{rem(80)};
+        height: var(--height);
+        width: var(--height);
+		@include mobile {
+			--height: #{rem(70)};
+		}
+		@include mobile-s {
+			--height: #{rem(60)};
+		}
+    }
+    &__user-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: rem(10);
+    }
+    &__text {
+        height: var(--font-size-default);
+        width: rem(100);
+    }
+    &.is-comment {
+        .skeleton__avatar {
+            --height: #{rem(60)};
+            @include mobile {
+                --height: #{rem(50)};
+            }
+            @include mobile-s {
+                --height: #{rem(45)};
+            }
+        }
+    }
+}

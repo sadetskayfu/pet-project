@@ -66,27 +66,33 @@
     &.helper {
         font-size: var(--font-size-s);
     }
+    &.inherit {
+        font-size: inherit;
+    }
 }
 
 // Colors
 .typography {
-    &.hard {
+    &.color-hard {
         color: var(--font-color-hard);
     }
-    &.soft {
+    &.color-soft {
         color: var(--font-color-soft);
     }
-    &.onDark {
+    &.color-onDark {
         color: var(--font-color-onDark);
     }
-    &.error {
+    &.color-error {
         color: var(--color-red-500);
     }
-    &.primary {
+    &.color-primary {
         color: var(--theme-color-primary-main);
     }
-    &.inherit {
+    &.color-inherit {
         color: inherit;
+    }
+    &.color-light {
+        color: var(--color-light);
     }
 }
 

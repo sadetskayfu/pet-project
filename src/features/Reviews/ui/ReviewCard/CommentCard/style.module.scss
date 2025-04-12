@@ -1,0 +1,61 @@
+@use '@/app/styles/helpers' as *;
+
+.comment-card-container {
+    padding-top: var(--padding-15);
+}
+
+.comment-card {
+    display: flex;
+    column-gap: var(--padding-30);
+    background-color: var(--theme-color-dark);
+    padding: var(--padding-20);
+    padding-bottom: calc(var(--padding-20) - var(--button-height-s) / 4);
+    border-radius: var(--border-radius-m);
+    background-color: var(--theme-color-grey-dark);
+    animation: fade 0.5s;
+    @include mobile {
+        flex-direction: column;
+        row-gap: var(--padding-20);
+    }
+    &__body {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: var(--padding-15);
+        color: var(--font-color-soft);
+    }
+    &__message {
+        color: var(--font-color-hard);
+    }
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__user-actions {
+        display: flex;
+    }
+}
+
+.skeleton {
+    &__text {
+        height: var(--font-size-s);
+        margin-block: calc(var(--font-size-s) / 4);
+        width: rem(100);
+    }
+    &__message {
+        height: 100px;
+    }
+    &__actions {
+        display: flex;
+        align-items: center;
+        height: rem(45);
+        column-gap: var(--padding-20);
+        @include mobile {
+            height: rem(40);
+        }
+    }
+    &__action-button {
+        width: rem(25);
+        height: rem(25);
+    }
+}

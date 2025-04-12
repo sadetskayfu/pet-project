@@ -3,7 +3,6 @@
 .card {
     width: rem(150);
     position: relative;
-    border: var(--border-weight-soft) solid var(--border-color-grey);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,7 +18,7 @@
         }
     }
     &:focus-within {
-        border-color: var(--theme-color-primary-main);
+        color: red;
         .actions {
             opacity: 1;
             pointer-events: all;

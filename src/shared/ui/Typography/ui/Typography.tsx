@@ -3,7 +3,7 @@ import { ForwardedRef, forwardRef, HTMLAttributes, memo, ReactNode } from 'react
 import styles from './style.module.scss'
 
 type TypographyTextAlign = 'start' | 'center' | 'end'
-type TypographyColor = 'hard' | 'soft' | 'onDark' | 'error' | 'primary' | 'inherit'
+type TypographyColor = 'hard' | 'soft' | 'onDark' | 'error' | 'primary' | 'light' | 'inherit'
 type TypographyComponent =
 	| 'h1'
 	| 'h2'
@@ -14,7 +14,7 @@ type TypographyComponent =
 	| 'p'
 	| 'span'
 
-type TypographySize = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'helper' | 'default'
+type TypographySize = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'helper' | 'default' | 'inherit'
 
 export interface TypographyProps extends HTMLAttributes<HTMLElement> {
 	className?: string
@@ -36,7 +36,7 @@ export const Typography = memo(forwardRef((props: TypographyProps, ref: Forwarde
 	const additionalClasses: AdditionalClasses = [
 		className,
 		styles[size],
-		styles[color],
+		styles[`color-${color}`],
 		textAlign && styles[textAlign],
 		styles[`overflow-wrap-${overflowWrap}`],
 		styles[`font-weight-${fontWeight}`]

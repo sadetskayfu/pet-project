@@ -8,6 +8,11 @@
             }
         }
     }
+    &.centering-value {
+        .labels {
+            justify-content: center;
+        }
+    }
 }
 
 .select {

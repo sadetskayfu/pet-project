@@ -1,136 +1,63 @@
-import { memo, ReactNode, useCallback, useEffect, useId, useRef } from 'react'
+import { memo, ReactNode } from "react"
 import {
 	AdditionalClasses,
 	classNames,
 	Mods,
-} from '@/shared/helpers/classNames'
-import { isValueSelected } from '@/shared/helpers/isValueSelected'
-import { Typography } from '@/shared/ui/Typography'
-import { ToggleButtonGroupContext } from '../model/ToggleButtonGroupContext'
-import { Label } from '@/shared/ui/Label'
-import styles from './style.module.scss'
+} from "@/shared/helpers/classNames"
+import { ToggleButtonGroupContext } from "../model/ToggleButtonGroupContext"
+import styles from "./style.module.scss"
 
-type ToggleButtonOrientation = 'horizontal' | 'vertical'
+type ToggleButtonOrientation = "horizontal" | "vertical"
 
-export interface ToggleButtonGroupProps {
+type AriaAttributes = {
+	"aria-label"?: string
+	"aria-labelledby"?: string
+}
+
+export interface ToggleButtonGroupProps extends AriaAttributes {
 	className?: string
-	label: string
 	children: ReactNode
 	value: string | string[]
 	orientation?: ToggleButtonOrientation
-	errored?: boolean
-	helperText?: string
 	disabled?: boolean
-	required?: boolean
-	hiddenLabel?: boolean
 	stack?: boolean
-	onChange: (value: string | string[]) => void
+	onChange: (value: string) => void
 }
 
 export const ToggleButtonGroup = memo((props: ToggleButtonGroupProps) => {
 	const {
 		className,
-		label,
 		children,
 		value: selectedValue,
-		orientation = 'horizontal',
-		helperText,
+		orientation = "horizontal",
 		disabled,
-		required,
-		hiddenLabel,
 		stack = true,
-		errored,
 		onChange,
 		...otherProps
 	} = props
 
-	const helperTextId = useId()
-	const selectedValueRef = useRef<string | string[]>(selectedValue)
-
-	const handleDelete = useCallback(
-		(value: string) => {
-			const selectedValue = selectedValueRef.current
-
-			if (Array.isArray(selectedValue)) {
-				if (selectedValue.length === 1 && required) return
-
-				onChange(selectedValue.filter((v) => v !== value))
-			} else {
-				if (required) return
-
-				onChange('')
-			}
-		},
-		[onChange, required]
-	)
-
-	const handleChange = useCallback(
-		(value: string) => {
-			const selectedValue = selectedValueRef.current
-			const isSelected = isValueSelected(value, selectedValue)
-
-			if (isSelected) {
-				handleDelete(value)
-			} else {
-				if (Array.isArray(selectedValue)) {
-					onChange([...selectedValue, value])
-				} else {
-					onChange(value)
-				}
-			}
-		},
-		[handleDelete, onChange]
-	)
-
-	useEffect(() => {
-		selectedValueRef.current = selectedValue
-	}, [selectedValue])
-
 	const additionalClasses: AdditionalClasses = [className, styles[orientation]]
 
 	const mods: Mods = {
-		[styles['stack']]: stack,
-		[styles['errored']]: errored,
+		[styles["stack"]]: stack,
 	}
 
 	return (
-		<fieldset
-			className={classNames(styles['group'], additionalClasses, mods)}
-			aria-invalid={errored ? 'true' : 'false'}
-			aria-describedby={helperText ? helperTextId : undefined}
-			aria-disabled={disabled ? 'true' : undefined}
-			aria-required={required ? 'true' : 'false'}
+		<div
+			className={classNames(
+				styles["toggle-button-group"],
+				additionalClasses,
+				mods
+			)}
+			aria-disabled={disabled ? "true" : undefined}
+			role="group"
 			{...otherProps}
 		>
-			<Label
-				component="legend"
-				errored={errored}
-				required={required}
-				disabled={disabled}
-				className={classNames(styles['label'], [
-					hiddenLabel ? 'visually-hidden' : undefined,
-				])}
+			<ToggleButtonGroupContext.Provider
+				value={{ selectedValue, onChange, disabled }}
 			>
-				{label}
-			</Label>
-			<div role="group" className={styles['button-group']}>
-				<ToggleButtonGroupContext.Provider
-					value={{ selectedValue, onChange: handleChange, disabled }}
-				>
-					{children}
-				</ToggleButtonGroupContext.Provider>
-			</div>
-			{helperText && (
-				<Typography
-					role={errored ? 'alert' : undefined}
-					component="p"
-					size="helper"
-					color={errored ? 'error' : 'soft'}
-					id={helperTextId}
-				>
-					{helperText}
-				</Typography>
-			)}
-		</fieldset>
+				{children}
+			</ToggleButtonGroupContext.Provider>
+		</div>
 	)
 })

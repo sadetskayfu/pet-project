@@ -5,8 +5,9 @@ import { Typography } from '@/shared/ui/Typography'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Composite } from '@floating-ui/react'
 import { classNames } from '@/shared/helpers/classNames'
-import { SoloBadgeColor, SoloBadge } from '@/shared/ui/SoloBadge'
+import { SoloBadge } from '@/shared/ui/SoloBadge'
 import { Star } from '@/shared/assets/icons'
+import { getRatingBadgeColor } from '@/shared/helpers/getRatingBadgeColor'
 import styles from './style.module.scss'
 
 export interface MovieCardProps {
@@ -22,13 +23,7 @@ export interface MovieCardProps {
 	actions?: ReactNode
 	to?: string
 	style?: React.CSSProperties
-}
-
-const getRatingBadgeColor = (value: number): SoloBadgeColor => {
-	if (value >= 7 && value < 8) return 'green-light'
-	if (value >= 8) return 'green'
-
-	return 'grey'
+	state?: any
 }
 
 export const MovieCard = memo((props: MovieCardProps) => {
@@ -39,6 +34,7 @@ export const MovieCard = memo((props: MovieCardProps) => {
 		releaseYear,
 		genres,
 		style,
+		state,
 		...otherProps
 	} = props
 
@@ -50,6 +46,7 @@ export const MovieCard = memo((props: MovieCardProps) => {
 			{to ? (
 				<Link
 					to={to}
+					state={state}
 					aria-labelledby={labelId}
 					className={styles['image-container']}
 				>
@@ -99,7 +96,7 @@ const SharedContent = memo(({ src, countries, duration, actions, rating, ageLimi
                 className={styles['rating-badge']}
                 aria-label={`Movie rating ${rating}`}
                 color={ratingBadgeColor}
-				endIcon={<Star size='xs'/>}
+				endIcon={<Star />}
             >
 				{rating!}
 			</SoloBadge>

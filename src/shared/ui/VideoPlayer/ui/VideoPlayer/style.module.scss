@@ -2,10 +2,9 @@
 
 .video-player {
 	position: relative;
-	max-width: 800px;
 	aspect-ratio: 16 / 9;
 	border-radius: var(--border-radius-l);
-    border: var(--border-weight-soft) solid var(--border-color-grey);
+    background-color: var(--theme-color-grey-light);
     &:focus-visible {
         @include focus-outline;
     }

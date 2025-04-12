@@ -80,9 +80,17 @@
     &.m {
         --height: var(--button-height-m);
         padding-inline: var(--button-padding-block-m);
+        @include mobile {
+            --height: var(--button-height-s);
+            padding-inline: var(--button-padding-block-s);
+        }
     }
     &.l {
         --height: var(--button-height-l);
         padding-inline: var(--button-padding-block-l);
+        @include mobile {
+            --height: var(--button-height-m);
+            padding-inline: var(--button-padding-block-m);
+        }
     }
 }

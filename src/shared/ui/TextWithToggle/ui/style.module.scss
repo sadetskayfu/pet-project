@@ -1,0 +1,84 @@
+ @use "@/app/styles/helpers" as *;
+
+.container {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.text {
+	display: block;
+	overflow: hidden;
+	font-size: inherit;
+	color: inherit;
+	overflow-wrap: anywhere;
+}
+
+.toggle-button {
+	position: absolute;
+	width: max-content;
+	bottom: 0;
+	left: 50%;
+	translate: -50% 25%;
+	z-index: 1;
+    color: var(--font-color-soft);
+    border-radius: var(--border-radius-m);
+    border: none;
+    padding-block: rem(3);
+    padding-inline: rem(12);
+	flex-shrink: 0;
+	transition: translate 0.2s, color 0.2s;
+    @include hover {
+        color: var(--font-color-hard);
+    }
+    &:focus-visible {
+        @include focus-outline;
+    }
+}
+
+.container {
+	&.overflowing {
+		&:before {
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: rem(50);
+			bottom: 0;
+		}
+	}
+	&.expanded {
+		&:before {
+			height: 0px;
+		}
+		.toggle-button {
+			translate: -50% 100%;
+		}
+		margin-bottom: var(--padding-30);
+	}
+	&.dark {
+		&:before {
+			background: linear-gradient(
+				to top,
+				var(--theme-color-dark) 0%,
+				rgba(0, 0, 0, 0) 100%
+			);
+		}
+		.toggle-button {
+			background-color: var(--theme-color-dark);
+			box-shadow: 0 0 20px var(--theme-color-grey-dark);
+		}
+	}
+	&.grey-dark {
+		&:before {
+			background: linear-gradient(
+				to top,
+				var(--theme-color-grey-dark) 0%,
+				rgba(0, 0, 0, 0) 100%
+			);
+		}
+		.toggle-button {
+			background-color: var(--theme-color-grey-dark);
+			box-shadow: 0 0 20px var(--theme-color-dark);
+		}
+	}
+}

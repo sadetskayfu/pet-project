@@ -1,0 +1,81 @@
+@use '@/app/styles/helpers' as *;
+
+.review-card-container {
+    width: 100%;
+}
+
+.review-card {
+    width: 100%;
+    display: flex;
+    column-gap: var(--padding-50);
+    padding-top: var(--padding-30);
+    padding-bottom: calc(var(--padding-30) - var(--button-height-s) / 4);
+    animation: fade 0.5s;
+    @include mobile {
+        flex-direction: column;
+        row-gap: var(--padding-20);
+    }
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__user-actions {
+        display: flex;
+        color: var(--font-color-soft);
+    }
+}
+
+.body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--padding-20);
+    color: var(--font-color-soft);
+    &__header {
+        display: flex;
+        column-gap: var(--padding-20);
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.message {
+    color: var(--font-color-hard);
+}
+
+.comments-body {
+    border-top: var(--border-weight-soft) solid var(--border-color-grey);
+    width: 100%;
+}
+
+.skeleton {
+    &__rating {
+        width: rem(145);
+        height: rem(25);
+        @include mobile {
+            height: rem(20);
+        }
+    }
+    &__message {
+        height: 100px;
+        width: 100%;
+    }
+    &__text {
+        height: var(--font-size-s);
+        margin-block: calc(var(--font-size-s) / 4);
+        width: rem(100);
+    }
+    &__actions {
+        display: flex;
+        align-items: center;
+        height: rem(45);
+        column-gap: var(--padding-20);
+        @include mobile {
+            height: rem(40);
+        }
+    }
+    &__action-button {
+        width: rem(25);
+        height: rem(25);
+    }
+}

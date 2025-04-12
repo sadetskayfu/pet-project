@@ -1,6 +1,7 @@
 import { XMark } from '@/shared/assets/icons'
 import { getErrorMessage } from '@/shared/helpers/getErrorMessage'
 import { Alert } from '@/shared/ui/Alert'
+import { memo } from 'react'
 
 interface ErrorAlertProps {
     className?: string
@@ -10,7 +11,7 @@ interface ErrorAlertProps {
 	message: string
 }
 
-export const ErrorAlert = (props: ErrorAlertProps) => {
+export const ErrorAlert = memo((props: ErrorAlertProps) => {
 	const { className, id, error, fullWidth, message } = props
 
 	if (error) {
@@ -29,4 +30,4 @@ export const ErrorAlert = (props: ErrorAlertProps) => {
 	}
 
     return null
-}
+})

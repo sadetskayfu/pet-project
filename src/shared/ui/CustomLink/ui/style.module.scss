@@ -16,6 +16,9 @@
     &.primary {
         --color: var(--theme-color-primary-main);
     }
+    &.soft {
+        --color: var(--font-color-soft);
+    }
     &.inherit {
         --color: inherit;
     }

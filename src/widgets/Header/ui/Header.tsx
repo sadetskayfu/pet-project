@@ -5,7 +5,7 @@ import { useMemo } from 'react'
 import { ROUTES } from '@/shared/constants/routes'
 import { ThemeSwitcher } from '@/widgets/ThemeSwitcher'
 import { useAppDispatch } from '@/shared/redux/redux'
-import { authActions } from '@/features/auth'
+import { authActions, ConfirmRedirectToAuthDialog } from '@/features/auth'
 import { useSelector } from 'react-redux'
 import { userSelectors } from '@/entities/user'
 import { User } from '@/shared/assets/icons'
@@ -23,8 +23,8 @@ export const Header = () => {
 	const renderLinks = useMemo(
 		() =>
 			links.map((link) => (
-				<li key={link.path} className={styles['link-item']}>
-					<NavigateLink fullHeight to={link.path}>
+				<li key={link.path}>
+					<NavigateLink to={link.path}>
 						{link.text}
 					</NavigateLink>
 				</li>
@@ -71,6 +71,7 @@ export const Header = () => {
 					</div>
 				</div>
 			</div>
+			<ConfirmRedirectToAuthDialog />
 		</header>
 	)
 }

@@ -58,7 +58,6 @@ export const SettingMenu = memo((props: SettingMenuProps) => {
 			placement="top-end"
 			portalTarget={portalTarget}
 			initialFocus={0}
-			modal
 		>
 			<BaseTooltip label="Settings" portalTarget={portalTarget}>
 				<IconButton

@@ -127,14 +127,34 @@
 	&.s {
 		--height: var(--button-height-s);
 		font-size: var(--fz-icon-s);
+		@include mobile {
+			--height: #{rem(40)};
+			font-size: calc(--height / 2);
+		}
 	}
 	&.m {
 		--height: var(--button-height-m);
 		font-size: var(--fz-icon-m);
+		@include mobile {
+			--height: var(--button-height-s);
+			font-size: var(--fz-icon-s);
+		}
 	}
-	&.l {
-		--height: var(--button-height-l);
-		font-size: var(--fz-icon-l);
+}
+
+// Offset
+.button {
+	&.offset-left {
+		margin-left: calc(var(--height) / 4 * -1);
+	}
+	&.offset-right {
+		margin-right: calc(var(--height) / 4 * -1);
+	}
+	&.offset-top {
+		margin-top: calc(var(--height) / 4 * -1);
+	}
+	&.offset-bottom {
+		margin-bottom: calc(var(--height) / 4 * -1);
 	}
 }
 

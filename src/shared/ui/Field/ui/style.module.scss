@@ -88,7 +88,7 @@
 	}
 	&.outlined {
 		--bgColor: transparent;
-		--labelTranslateTop: #{rem(-10)};
+		--labelTranslateTop: #{rem(-12)};
 		.label {
 			position: absolute;
 			font-size: var(--font-size-s);
@@ -150,16 +150,28 @@
 		&.l {
 			--height: var(--button-height-m);
 			--paddingBlock: #{rem(10)};
+			@include mobile {
+				--height: var(--button-height-s);
+				--paddingBlock: #{rem(5)};
+			}
 		}
 	}
 	&:not(.standard) {
 		&.m {
 			--height: var(--button-height-m);
 			--paddingBlock: #{rem(10)};
+			@include mobile {
+				--height: var(--button-height-s);
+				--paddingBlock: #{rem(5)};
+			}
 		}
 		&.l {
 			--height: var(--button-height-l);
 			--paddingBlock: #{rem(15)};
+			@include mobile {
+				--height: var(--button-height-m);
+				--paddingBlock: #{rem(10)};
+			}
 		}
 		&.with-actions {
 			--inputPaddingRight: 0px;

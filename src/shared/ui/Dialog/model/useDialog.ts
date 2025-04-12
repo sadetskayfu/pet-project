@@ -11,6 +11,7 @@ export interface UseDialogProps {
 	initialOpen?: boolean
 	initialFocus?: number | React.RefObject<HTMLElement | null>
 	returnFocus?: boolean | React.RefObject<HTMLElement | null>
+	referenceRef?: React.RefObject<HTMLElement | null>
 	open?: boolean
 	setOpen?: (isOpen: boolean) => void
 }
@@ -20,6 +21,7 @@ export const useDialog = (props: UseDialogProps) => {
 		initialOpen = false,
 		initialFocus,
 		returnFocus = true,
+		referenceRef,
 		open: controlledOpen,
 		setOpen: setControlledOpen,
 	} = props
@@ -54,6 +56,7 @@ export const useDialog = (props: UseDialogProps) => {
 			...data,
 			initialFocus,
 			returnFocus,
+			referenceRef,
 			labelId,
 			descriptionId,
 			setLabelId,
@@ -66,6 +69,7 @@ export const useDialog = (props: UseDialogProps) => {
 			data,
 			initialFocus,
 			returnFocus,
+			referenceRef,
 			labelId,
 			descriptionId,
 		]
