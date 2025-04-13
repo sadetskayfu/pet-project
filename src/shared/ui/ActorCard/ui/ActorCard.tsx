@@ -1,11 +1,11 @@
-import { Avatar } from '@/shared/ui/Avatar'
-import { Typography } from '@/shared/ui/Typography'
-import { differenceInYears, format, parseISO } from 'date-fns'
-import { memo, ReactNode, useMemo } from 'react'
-import { Link } from 'react-router-dom'
-import { classNames, Mods } from '@/shared/helpers/classNames'
-import { Composite } from '@floating-ui/react'
-import styles from './style.module.scss'
+import { Avatar } from "@/shared/ui/Avatar"
+import { Typography } from "@/shared/ui/Typography"
+import { memo, ReactNode } from "react"
+import { classNames } from "@/shared/helpers/classNames"
+import { Composite } from "@floating-ui/react"
+import { Badge } from "@/shared/ui/Badge"
+import { getAgeLabel } from "@/shared/helpers/getAgeLabel"
+import styles from "./style.module.scss"
 
 export interface ActorCardProps {
 	className?: string
@@ -13,75 +13,34 @@ export interface ActorCardProps {
 	lastName: string
 	birthDate: string
 	photoUrl?: string | null
-	to?: string
 	actions?: ReactNode
-	fullWidth?: boolean
-}
-
-const calculateAge = (birthDateStr: string): number => {
-	const birthDate = parseISO(birthDateStr)
-	const today = new Date()
-	return differenceInYears(today, birthDate)
-}
-
-const getBirthDateLabel = (birthDateStr: string) => {
-	const birthDate = parseISO(birthDateStr)
-	return format(birthDate, 'dd.MM.yyyy')
+	role?: string
 }
 
 export const ActorCard = memo((props: ActorCardProps) => {
-	const {
-		className,
-		firstName,
-		lastName,
-		birthDate,
-		photoUrl,
-		to,
-		actions,
-		fullWidth,
-	} = props
+	const { className, firstName, lastName, birthDate, photoUrl, actions, role } = props
 
-	const age = useMemo(() => calculateAge(birthDate), [birthDate])
-	const birthDateLabel = useMemo(() => getBirthDateLabel(birthDate), [birthDate])
+	const ageLabel = getAgeLabel(birthDate)
 
-	const ageLabel = `(${age} year)`
-
-	const mods: Mods = {
-		[styles['full-width']]: fullWidth,
-	}
-
-	const CardContent = () => {
-		return (
-			<>
+	return (
+		<div className={classNames(styles["actor-card"], [className])}>
+			<Badge size="l" color="secondary" borderColor="dark" className={styles['actor-card__badge']} visible badgeContent={ageLabel}>
 				<Avatar
-					className={styles['photo']}
+					className={styles["actor-card__photo"]}
 					borderRadius="circular"
 					src={photoUrl}
 					alt="Actor photo"
 				/>
-				<div className={styles['description']}>
-					<Typography color="hard">{firstName}</Typography>
-					<Typography color="hard">{lastName}</Typography>
-					<Typography size="helper">
-						{birthDateLabel} {ageLabel}
-					</Typography>
-				</div>
-				{actions && <Composite className={styles['actions']}>{actions}</Composite>}
-			</>
-		)
-	}
-
-	if (to) {
-		return (
-			<Link className={classNames(styles['card'], [className], mods)} to={to}>
-				<CardContent />
-			</Link>
-		)
-	}
-
-	return (
-		<div className={classNames(styles['card'], [className], mods)}>
-			<CardContent />
+			</Badge>
+			<div className={styles["actor-card__description"]}>
+				<Typography size="helper" color="hard">
+					{firstName} {lastName}
+				</Typography>
+				<Typography size="helper">{role || 'Актор'}</Typography>
+			</div>
+			{actions && (
+				<Composite className={styles["actor-card__actions"]}>{actions}</Composite>
+			)}
 		</div>
 	)
 })

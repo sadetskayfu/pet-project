@@ -1,0 +1,6 @@
+@use '@/app/styles/helpers' as *;
+
+.actor-swiper {
+    width: 100%;
+    @include user-select-off;
+}

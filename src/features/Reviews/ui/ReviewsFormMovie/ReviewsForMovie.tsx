@@ -15,6 +15,7 @@ import { Typography } from "@/shared/ui/Typography"
 import { Star } from "@/shared/assets/icons"
 import { ReviewDialog } from "../ReviewDialog/ReviewDialog"
 import { usePrivateHandler } from "@/shared/hooks"
+import { SectionTitle } from "@/shared/ui/SectionTitle"
 import styles from "./style.module.scss"
 
 interface ReviewsForMovieProps {
@@ -22,10 +23,11 @@ interface ReviewsForMovieProps {
 	movieTitle: string
 	totalReviews: number
 	isRated?: boolean
+	entity: 'movie' | 'series'
 }
 
 export const ReviewsForMovie = memo((props: ReviewsForMovieProps) => {
-	const { movieId, movieTitle, totalReviews, isRated } = props
+	const { movieId, movieTitle, totalReviews, isRated, entity } = props
 
 	const [isOpenReviewDialog, setIsOpenReviewDialog] = useState<boolean>(false)
 	const [filterValue, setFilterValue] = useState<ReviewFilterValue[]>(["all"])
@@ -89,56 +91,58 @@ export const ReviewsForMovie = memo((props: ReviewsForMovieProps) => {
 	}, [movieId, dispatch])
 
 	return (
-		<div ref={saveFocusRef} tabIndex={-1} className={styles["reviews"]}>
-			{!isRated && (
-				<div className={styles["reviews__rate-movie"]}>
-					<Typography color="soft" size="inherit">
-						Уже посмотрели фильм?
-					</Typography>
-					<Button
-						ref={reviewButtonRef}
-						onClick={handleOpenReviewDialog}
-						aria-controls={isOpenReviewDialog ? reviewDialogId : undefined}
-						aria-haspopup="dialog"
-						aria-expanded={isOpenReviewDialog ? "true" : "false"}
-						size="m"
-						color="primary"
-						variant="clear"
-					>
-						Оценить <Star />
-					</Button>
-				</div>
-			)}
-			<ReviewFilterPanel
-				filterValue={filterValue}
-				sortValue={sortValue}
-				onChangeSortValue={handleChangeSortValue}
-				onChangeFilterValue={handleChangeFilterValue}
-			/>
+		<div ref={saveFocusRef} tabIndex={-1} className="section">
+			<SectionTitle label={`Отзывы к ${entity === 'movie' ? 'фильму' : 'сериалу'} ${movieTitle}`} />
+			<div className={styles["reviews"]}>
+				{!isRated && (
+					<div className={styles["reviews__rate-movie"]}>
+						<Typography color="soft" size="inherit">
+							Уже посмотрели фильм?
+						</Typography>
+						<Button
+							ref={reviewButtonRef}
+							onClick={handleOpenReviewDialog}
+							aria-controls={isOpenReviewDialog ? reviewDialogId : undefined}
+							aria-haspopup="dialog"
+							aria-expanded={isOpenReviewDialog ? "true" : "false"}
+							size="m"
+							variant="clear"
+						>
+							Оценить <Star />
+						</Button>
+					</div>
+				)}
+				<ReviewFilterPanel
+					filterValue={filterValue}
+					sortValue={sortValue}
+					onChangeSortValue={handleChangeSortValue}
+					onChangeFilterValue={handleChangeFilterValue}
+				/>
 
-			<ReviewsContext.Provider
-				value={{
-					movieId,
-					movieTitle,
-					hasMutationRef,
-				}}
-			>
-				<ReviewList
-					totalReviews={totalReviews}
-					queryParams={{ filters: filterValue, sort: sortValue }}
-				/>
-			</ReviewsContext.Provider>
-			{!isRated && (
-				<ReviewDialog
-					open={isOpenReviewDialog}
-					setOpen={setIsOpenReviewDialog}
-					movieTitle={movieTitle}
-					movieId={movieId}
-					id={reviewDialogId}
-					returnFocus={reviewButtonRef}
-					onSuccess={handleCloseReviewDialog}
-				/>
-			)}
+				<ReviewsContext.Provider
+					value={{
+						movieId,
+						movieTitle,
+						hasMutationRef,
+					}}
+				>
+					<ReviewList
+						totalReviews={totalReviews}
+						queryParams={{ filters: filterValue, sort: sortValue }}
+					/>
+				</ReviewsContext.Provider>
+				{!isRated && (
+					<ReviewDialog
+						open={isOpenReviewDialog}
+						setOpen={setIsOpenReviewDialog}
+						movieTitle={movieTitle}
+						movieId={movieId}
+						id={reviewDialogId}
+						returnFocus={reviewButtonRef}
+						onSuccess={handleCloseReviewDialog}
+					/>
+				)}
+			</div>
 		</div>
 	)
 })

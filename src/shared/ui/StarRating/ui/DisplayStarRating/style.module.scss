@@ -38,6 +38,11 @@
 
 // Sizes
 .star-rating {
+	&.xs {
+		.star {
+			--height: #{rem(20)};
+		}
+	}
 	&.s {
 		.star {
 			--height: var(--button-height-xxs);

@@ -30,11 +30,9 @@ export const ScrollButton = memo((props: ScrollButtonProps) => {
 				targetRef.current.getBoundingClientRect().top + window.scrollY - offset
 			window.scrollTo({ top, behavior: "smooth" })
 			targetFocusRef?.current.focus()
-            setIsVisible(false)
 		} else {
 			window.scrollTo({ top: 0, behavior: "smooth" })
 			targetFocusRef?.current.focus()
-            setIsVisible(false)
 		}
 	}, [targetRef, targetFocusRef, offset])
 

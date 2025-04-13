@@ -12,7 +12,6 @@
     padding-bottom: calc(var(--padding-20) - var(--button-height-s) / 4);
     border-radius: var(--border-radius-m);
     background-color: var(--theme-color-grey-dark);
-    animation: fade 0.5s;
     @include mobile {
         flex-direction: column;
         row-gap: var(--padding-20);

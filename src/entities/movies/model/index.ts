@@ -1,4 +1,3 @@
-import { Actor } from "@/entities/actors"
 import { Country } from "@/entities/countries"
 import { Genre } from "@/entities/genres"
 
@@ -24,7 +23,6 @@ export interface Movie extends MovieForCard {
     videoUrl: string
     trailerUrl: string
     posterUrl: string
-    actors: Actor[]
 }
 
 export type Cursor = {

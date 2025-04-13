@@ -30,7 +30,7 @@ export const UserCard = memo((props: UserCardProps) => {
 				color="secondary"
 				badgeContent={totalReviews}
 				visible
-				border
+				borderColor={isComment ? 'grey-dark' : 'dark'}
 			>
 				<Tooltip placement="bottom-start">
 					<TooltipTrigger>

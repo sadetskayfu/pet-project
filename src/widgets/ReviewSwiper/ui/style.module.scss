@@ -1,0 +1,8 @@
+@use '@/app/styles/helpers' as *;
+
+.review-swiper {
+    width: 100%;
+    padding-top: rem(5);
+    margin-top: rem(-5);
+    @include user-select-off;
+}

@@ -1,1 +1,1 @@
-export { Badge } from "./ui/Badge";
+export { Badge, type BadgeBorderColor } from "./ui/Badge";

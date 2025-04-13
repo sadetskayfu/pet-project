@@ -39,7 +39,7 @@
 // Sizes
 .avatar {
 	&.size-s {
-		--height: #{rem(40)};
+		--height: #{rem(50)};
 		width: var(--height);
 		height: var(--height);
 		font-size: calc(var(--height) / 1.75);
@@ -51,9 +51,6 @@
 		font-size: calc(var(--height) / 1.75);
 		@include mobile {
 			--height: #{rem(50)};
-		}
-		@include mobile-s {
-			--height: #{rem(45)};
 		}
 	}
 	&.size-l {
@@ -72,16 +69,16 @@
 
 // Border radius
 .avatar {
-    &.s {
+    &.border-radius-s {
         border-radius: var(--border-radius-s);
     }
-    &.m {
+    &.border-radius-m {
         border-radius: var(--border-radius-m);
     }
-    &.l {
+    &.border-radius-l {
         border-radius: var(--border-radius-l);
     }
-    &.circular {
+    &.border-radius-circular {
         border-radius: 50%;
     }
 }

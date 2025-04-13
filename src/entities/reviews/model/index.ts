@@ -77,16 +77,13 @@ export type ReviewForMovieResponse = {
     nextCursor: Cursor | null
 }
 
-export type CardReviewForMovie = {
+export type CardReview = {
     id: number
     message: string
     createdAt: string
     rating: number
     userId: number
     user: ReviewUserResponse
-}
-
-export interface CardReview extends CardReviewForMovie {
     movieTitle: string
 }
 

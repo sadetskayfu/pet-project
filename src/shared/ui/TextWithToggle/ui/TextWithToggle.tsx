@@ -1,17 +1,26 @@
 import { memo, useCallback, useEffect, useRef, useState } from "react"
-import { AdditionalClasses, classNames, Mods } from "@/shared/helpers/classNames"
+import {
+	AdditionalClasses,
+	classNames,
+	Mods,
+} from "@/shared/helpers/classNames"
 import { useWindowWidth } from "@/app/providers/windowWidth"
 import { CompositeItem } from "@floating-ui/react"
 import styles from "./style.module.scss"
 
 interface TextWithToggleProps {
 	className?: string
-	maxHeight: number
 	children: string
+	maxHeight: number
 	expanded?: boolean
 	onToggle?: () => void
 	onClose?: () => void
-	shadowColor?: 'dark' | 'grey-dark'
+	onFocus?: (event: React.FocusEvent<HTMLElement>) => void
+	onMouseDown?: (event: React.MouseEvent<HTMLElement>) => void
+	buttonColor?: "dark" | "grey-dark"
+	centering?: boolean
+	compositeButton?: boolean
+	getButtonLabel?: (expanded: boolean) => string
 }
 
 export const TextWithToggle = memo((props: TextWithToggleProps) => {
@@ -22,7 +31,12 @@ export const TextWithToggle = memo((props: TextWithToggleProps) => {
 		expanded: controlledExpanded,
 		onToggle,
 		onClose,
-		shadowColor = 'dark'
+		onFocus,
+		onMouseDown,
+		getButtonLabel,
+		centering,
+		compositeButton,
+		buttonColor = "dark",
 	} = props
 
 	const [isOverflowing, setIsOverflowing] = useState<boolean>(false)
@@ -41,16 +55,26 @@ export const TextWithToggle = memo((props: TextWithToggleProps) => {
 		if (!typography) return
 
 		const scrollHeight = typography.scrollHeight
-
+		
 		if (scrollHeight > maxHeight) {
 			setIsOverflowing(true)
 		} else {
-			if(expanded) {
-				setIsOverflowing(false)
-				onClose?.()
+			setIsOverflowing(false)
+			if (expanded) {
+				if (onClose) {
+					onClose()
+				} else {
+					setUncontrolledExpanded(false)
+				}
 			}
 		}
 	}, [maxHeight, expanded, onClose])
+
+	const buttonLabel = getButtonLabel
+		? getButtonLabel(expanded)
+		: expanded
+			? "Скрыть текст"
+			: "Показать весь текст"
 
 	useEffect(() => {
 		checkOverflow()
@@ -59,12 +83,10 @@ export const TextWithToggle = memo((props: TextWithToggleProps) => {
 	const mods: Mods = {
 		[styles["expanded"]]: expanded,
 		[styles["overflowing"]]: isOverflowing,
+		[styles["centering"]]: centering,
 	}
 
-	const additionalClasses: AdditionalClasses = [
-		className,
-		styles[shadowColor]
-	]
+	const additionalClasses: AdditionalClasses = [className, styles[buttonColor]]
 
 	return (
 		<div className={classNames(styles["container"], additionalClasses, mods)}>
@@ -75,18 +97,34 @@ export const TextWithToggle = memo((props: TextWithToggleProps) => {
 			>
 				{children}
 			</p>
-			{isOverflowing && (
-				<CompositeItem
-					render={
-						<button
-							className={styles["toggle-button"]}
-							onClick={onToggle ? onToggle : () => setUncontrolledExpanded((prev) => !prev)}
-						>
-							{expanded ? "Скрыть текст" : "Показать весь текст"}
-						</button>
-					}
-				/>
-			)}
+			{isOverflowing &&
+				(compositeButton ? (
+					<CompositeItem
+						render={
+							<button
+								className={styles["toggle-button"]}
+								onFocus={onFocus}
+								onMouseDown={onMouseDown}
+								onClick={
+									onToggle ? onToggle : () => setUncontrolledExpanded((prev) => !prev)
+								}
+							>
+								{buttonLabel}
+							</button>
+						}
+					/>
+				) : (
+					<button
+						className={styles["toggle-button"]}
+						onClick={
+							onToggle ? onToggle : () => setUncontrolledExpanded((prev) => !prev)
+						}
+						onFocus={onFocus}
+						onMouseDown={onMouseDown}
+					>
+						{buttonLabel}
+					</button>
+				))}
 		</div>
 	)
 })

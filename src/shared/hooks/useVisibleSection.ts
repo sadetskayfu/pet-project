@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export const useVisibleSection = () => {
+export const useVisibleSection = (threshold: number = 0.2) => {
     const [isVisibleSection, setIsVisibleSection] = useState(false);
     const sectionRef = useRef(null);
 
@@ -13,7 +13,7 @@ export const useVisibleSection = () => {
                 }
             },
             {
-                threshold: 0.1,
+                threshold,
             }
         );
 
@@ -26,7 +26,7 @@ export const useVisibleSection = () => {
                 observer.unobserve(sectionRef.current);
             }
         };
-    }, [sectionRef]);
+    }, [sectionRef, threshold]);
 
     return { sectionRef, isVisibleSection };
 };

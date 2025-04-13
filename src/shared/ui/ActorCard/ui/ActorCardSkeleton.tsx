@@ -1,24 +1,15 @@
-import { classNames } from '@/shared/helpers/classNames'
-import { Skeleton } from '../../Skeleton'
-import styles from './style.module.scss'
+import { classNames } from "@/shared/helpers/classNames"
+import { Skeleton } from "../../Skeleton"
+import styles from "./style.module.scss"
 
-export const ActorCardSkeleton = ({ fullWidth }: { fullWidth?: boolean }) => {
+export const ActorCardSkeleton = () => {
 	return (
-		<div
-			className={classNames(styles['skeleton'], [], {
-				[styles['full-width']]: fullWidth,
-			})}
-		>
-			<Skeleton
-				borderPlacement="top"
-				className={styles['skeleton__photo']}
-				borderRadius="m"
-			/>
-			<Skeleton
-				borderPlacement="bottom"
-				className={styles['skeleton__desc']}
-				borderRadius="m"
-			/>
+		<div className={classNames(styles["skeleton"], [styles["actor-card"]])}>
+			<Skeleton className={styles["actor-card__photo"]} borderRadius="circular" />
+			<div className={classNames(styles['skeleton__description'], [styles["actor-card__description"]])}>
+				<Skeleton className={styles["skeleton__text"]} />
+				<Skeleton className={styles["skeleton__text"]} />
+			</div>
 		</div>
 	)
 }

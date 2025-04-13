@@ -133,6 +133,8 @@ export const ReviewCard = memo((props: ReviewCardProps) => {
 								expanded={isExpandedMessage}
 								onToggle={toggleMessage}
 								onClose={closeMessage}
+								getButtonLabel={(expanded) => expanded ? 'Скрыть' : 'Читать все'}
+								compositeButton
 							>
 								{message}
 							</TextWithToggle>

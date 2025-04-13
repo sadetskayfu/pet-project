@@ -1,4 +1,4 @@
-@use 'helpers' as *;
+@use "helpers" as *;
 
 .container {
 	max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
@@ -12,14 +12,14 @@
 
 .page {
 	position: relative;
-    min-height: 100vh;
+	min-height: 100vh;
 	padding-top: calc(var(--header-height) + var(--header-height) / 2);
 	//overflow-x: hidden;
 }
 
 .show-page {
 	position: relative;
-    min-height: 100vh;
+	min-height: 100vh;
 	padding-top: var(--header-height);
 	padding-bottom: var(--section-padding);
 	z-index: 0;
@@ -30,19 +30,33 @@
 	display: flex;
 	flex-direction: column;
 	row-gap: rem(30);
+	width: 100%;
+	&__header {
+		display: flex;
+		align-items: center;
+		column-gap: var(--padding-20);
+	}
+	&__header-icons {
+		display: flex;
+		color: var(--font-color-soft);
+		column-gap: rem(5);
+	}
 }
 
 .text-button {
 	width: max-content;
 	color: var(--font-color-soft);
-    background-color: transparent;
-    border: none;
-    padding-block: 0px;
-    transition: color 0.2s, opacity 0.2s;
-    @include hover {
-        color: var(--font-color-hard);
-    }
-    &:disabled {
-        @include disabled;
-    }
+	background-color: transparent;
+	border: none;
+	padding-block: 0px;
+	transition:
+		color 0.2s,
+		opacity 0.2s;
+	@include hover {
+		color: var(--font-color-hard);
+	}
+	&:disabled {
+		@include disabled;
+	}
 }
+

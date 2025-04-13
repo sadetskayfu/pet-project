@@ -10,7 +10,8 @@
     background-color: var(--theme-color-dark);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.2s;
+    transform: translateY(200%);
+    transition: opacity 0.2s, transform 0.4s;
     background-color: var(--theme-color-grey-light);
     height: var(--button-height-s);
     width: var(--button-height-s);
@@ -23,6 +24,7 @@
     &.visible {
         opacity: 0.5;
         pointer-events: all;
+        transform: translateY(0);
     }
     &:focus-visible {
         @include focus-outline;

@@ -4,8 +4,8 @@ import { getFirstLetter } from '@/shared/helpers/formattingString'
 import { Skeleton } from '@/shared/ui/Skeleton'
 import styles from './style.module.scss'
 
-type AvatarBorderRadius = 's' | 'm' | 'l' | 'circular' | 'none'
-type AvatarSize = 's' | 'm' | 'l'
+export type AvatarBorderRadius = 's' | 'm' | 'l' | 'circular' | 'none'
+export type AvatarSize = 's' | 'm' | 'l'
 type AvatarBorderColor = 'dark' | 'primary' | 'none'
 
 interface BaseAvatarProps {
@@ -52,7 +52,7 @@ export const Avatar = memo((props: AvatarProps) => {
 
 	const additionalClasses: Array<string | undefined> = [
 		className,
-		styles[borderRadius],
+		styles[`border-radius-${borderRadius}`],
 		size && styles[`size-${size}`],
 		styles[border],
 	]

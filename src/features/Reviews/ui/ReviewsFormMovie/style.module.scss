@@ -1,7 +1,6 @@
 @use '@/app/styles/helpers' as *;
 
 .reviews {
-    //overflow-x: hidden;
     display: flex;
     flex-direction: column;
     &__rate-movie {

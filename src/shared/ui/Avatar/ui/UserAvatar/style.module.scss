@@ -1,0 +1,12 @@
+@use '@/app/styles/helpers' as *;
+
+.avatar-link {
+    border-radius: 50%;
+    &:focus-visible {
+        @include focus-outline;
+    }
+}
+
+.avatar-tooltip {
+    text-align: center;
+}

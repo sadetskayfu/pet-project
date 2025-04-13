@@ -1,4 +1,3 @@
-import { VideoPlayerSource } from "@/shared/ui/VideoPlayer"
 import { useMovie } from "../services/useMovie"
 import { useLocation, useParams } from "react-router-dom"
 import { ErrorAlert } from "@/widgets/ErrorAlert"
@@ -7,28 +6,32 @@ import { Breadcrumbs } from "@/shared/ui/Breadcrumbs"
 import { CustomLink } from "@/shared/ui/CustomLink"
 import { ROUTES } from "@/shared/constants/routes"
 import { Typography } from "@/shared/ui/Typography"
-import { ShowActors, ShowCardInfo, ShowPlayer, ShowPromo } from "@/widgets/Show"
 import { ReviewsForMovie } from "@/features/Reviews"
-import { classNames } from "@/shared/helpers/classNames"
+import { ShowPromo } from "@/widgets/ShowPromo"
+import { ShowDescription } from "@/widgets/ShowDescription"
+import { LastReviewsForMovie } from "@/widgets/LastReviewsForMovie"
+import { PopularReviewsForMovie } from "@/widgets/PopularReviewsForMovie"
+import { ActorsForMovie } from "@/widgets/ActorsForMovie"
+import { ShowPlayer } from "@/widgets/ShowPlayer"
+import { useRef } from "react"
 import styles from "./style.module.scss"
 
-const sources: VideoPlayerSource[] = [
-	{
-		src: "https://kinogo-films.biz/",
-		quality: "1080",
-	},
-	{
-		src: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-		quality: "720",
-	},
-]
-
 const MoviePage = () => {
-	const { movieId } = useParams()
+	const { movieId: strMovieId } = useParams()
+
+	const movieId = Number(strMovieId)
 
 	const location = useLocation()
 
-	const { movie, error, isLoading } = useMovie(Number(movieId))
+	const movieVideoPlayerRef = useRef<HTMLDivElement>(null)
+	const trailerVideoPlayerRef = useRef<HTMLDivElement>(null)
+
+	const { movie, error, isLoading } = useMovie(movieId)
+
+	const posterUrl =
+		"https://www.film.ru/sites/default/files/trailers_frame/looper.jpg"
+
+	const videoUrl = "https://media.w3.org/2010/05/sintel/trailer.mp4"
 
 	return (
 		<div className="show-page">
@@ -40,40 +43,58 @@ const MoviePage = () => {
 					<Typography color="light">{movie ? movie.title : ""}</Typography>
 				</Breadcrumbs>
 			</div>
-			{error ? (
-				<ErrorAlert
-					error={error}
-					message={`Error while getting movie by id "${movieId}"`}
-				/>
-			) : isLoading ? (
-				<CircularProgress absCenter size="l" aria-label="Loading movie page" />
-			) : (
+			{isLoading && (
+				<CircularProgress absCenter size="l" aria-label="Загрузка фильма" />
+			)}
+			<ErrorAlert error={error} message={`Ошибка при получении фильма`} />
+			{movie && (
 				<>
 					<ShowPromo
-						{...movie!}
-						countries={movie!.countries.map((country) => country.label)}
-						genres={movie!.genres.map((genre) => genre.name)}
+						{...movie}
+						countries={movie.countries.map((country) => country.label)}
+						genres={movie.genres.map((genre) => genre.name)}
 						entity="movie"
+						posterUrl={posterUrl}
+						movieVideoPlayerRef={movieVideoPlayerRef}
+						trailerVideoPlayerRef={trailerVideoPlayerRef}
 					/>
-					<ShowCardInfo
-						{...movie!}
-						countries={movie!.countries.map((country) => country.label)}
-						genres={movie!.genres.map((genre) => genre.name)}
-						entity="movie"
-					/>
-					<ShowActors actors={movie?.actors || []} />
-					<ShowPlayer sources={sources} />
-					<section className={classNames("section", ["container"])}>
-						<Typography color="hard" size="h3" component="h2">
-							Отзывы к фильму {movie?.title}
-						</Typography>
-						<ReviewsForMovie
-							totalReviews={movie?.totalReviews || 0}
-							movieId={Number(movieId)}
-							movieTitle={movie!.title}
-							isRated={movie?.isRated}
+					<div className="container">
+						<ShowDescription
+							{...movie}
+							countries={movie.countries.map((country) => country.label)}
+							genres={movie.genres.map((genre) => genre.name)}
+							entity="movie"
 						/>
-					</section>
+						<ActorsForMovie movieId={movieId} />
+						{movie.totalReviews > 0 && (
+							<>
+								<PopularReviewsForMovie
+									movieId={movieId}
+									totalReviews={movie.totalReviews}
+								/>
+								<LastReviewsForMovie
+									movieId={movieId}
+									totalReviews={movie.totalReviews}
+								/>
+							</>
+						)}
+						<ShowPlayer
+							movieTitle={movie.title}
+							entity="movie"
+							posterUrl={posterUrl}
+							sources={[{ src: movie.videoUrl, quality: "1080" }]}
+							trailerSources={[{ src: videoUrl, quality: "1080" }]}
+							trailerVideoPlayerRef={trailerVideoPlayerRef}
+							movieVideoPlayerRef={movieVideoPlayerRef}
+						/>
+						<ReviewsForMovie
+							totalReviews={movie.totalReviews}
+							movieId={movieId}
+							movieTitle={movie.title}
+							isRated={movie.isRated}
+							entity="movie"
+						/>
+					</div>
 				</>
 			)}
 		</div>

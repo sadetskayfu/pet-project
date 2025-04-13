@@ -1,4 +1,4 @@
-import { HTMLAttributes, memo, useCallback, useEffect, useRef, useState } from "react"
+import { forwardRef, HTMLAttributes, memo, useCallback, useEffect, useRef, useState } from "react"
 import { IconButton } from "@/shared/ui/IconButton"
 import { FullScreen, Play, Rewind, Volume, XMark } from "@/shared/assets/icons"
 import { Pause } from "@/shared/assets/icons/ui/Pause"
@@ -22,6 +22,7 @@ import { useError } from "../../hooks/useError"
 import { Alert } from "@/shared/ui/Alert"
 import { formatTimeForAria } from "../../helpers/formatTimeForAria"
 import styles from "./style.module.scss"
+import { useMergeRefs } from "@floating-ui/react"
 
 export type VideoPlayerSource = {
 	src: string
@@ -40,7 +41,7 @@ interface VideoPlayerProps extends HTMLAttributes<HTMLElement> {
 	videoLabelId?: string
 }
 
-export const VideoPlayer = memo((props: VideoPlayerProps) => {
+export const VideoPlayer = memo(forwardRef((props: VideoPlayerProps, ref: React.ForwardedRef<HTMLDivElement>) => {
 	const {
 		className,
 		sources,
@@ -160,6 +161,7 @@ export const VideoPlayer = memo((props: VideoPlayerProps) => {
 			switch (event.code) {
 				case "KeyK":
 				case "Space":
+					event.preventDefault()
 					togglePlay()
 					setVisibleControlPanel()
 					break
@@ -216,7 +218,7 @@ export const VideoPlayer = memo((props: VideoPlayerProps) => {
 		<div
 			onClick={isInitialLoading || error ? undefined : togglePlay}
 			className={classNames(styles["video-player"], [className], mods)}
-			ref={playerRef}
+			ref={useMergeRefs([playerRef, ref])}
 			tabIndex={0}
 			onKeyDown={
 				isInitialLoading || error
@@ -227,7 +229,7 @@ export const VideoPlayer = memo((props: VideoPlayerProps) => {
 							handleKeyDown,
 						])
 			}
-			aria-label="Video player"
+			aria-label="Видио плеер"
 			{...otherProps}
 		>
 			<video
@@ -453,4 +455,4 @@ export const VideoPlayer = memo((props: VideoPlayerProps) => {
 			)}
 		</div>
 	)
-})
+}))

@@ -6,6 +6,7 @@ type BadgePosition = 'top-left' | 'top-right' | 'bottom-right' | 'bottom-left'
 type BadgeColor = 'primary' | 'secondary' | 'green' | 'red'
 type BadgeOverlap = 'circular' | 'square'
 type BadgeSize = 's' | 'm' | 'l'
+export type BadgeBorderColor = 'dark' | 'grey-dark'
 
 interface BadgeProps extends HTMLAttributes<HTMLElement> {
 	className?: string
@@ -16,8 +17,8 @@ interface BadgeProps extends HTMLAttributes<HTMLElement> {
 	badgeContent?: number | string
 	max?: number
 	overlap?: BadgeOverlap
-	border?: boolean
 	visible?: boolean
+	borderColor?: BadgeBorderColor
 }
 
 const getBadgeContent = (value: number | undefined, maxValue: number) => {
@@ -41,7 +42,7 @@ export const Badge = memo((props: BadgeProps) => {
 		color = 'primary',
 		overlap = 'circular',
 		size = 'm',
-		border,
+		borderColor,
 		badgeContent,
 		max,
 		className,
@@ -54,6 +55,7 @@ export const Badge = memo((props: BadgeProps) => {
 		styles[color],
 		styles[overlap],
 		styles[size],
+		borderColor && styles[`border-${borderColor}`]
 	]
 
 	const badgeContentIsNumber = typeof badgeContent === 'number'
@@ -69,7 +71,6 @@ export const Badge = memo((props: BadgeProps) => {
 			: badgeContentIsNumber
 				? badgeContent > 0
 				: undefined,
-		[styles['border']]: border,
 	}
 
 	return (

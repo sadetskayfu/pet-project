@@ -17,10 +17,8 @@ export type CreateActorBody = {
     photoUrl: string
 }
 
-export type ActorForMovie = {
-    id: number
-    firstName: string
-    lastName: string
+export interface ActorForMovie extends Actor  {
+    role: string
 }
 
 export type ActorsResponse = {

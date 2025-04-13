@@ -1,0 +1,16 @@
+@use '@/app/styles/helpers' as *;
+
+.section-title {
+    font-size: #{fluid-text(40, 30)};
+    background: linear-gradient(
+        45deg,
+        var(--theme-color-primary-main),
+        var(--theme-color-light),
+        var(--theme-color-dark),
+    );
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientShift 5s ease infinite;
+}

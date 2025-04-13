@@ -102,6 +102,7 @@
 	--section-padding: #{rem(80)};
 
 	--padding-50: #{rem(50)};
+	--padding-40: #{rem(40)};
 	--padding-30: #{rem(30)};
 	--padding-20: #{rem(20)};
 	--padding-15: #{rem(15)};
@@ -109,9 +110,14 @@
 
 	@include mobile {
 		--padding-50: #{rem(40)};
+		--padding-40: #{rem(35)};
 		--padding-30: #{rem(25)};
 		--padding-20: #{rem(15)};
 		--padding-15: #{rem(12)};
 		--padding-10: #{rem(8)};
+		--section-padding: #{rem(60)};
+	}
+	@include mobile-s {
+		--section-padding: #{rem(50)};
 	}
 }

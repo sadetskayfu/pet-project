@@ -1,0 +1,1 @@
+export { LastReviewsForMovie } from './ui/LastReviewsForMovie'

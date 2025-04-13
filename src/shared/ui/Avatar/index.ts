@@ -1,4 +1,3 @@
-export { Avatar } from './ui/Avatar'
-export type {
-	AvatarProps,
-} from './ui/Avatar'
+export { Avatar, type AvatarProps } from "./ui/Avatar"
+export { AvatarSkeleton } from "./ui/AvatarSkeleton"
+export { UserAvatar } from "./ui/UserAvatar/UserAvatar"

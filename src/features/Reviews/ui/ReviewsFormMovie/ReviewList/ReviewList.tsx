@@ -181,7 +181,9 @@ export const ReviewList = (props: ReviewListProps) => {
 					</>
 				) : (
 					<Typography textAlign="center" component="p" color="soft">
-						Не найдено ниодного отзыва. Попробуйте изменить фильтры
+						{totalReviews === 0
+							? "У этого фильма нету ниодного отзыва. Станьте первыми"
+							: "По вашим критериям не найдено ниодного отзыва. Попробуйте изменить фильтры"}
 					</Typography>
 				))}
 			{user && (

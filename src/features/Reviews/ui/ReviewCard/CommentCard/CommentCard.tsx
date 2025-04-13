@@ -113,7 +113,9 @@ export const CommentCard = memo((props: CommentCardProps) => {
 								expanded={isExpandedMessage}
 								onToggle={toggleMessage}
 								onClose={closeMessage}
-								shadowColor="grey-dark"
+								buttonColor="grey-dark"
+								getButtonLabel={(expanded) => expanded ? 'Скрыть' : 'Читать все'}
+								compositeButton
 							>
 								{message}
 							</TextWithToggle>

@@ -13,7 +13,7 @@ interface DisplayStarRatingProps extends AriaAttributes {
     id?: string
 	value: number
 	maxStars?: number
-    size?: 's' | 'm'
+    size?: 'xs' | 's' | 'm'
 }
 
 export const DisplayStarRating = memo((props: DisplayStarRatingProps) => {

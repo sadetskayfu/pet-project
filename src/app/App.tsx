@@ -1,4 +1,5 @@
 import "./styles/main.scss"
+import "swiper/css"
 import { RouterProvider } from "react-router-dom"
 import { router } from "./providers/router/router"
 import { useAppDispatch } from "@/shared/redux/redux"

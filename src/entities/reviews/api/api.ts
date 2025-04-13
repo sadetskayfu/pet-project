@@ -1,7 +1,6 @@
 import { jsonApiInstance } from "@/shared/api"
 import {
 	CardReview,
-	CardReviewForMovie,
 	CreateReviewBody,
 	CreateReviewResponse,
 	Cursor,
@@ -110,7 +109,7 @@ export const reviewApi = {
 		return queryOptions({
 			queryKey: [reviewApi.baseKey, "last", movieId],
 			queryFn: ({ signal }) =>
-				jsonApiInstance<CardReviewForMovie[]>(
+				jsonApiInstance<CardReview[]>(
 					`/reviews/${movieId}/last?limit=${limit}`,
 					{ signal }
 				),
@@ -124,7 +123,7 @@ export const reviewApi = {
 		return queryOptions({
 			queryKey: [reviewApi.baseKey, reviewApi.popularKey, movieId],
 			queryFn: ({ signal }) =>
-				jsonApiInstance<CardReviewForMovie[]>(
+				jsonApiInstance<CardReview[]>(
 					`/reviews/${movieId}/popular?limit=${limit}`,
 					{ signal }
 				),

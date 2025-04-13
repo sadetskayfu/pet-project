@@ -25,9 +25,13 @@
 
 // Border
 .badge {
-    &.border {
+    &.border-dark {
         border: var(--border-weight-hard) solid var(--theme-color-dark);
     }
+    &.border-grey-dark {
+        border: var(--border-weight-hard) solid var(--theme-color-grey-dark);
+    }
+
 }
 
 // Colors

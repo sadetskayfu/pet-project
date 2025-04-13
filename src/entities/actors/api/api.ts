@@ -1,5 +1,5 @@
 import { jsonApiInstance } from '@/shared/api'
-import { Actor, ActorsResponse, CreateActorBody } from '../model/Actor'
+import { Actor, ActorForMovie, ActorsResponse, CreateActorBody } from '../model/Actor'
 import {
 	infiniteQueryOptions,
 	keepPreviousData,
@@ -45,7 +45,7 @@ export const actorApi = {
 
 	getActorsInfinityQueryOptions: (params: QueryParams) => {
 		return infiniteQueryOptions({
-			queryKey: [actorApi.baseKey, 'infinity-list', params],
+			queryKey: [actorApi.baseKey, 'list', params],
 			queryFn: ({ pageParam, signal }) =>
 				jsonApiInstance<ActorsResponse>(
 					`/actors?${getQueries({ ...params, nextCursor: pageParam })}`,
@@ -59,14 +59,25 @@ export const actorApi = {
 		})
 	},
 
-	getActorsQueryOptions: (params: QueryParams) => {
+	getActorsForMovieQueryOptions: (movieId: number) => {
 		return queryOptions({
-			queryKey: [actorApi.baseKey, 'list', params],
+			queryKey: [actorApi.baseKey, movieId],
 			queryFn: ({ signal }) =>
-				jsonApiInstance<ActorsResponse>(`/actors?${getQueries({ ...params })}`, {
+				jsonApiInstance<ActorForMovie[]>(`/actors/${movieId}`, {
 					signal,
 				}),
 			staleTime: Infinity,
 		})
 	},
+
+	// getActorsQueryOptions: (params: QueryParams) => {
+	// 	return queryOptions({
+	// 		queryKey: [actorApi.baseKey, 'list', params],
+	// 		queryFn: ({ signal }) =>
+	// 			jsonApiInstance<ActorsResponse>(`/actors?${getQueries({ ...params })}`, {
+	// 				signal,
+	// 			}),
+	// 		staleTime: Infinity,
+	// 	})
+	// },
 }

@@ -1,0 +1,68 @@
+@use '@/app/styles/helpers' as *;
+
+.display-review-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: rem(40);
+    @include mobile {
+        row-gap: rem(35);
+    }
+    &__user {
+        display: flex;
+        column-gap: var(--padding-10);
+        align-items: center;
+        line-height: 1.33;
+    }
+    &__user-info {
+        display: flex;
+        flex-direction: column;
+    }
+    &__body {
+        width: 100%;
+        position: relative;
+        padding: rem(24);
+        padding-top: rem(40);
+        border-radius: var(--border-radius-l);
+        background-color: var(--theme-color-grey-dark);
+        @include mobile {
+            padding: rem(18);
+            padding-top: rem(35);
+        }
+    }
+    &__rating {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        translate: -50% -50%;
+        padding-inline: rem(12);
+        padding-block: rem(8);
+        background-color: var(--theme-color-dark);
+        border: var(--border-weight-soft) solid var(--theme-color-grey-dark);
+        border-radius: var(--border-radius-full);
+    }
+}
+
+.skeleton {
+    &__text {
+        height: var(--font-size-default);
+        width: 100%;
+    }
+    &__user-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: rem(8);
+        width: rem(120);
+    }
+    &__message {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: calc(var(--font-size-default) / 1.5);
+    }
+    &__rating {
+        width: rem(146);
+        height: rem(38);
+    }
+}
