@@ -31,7 +31,7 @@ const RegisterConfirmationDialog = memo((
 			confirmationVariant={confirmationVariant}
 			userId={userId || 0}
 			email={userEmail || ''}
-			title={`Confirm your ${confirmationVariant === 'phone' ? 'phone number' : 'email'} to create an account`}
+			title={`Подвтердите  ${confirmationVariant === 'phone' ? 'номер телефона' : 'электронную почту'} чтобы создать аккаунт`}
 		/>
 	)
 })

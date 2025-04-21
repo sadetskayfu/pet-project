@@ -14,7 +14,7 @@ export type CommentUserResponse = {
     country: Country
     displayName: string | null
     email: string
-    avatarUrl: string | null
+    avatarSmall: string | null
     totalReviews: number
 }
 

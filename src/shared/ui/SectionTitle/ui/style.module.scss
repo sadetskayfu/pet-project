@@ -1,7 +1,6 @@
 @use '@/app/styles/helpers' as *;
 
 .section-title {
-    font-size: #{fluid-text(40, 30)};
     background: linear-gradient(
         45deg,
         var(--theme-color-primary-main),
@@ -13,4 +12,13 @@
     -webkit-background-clip: text;
     color: transparent;
     animation: gradientShift 5s ease infinite;
+    &.centering {
+        text-align: center;
+    }
+    &.size-l {
+        font-size: #{fluid-text(50, 36)};
+    }
+    &.size-m {
+        font-size: #{fluid-text(40, 30)};
+    }
 }

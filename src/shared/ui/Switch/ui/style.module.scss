@@ -14,7 +14,7 @@
   position: relative;
   @include hover {
     .thumb {
-      box-shadow: 0 0 0 var(--border-weight-soft) var(--border-color-grey);
+      background-color: var(--color-grey-opacity-medium);
     }
   }
 }
@@ -67,7 +67,7 @@
   cursor: pointer;
   &:focus-visible + .track {
     .thumb {
-      box-shadow: 0 0 0 var(--border-weight-soft) var(--theme-color-primary-main);
+      background-color: var(--color-grey-opacity-medium);
     }
   }
   &:checked + .track {

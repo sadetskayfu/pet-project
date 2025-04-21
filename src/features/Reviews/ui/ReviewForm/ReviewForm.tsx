@@ -40,13 +40,6 @@ export const ReviewForm = (props: ReviewFormProps) => {
 		},
 	})
 
-	// useEffect(() => {
-	// 	if(defaultValues) {
-	// 		methods.setValue('message', defaultValues.message)
-	// 		methods.setValue('rating', defaultValues.rating)
-	// 	}
-	// }, [defaultValues, methods])
-
 	return (
 		<FormProvider {...methods}>
 			<form
@@ -84,7 +77,7 @@ export const ReviewForm = (props: ReviewFormProps) => {
 							color="primary"
 							type="submit"
 						>
-							{isCreateReview ? "Оценить фильм" : "Изменить отзыв"}
+							{isCreateReview ? "Оценить" : "Изменить отзыв"}
 						</Button>
 						{isPending && (
 							<CircularProgress

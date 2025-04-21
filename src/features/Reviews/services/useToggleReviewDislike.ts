@@ -71,6 +71,13 @@ export const useToggleReviewDislike = (
 			isMutatingRef.current = false
 		},
 		onSuccess: () => {
+			queryClient.invalidateQueries({
+				queryKey: [reviewApi.baseKey, reviewApi.popularKey],
+			})
+			queryClient.invalidateQueries({
+				queryKey: [reviewApi.baseKey, reviewApi.lastKey],
+			})
+			
 			isMutatingRef.current = false
 			hasMutationRef.current = true
 		},

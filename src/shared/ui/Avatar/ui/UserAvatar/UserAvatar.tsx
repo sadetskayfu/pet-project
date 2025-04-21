@@ -48,7 +48,7 @@ export const UserAvatar = (props: UserAvatarProps) => {
 								onFocus={onFocus}
 								className={styles["avatar-link"]}
 								aria-label={`Перейти на страницу профиля к пользователю ${name}`}
-								to={`${ROUTES.USER_PROFILE}/${userId}`}
+								to={`${ROUTES.PROFILE}/${userId}`}
 							>
 								<Avatar
 									border={isUser ? "primary" : "none"}

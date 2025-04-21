@@ -1,4 +1,4 @@
-export { Popover } from './ui/Popover'
+export { Popover, type PopoverProps } from './ui/Popover'
 export { PopoverContent } from './ui/PopoverContent'
 export { PopoverDescription } from './ui/PopoverDescription'
 export { PopoverHeading } from './ui/PopoverHeading'

@@ -6,6 +6,7 @@ import {
 } from "@/shared/helpers/classNames"
 import { ToggleButtonGroupContext } from "../model/ToggleButtonGroupContext"
 import styles from "./style.module.scss"
+import { Composite } from "@floating-ui/react"
 
 type ToggleButtonOrientation = "horizontal" | "vertical"
 
@@ -43,21 +44,25 @@ export const ToggleButtonGroup = memo((props: ToggleButtonGroupProps) => {
 	}
 
 	return (
-		<div
-			className={classNames(
-				styles["toggle-button-group"],
-				additionalClasses,
-				mods
-			)}
-			aria-disabled={disabled ? "true" : undefined}
-			role="group"
-			{...otherProps}
-		>
-			<ToggleButtonGroupContext.Provider
-				value={{ selectedValue, onChange, disabled }}
-			>
-				{children}
-			</ToggleButtonGroupContext.Provider>
-		</div>
+		<Composite
+			render={
+				<div
+					className={classNames(
+						styles["toggle-button-group"],
+						additionalClasses,
+						mods
+					)}
+					aria-disabled={disabled ? "true" : undefined}
+					role="group"
+					{...otherProps}
+				>
+					<ToggleButtonGroupContext.Provider
+						value={{ selectedValue, onChange, disabled }}
+					>
+						{children}
+					</ToggleButtonGroupContext.Provider>
+				</div>
+			}
+		/>
 	)
 })

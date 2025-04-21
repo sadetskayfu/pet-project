@@ -23,7 +23,7 @@ export const Label = memo((props: LabelProps) => {
 		inputId,
 		targetFocusRef,
 		component,
-		color = 'hard',
+		color = 'soft',
 		required,
 		focused,
 		errored,

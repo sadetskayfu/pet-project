@@ -8,14 +8,10 @@ type LinkType = {
 export const links: LinkType[] = [
     {
         path: ROUTES.HOME,
-        text: 'Home'
+        text: 'Главная'
     },
     {
-        path: ROUTES.MOVIES,
-        text: 'Movies'
+        path: ROUTES.CATALOG,
+        text: 'Каталог'
     },
-    {
-        path: ROUTES.SERIALS,
-        text: 'Serials'
-    }
 ]

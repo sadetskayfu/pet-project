@@ -1,15 +1,30 @@
-import { AdminPanelSideBar } from '@/features/adminPanel'
-import { Outlet } from 'react-router-dom'
-import { Suspense } from 'react'
-import styles from './styles.module.scss'
+import { Outlet } from "react-router-dom"
+import { Suspense } from "react"
+import { useWindowWidth } from "@/app/providers/windowWidth"
+import styles from "./styles.module.scss"
+import {
+	DesktopAdminPanelSideBar,
+	MobileAdminPanelSideBar,
+} from "@/features/AdminPanel"
+import { VIEWPORT } from "@/shared/constants/viewport"
 
 const AdminPage = () => {
+	const { windowWidth } = useWindowWidth()
+
 	return (
 		<div className="page">
 			<div className="container">
-				<div className={styles['inner']}>
-					<AdminPanelSideBar />
-					<div className={styles['panel']}>
+				<div className={styles["inner"]}>
+					{windowWidth > VIEWPORT.MOBILE ? (
+						<Suspense>
+							<DesktopAdminPanelSideBar />
+						</Suspense>
+					) : (
+						<Suspense fallback={null}>
+							<MobileAdminPanelSideBar />
+						</Suspense>
+					)}
+					<div className={styles["panel"]}>
 						<Suspense>
 							<Outlet />
 						</Suspense>

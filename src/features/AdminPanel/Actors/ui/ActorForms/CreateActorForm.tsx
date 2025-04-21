@@ -4,18 +4,16 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { RHFDatePicker, RHFTextField } from '@/shared/ui/RHFControllers'
 import { Button } from '@/shared/ui/Button'
 import { ReactElement, useId } from 'react'
-import { useCreateActor } from '../../model/useCreateActor'
-import { Alert } from '@/shared/ui/Alert'
-import { getErrorMessage } from '@/shared/helpers/getErrorMessage'
-import { XMark } from '@/shared/assets/icons'
+import { useCreateActor } from '../../services/useCreateActor'
 import { CircularProgress } from '@/shared/ui/CircularProgress'
+import { ErrorAlert } from '@/widgets/ErrorAlert'
 import styles from './style.module.scss'
 
 interface CreateActorFormProps {
 	children: ReactElement
 }
 
-export const CreateActorForm = (props: CreateActorFormProps) => {
+const CreateActorForm = (props: CreateActorFormProps) => {
 	const { children } = props
 
 	const errorAlertId = useId()
@@ -45,35 +43,26 @@ export const CreateActorForm = (props: CreateActorFormProps) => {
 				onSubmit={methods.handleSubmit(handleCreate)}
 				aria-describedby={error ? errorAlertId : undefined}
 			>
-				{error && (
-					<Alert
-						id={errorAlertId}
-						variant="outlined"
-						severity="error"
-						icon={<XMark size="m" variant="outlined" />}
-					>
-						{getErrorMessage(error, 'Error while creating actor')}
-					</Alert>
-				)}
+				<ErrorAlert id={errorAlertId} error={error} message='Не удалось создать актера'/>
 				<RHFTextField<FormSchema>
 					name="firstName"
-					label="First name"
+					label="Имя"
 					required
 					size="m"
 				/>
 				<RHFTextField<FormSchema>
 					name="lastName"
-					label="Last name"
+					label="Фамилия"
 					required
 					size="m"
 				/>
 				<RHFDatePicker<FormSchema>
 					name="birthDate"
-					label="Birth date"
+					label="Дата рождения"
 					required
 					size="m"
 				/>
-				<RHFTextField<FormSchema> name="photoUrl" label="Photo url" size="m" />
+				<RHFTextField<FormSchema> name="photoUrl" label="Урл фотографии" size="m" />
 				<div className={styles['actions']}>
 					{children}
 					<div style={{ position: 'relative' }}>
@@ -82,12 +71,14 @@ export const CreateActorForm = (props: CreateActorFormProps) => {
 							color="primary"
 							type="submit"
 						>
-							Create actor
+							Создать актера
 						</Button>
-						{isPending && <CircularProgress absCenter />}
+						{isPending && <CircularProgress aria-label='Идет создание актера' absCenter />}
 					</div>
 				</div>
 			</form>
 		</FormProvider>
 	)
 }
+
+export default CreateActorForm

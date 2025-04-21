@@ -1,21 +1,39 @@
 @use '@/app/styles/helpers' as *;
 
-.list {
+.actor-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--padding-30);
+    padding-top: var(--padding-30);
+    padding-bottom: rem(60);
+}
+
+.item-list {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: rem(15);
-    @include max-width(1050) {
+    gap: var(--padding-20);
+    @include max-width(1400) {
         grid-template-columns: repeat(4, 1fr);
     }
-    @include max-width(890) {
+    @include max-width(1150) {
         grid-template-columns: repeat(3, 1fr);
     }
-    @include max-width(750) {
+    @include max-width(920) {
         grid-template-columns: repeat(2, 1fr);
     }
-    @include max-width(590) {
+    @include mobile {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @include max-width(600) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include max-width(380) {
         grid-template-columns: repeat(1, 1fr);
     }
+}
+
+.item {
+    min-width: 0;
 }
 
 

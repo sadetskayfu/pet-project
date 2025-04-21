@@ -4,18 +4,21 @@ import { logout } from "../services/logout"
 import { rootReducer } from "@/shared/redux/redux"
 
 interface SessionSliceSchema {
-    isLoading: boolean
+    isSessionLoading: boolean
+    isLogoutLoading: boolean
 }
 
 const initialState: SessionSliceSchema = {
-    isLoading: false,
+    isSessionLoading: false,
+    isLogoutLoading: false
 }
 
 const sessionSlice = createSlice({
     name: 'session',
     initialState,
     selectors: {
-        getLoading: (state) => state.isLoading,
+        getSessionLoading: (state) => state.isSessionLoading,
+        getLogoutLoading: (state) => state.isLogoutLoading
     },
     reducers: {
 
@@ -24,23 +27,23 @@ const sessionSlice = createSlice({
         builder
         // Get session info
         .addCase(getSessionInfo.pending, (state) => {
-            state.isLoading = true
+            state.isSessionLoading = true
         })
         .addCase(getSessionInfo.fulfilled, (state) => {
-            state.isLoading = false
+            state.isSessionLoading = false
         })
         .addCase(getSessionInfo.rejected, (state) => {
-            state.isLoading = false
+            state.isSessionLoading = false
         })
         // Logout
         .addCase(logout.pending, (state) => {
-            state.isLoading = true
+            state.isLogoutLoading = true
         })
         .addCase(logout.fulfilled, (state) => {
-            state.isLoading = false
+            state.isLogoutLoading  = false
         })
         .addCase(logout.rejected, (state) => {
-            state.isLoading = false
+            state.isLogoutLoading  = false
         })
     }
 }).injectInto(rootReducer)

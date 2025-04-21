@@ -1,19 +1,19 @@
 import { jsonApiInstance } from '@/shared/api'
 import { queryOptions } from '@tanstack/react-query'
-import { CreateGenreBody, Genre } from '../model/Genre'
+import { Genre } from '../model/Genre'
 
 export const genreApi = {
 	baseKey: 'genre',
 
-	createGenre: (body: CreateGenreBody) =>
+	createGenre: (name: string) =>
 		jsonApiInstance<Genre>('/genres', {
 			method: 'POST',
-			json: body,
+			json: { name },
 		}),
-	updateGenre: (id: number, body: CreateGenreBody) =>
+	updateGenre: (id: number, name: string) =>
 		jsonApiInstance<Genre>(`/genres/${id}`, {
 			method: 'PUT',
-			json: body,
+			json: { name },
 		}),
 	deleteGenre: (id: number) =>
 		jsonApiInstance<Genre>(`/genres/${id}`, {

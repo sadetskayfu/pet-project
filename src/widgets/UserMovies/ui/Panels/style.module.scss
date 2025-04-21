@@ -1,0 +1,38 @@
+@use '@/app/styles/helpers' as *;
+
+.panel {
+    padding: var(--padding-30);
+    background-color: var(--theme-color-grey-dark);
+    border-bottom-right-radius: var(--border-radius-l);
+    border-bottom-left-radius: var(--border-radius-l);
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--padding-30);
+    align-items: center;
+}
+
+.movie-list {
+    width: 100%;
+    gap: rem(20);
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    @include max-width(1600) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    @include max-width(1250) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    @include max-width(1000) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @include max-width(730) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include max-width(500) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.list-item {
+    min-width: 0;
+}

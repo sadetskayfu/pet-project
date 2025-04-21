@@ -4,7 +4,8 @@
     --height: var(--button-height-s);
     position: fixed;
     bottom: var(--container-padding-x);
-    left: var(--container-padding-x);
+    left: 50%;
+    translate: -50% 0;
     border-radius: 50%;
     border: none;
     background-color: var(--theme-color-dark);
@@ -21,8 +22,9 @@
     align-items: center;
     font-size: calc(var(--height) / 2);
     box-shadow: var(--box-shadow-paper);
+    z-index: 100;
     &.visible {
-        opacity: 0.5;
+        opacity: 0.8;
         pointer-events: all;
         transform: translateY(0);
     }

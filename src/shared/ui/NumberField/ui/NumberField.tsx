@@ -34,8 +34,6 @@ export const NumberField = memo(forwardRef((props: NumberFieldProps, ref: React.
 	const value = controlledValue ?? uncontrolledValue
 	const onChange = controlledOnChange ?? setUncontrolledValue
 
-    //const valueRef = useRef<string>(value)
-
 	const handleChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			if(readOnly) return

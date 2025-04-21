@@ -16,6 +16,7 @@ import { usePrivateHandler } from "@/shared/hooks"
 import { ReviewDialog } from "@/features/Reviews"
 import { useSelector } from "react-redux"
 import { userSelectors } from "@/entities/user"
+import { MediaType } from "@/entities/movies"
 import styles from "./style.module.scss"
 
 interface ShowPromoProps {
@@ -29,12 +30,10 @@ interface ShowPromoProps {
 	posterUrl: string
 	genres: string[]
 	countries: string[]
-	entity: "movie" | "series"
+	mediaType: MediaType
 	isRated: boolean
 	isWatched: boolean
 	isWished: boolean
-	movieVideoPlayerRef: React.RefObject<HTMLDivElement | null>
-	trailerVideoPlayerRef: React.RefObject<HTMLDivElement | null>
 }
 
 export const ShowPromo = memo((props: ShowPromoProps) => {
@@ -48,13 +47,11 @@ export const ShowPromo = memo((props: ShowPromoProps) => {
 		releaseDate,
 		duration,
 		ageLimit,
-		entity,
+		mediaType,
 		posterUrl,
 		isRated,
 		isWatched,
 		isWished,
-		movieVideoPlayerRef,
-		trailerVideoPlayerRef,
 	} = props
 
 	const [isOpenReviewDialog, setIsOpenReviewDialog] = useState<boolean>(false)
@@ -91,24 +88,6 @@ export const ShowPromo = memo((props: ShowPromoProps) => {
 		useCallback(() => setIsOpenReviewDialog(true), [])
 	)
 
-	const scrollToMovieVideoPlayer = useCallback(() => {
-		if (movieVideoPlayerRef.current) {
-			const position =
-				movieVideoPlayerRef.current.getBoundingClientRect().top + window.scrollY
-			window.scrollTo({ top: position, behavior: "smooth" })
-			movieVideoPlayerRef.current.focus()
-		}
-	}, [movieVideoPlayerRef])
-
-	const scrollToTrailerVideoPlayer = useCallback(() => {
-		if (trailerVideoPlayerRef.current) {
-			const position =
-				trailerVideoPlayerRef.current.getBoundingClientRect().top + window.scrollY
-			window.scrollTo({ top: position, behavior: "smooth" })
-			trailerVideoPlayerRef.current.focus()
-		}
-	}, [trailerVideoPlayerRef])
-
 	const watchedButtonLabel = isWatched
 		? "Убрать из списка просмотренных"
 		: "Добавить в список просмотренных"
@@ -116,8 +95,8 @@ export const ShowPromo = memo((props: ShowPromoProps) => {
 		? "Убрать из списка желаемых"
 		: "Добавить в список желаемых"
 	const reviewButtonLabel = isRated
-		? "У вас уже есть отзыв к этому фильму, перейдите в секцию отзывов, чтобы изменить его"
-		: "Оценить фильм"
+		? "У вас уже есть отзыв, перейдите в секцию отзывов, чтобы изменить его"
+		: "Оценить"
 
 	return (
 		<div style={{ height: sectionHeight }} className={styles["promo"]}>
@@ -135,7 +114,7 @@ export const ShowPromo = memo((props: ShowPromoProps) => {
 				</Typography>
 				<div className={styles["rating"]}>
 					<DisplayStarRating
-						aria-label={`Рейтинг ${entity === "movie" ? "фильма" : "сериала"} ${rating}`}
+						aria-label={`Рейтинг ${rating}`}
 						value={rating}
 						size="m"
 					/>
@@ -154,16 +133,16 @@ export const ShowPromo = memo((props: ShowPromoProps) => {
 					<span>{movieMetaDataLabels.getReleaseDateLabel(releaseDate)}</span>
 					<span>{movieMetaDataLabels.getCountryLabels(countries, 2)}</span>
 					<span>{movieMetaDataLabels.getGenreLabels(genres, 2)}</span>
-					<span>{movieMetaDataLabels.getDurationLabel(duration, entity)}</span>
+					<span>{movieMetaDataLabels.getDurationLabel(duration, mediaType)}</span>
 					<span>{ageLimit}+</span>
 				</div>
 				<div className={styles["actions"]}>
 					<div className={styles["actions__watch-buttons"]}>
-						<Button onClick={scrollToMovieVideoPlayer} size="m" color="primary">
+						<Button size="m" color="primary">
 							<Play />
-							Смотреть {entity === "movie" ? "фильм" : "сериал"}
+							Смотреть {mediaType === "movie" ? "фильм" : mediaType === 'series' ? 'сериал' : 'мультфильм'}
 						</Button>
-						<Button onClick={scrollToTrailerVideoPlayer} size="m">
+						<Button size="m">
 							Cмотреть трейлер
 						</Button>
 					</div>
@@ -239,6 +218,7 @@ export const ShowPromo = memo((props: ShowPromoProps) => {
 					id={reviewDialogId}
 					movieTitle={title}
 					movieId={id}
+					mediaType={mediaType}
 					returnFocus={reviewButtonRef}
 					open={isOpenReviewDialog}
 					setOpen={setIsOpenReviewDialog}

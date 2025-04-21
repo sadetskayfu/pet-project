@@ -68,11 +68,8 @@
     &__actions {
         display: flex;
         align-items: center;
-        height: rem(45);
+        height: var(--button-height-s);
         column-gap: var(--padding-20);
-        @include mobile {
-            height: rem(40);
-        }
     }
     &__action-button {
         width: rem(25);

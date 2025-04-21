@@ -45,7 +45,7 @@ export const useToggleWished = (
 			dispatch(
 				addNotification({
 					severity: "error",
-					message: `Ошибка при добавлении/удалении фильма "${title}" из списка желаемых`,
+					message: `Ошибка при добавлении/удалении меида "${title}" из списка желаемых`,
 				})
 			)
 

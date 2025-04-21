@@ -5,7 +5,7 @@ export type ReviewUserResponse = {
     country: Country
     displayName: string | null
     email: string
-    avatarUrl: string | null
+    avatarSmall: string | null
     totalReviews: number
 }
 
@@ -85,6 +85,7 @@ export type CardReview = {
     userId: number
     user: ReviewUserResponse
     movieTitle: string
+    totalLikes: number
 }
 
 export type ReviewFilterValue = "all" | "meLiked" | "meDisliked" | "meCommented"

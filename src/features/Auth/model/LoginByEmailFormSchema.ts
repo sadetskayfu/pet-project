@@ -5,21 +5,21 @@ export const loginByEmailFormSchema = z
     .object({
         email: z
             .string()
-            .min(1, { message: 'Email is required' })
-            .max(64, { message: 'Email is too long. Max length is 64 characters' })
+            .min(1, { message: 'Электронная почта обязательна' })
+            .max(64, { message: 'Максимальная длина 64 символа' })
             .refine((value) => patterns.email.test(value), {
-                message: 'Email is not valid',
+                message: 'Электронная почта не валидна',
             }),
         password: z
             .string()
-            .min(1, { message: 'Password is required' })
-            .min(6, { message: 'Password is too short. Min length is 6 characters' })
-            .max(15, { message: 'Password is too long. Max length is 15 characters' })
+            .min(1, { message: 'Пароль обязательный' })
+            .min(6, { message: 'Пароль слишком короткий. Минимальная длина 6 символов' })
+            .max(15, { message: 'Пароль слишком длинный. Максимальная длина 15 символов' })
             .refine((value) => patterns.containUppercase.test(value), {
-                message: 'Password must contain at least one uppercase letter',
+                message: 'Пароль должен содержать хотябы 1 заглавную букуву',
             })
             .refine((value) => !patterns.containSpecialCharacter.test(value), {
-                message: 'Password must consist of only letters and numbers',
+                message: 'Пароль не должен содержать специальных символов',
             }),
     })
 

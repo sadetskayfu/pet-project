@@ -52,7 +52,7 @@ export interface DatePickerProps extends HTMLProps {
 	maxYear?: number
 	required?: boolean
 	disabled?: boolean
-	readonly?: boolean
+	readOnly?: boolean
 	popoverProps?: DataPickerPopoverProps
 }
 
@@ -74,7 +74,7 @@ export const DatePicker = memo(
 				maxYear,
 				required = false,
 				disabled,
-				readonly,
+				readOnly,
 				errored,
 				actions: externalActions = [],
 				helperText,
@@ -151,12 +151,12 @@ export const DatePicker = memo(
 							containerClassName={className}
 							fieldClassName={classNames(styles['data-picker'])}
 							focused={isFocused}
-							onFocus={mergeEventHandlers(() => setIsFocused(true), onFocus)}
-							onBlur={mergeEventHandlers(() => setIsFocused(false), onBlur)}
+							onFocus={mergeEventHandlers([() => setIsFocused(true), onFocus])}
+							onBlur={mergeEventHandlers([() => setIsFocused(false), onBlur])}
 							onKeyDown={
-								readonly ? undefined : mergeEventHandlers(handleKeyDown, onKeyDown)
+								readOnly ? undefined : mergeEventHandlers([handleKeyDown, onKeyDown])
 							}
-							onClick={readonly ? undefined : handleToggle}
+							onClick={readOnly ? undefined : handleToggle}
 							tabIndex={disabled ? -1 : 0}
 							labelId={labelId}
 							helperText={helperText}
@@ -166,7 +166,7 @@ export const DatePicker = memo(
 							disabled={disabled}
 							errored={errored}
 							startAdornment={<Calendar size="m" />}
-							aria-readonly={readonly ? 'true' : undefined}
+							aria-readonly={readOnly ? 'true' : undefined}
 							aria-disabled={disabled ? 'true' : undefined}
 							aria-required={required ? 'true' : 'false'}
 							aria-invalid={errored ? 'true' : 'false'}

@@ -1,103 +1,73 @@
-import { genreApi } from '@/entities/genres'
-import { CircularProgress } from '@/shared/ui/CircularProgress'
-import { classNames, Mods } from '@/shared/helpers/classNames'
-import { Alert } from '@/shared/ui/Alert'
-import { XMark } from '@/shared/assets/icons'
-import { useQuery } from '@tanstack/react-query'
-import { getErrorMessage } from '@/shared/helpers/getErrorMessage'
-import { useCreateGenre } from '../../model/useCreateGenre'
-import { CreateTagField } from '@/shared/ui/TagField'
-import { useUpdateGenre } from '../../model/useUpdateGenre'
-import { useDeleteGenre } from '../../model/useDeleteGenre'
-import { patterns } from '@/shared/helpers/patterns'
-import { GenreCard } from '../GenreCard/GenreCard'
-import styles from './style.module.scss'
-import { Typography } from '@/shared/ui/Typography'
-import { useCallback } from 'react'
+import { genreApi } from "@/entities/genres"
+import { CircularProgress } from "@/shared/ui/CircularProgress"
+import { useQuery } from "@tanstack/react-query"
+import { useUpdateGenre } from "../../services/useUpdateGenre"
+import { useDeleteGenre } from "../../services/useDeleteGenre"
+import { patterns } from "@/shared/helpers/patterns"
+import { Typography } from "@/shared/ui/Typography"
+import { ErrorAlert } from "@/widgets/ErrorAlert"
+import { CreateGenreField } from "../CreateGenreField/CreateGenreField"
+import { GenreField } from "../GenreField/GenreCard"
+import { useMemo } from "react"
+import styles from "./style.module.scss"
+
+const validateGenreName = (value: string) => {
+	if (value.length < 2) {
+		return "Минимальная длина название жанра - 2 символа"
+	}
+	if (value.length > 50) {
+		return "Максимальная длина название жанра - 50 символов"
+	}
+	if (patterns.containSpecialCharacter.test(value)) {
+		return "Название жанра не должено содержать специальных символов"
+	}
+	if (patterns.containDigits.test(value)) {
+		return "Название жанра не должно содержать цифр"
+	}
+
+	return null
+}
 
 export const GenreList = () => {
-	const query = useQuery({ ...genreApi.getGenresQueryOptions() })
+	const {
+		data: genres,
+		isLoading,
+		error,
+	} = useQuery({ ...genreApi.getGenresQueryOptions() })
 
-	const { data, isLoading, error } = query
+	const { updateGenre, getIsPending: getIsUpdatePending } = useUpdateGenre()
+	const { deleteGenre, getIsPending: getIsDeletePending } = useDeleteGenre()
 
-	const { handleCreate, createLoading } = useCreateGenre()
-	const { handleUpdate, updateLoading } = useUpdateGenre()
-	const { handleDelete, deleteLoading } = useDeleteGenre()
-
-	const handleValidate = useCallback((value: string) => {
-		if (value.length < 2) {
-			return 'The genre name must consist of at least 2 characters.'
+	const renderGenres = useMemo(() => {
+		if (genres) {
+			return genres.map((genre) => (
+				<li key={genre.id}>
+					<GenreField
+						id={genre.id}
+						name={genre.name}
+						onValidate={validateGenreName}
+						onDelete={deleteGenre}
+						onUpdate={updateGenre}
+						loading={getIsUpdatePending(genre.id) || getIsDeletePending(genre.id)}
+					/>
+				</li>
+			))
 		}
-		if (value.length > 50) {
-			return 'The genre name should not exceed 50 characters in length.'
-		}
-		if (patterns.containSpecialCharacter.test(value)) {
-			return 'The genre name must not contain any special characters'
-		}
-		if (patterns.containDigits.test(value)) {
-			return 'The genre name must not contain digits'
-		}
-	}, [])
-
-	if (isLoading) {
-		return <CircularProgress absCenter />
-	}
-
-	if (error) {
-		return (
-			<Alert
-				variant="outlined"
-				severity="error"
-				icon={<XMark size="m" variant="outlined" />}
-			>
-				{getErrorMessage(error, 'Error while getting genres. Try reload page')}
-			</Alert>
-		)
-	}
-
-	const isMutationLoading = updateLoading || deleteLoading || createLoading
-
-	const mods: Mods = {
-		[styles['loading']]: isMutationLoading,
-	}
+	}, [deleteGenre, updateGenre, genres, getIsDeletePending, getIsUpdatePending])
 
 	return (
-		<>
-			<section className={classNames(styles['section'], [], mods)}>
-				<CreateTagField
-					readonly={isMutationLoading}
-					onCreate={handleCreate}
-					onValidate={handleValidate}
-					label="Genre name"
-					placeholder="Enter genre name"
-					maxInputWidth={300}
-				/>
-				{data!.length > 0 ? (
-					<ul className={styles['item-list']}>
-						{data!.map((genre) => {
-							return (
-								<li key={genre.id}>
-									<GenreCard
-										readonly={isMutationLoading}
-										label="Genre name"
-										placeholder="Enter genre name"
-										id={genre.id}
-										onValidate={handleValidate}
-										onUpdate={handleUpdate}
-										onDelete={handleDelete}
-										defaultValue={genre.name}
-										maxInputWidth={300}
-									/>
-								</li>
-							)
-						})}
-					</ul>
-				) : (
-					<Typography component='p' color="soft" size="default">
-						There is not a single genre yet. Create your first genre
-					</Typography>
-				)}
-			</section>
-		</>
+		<div className={styles["genre-list"]}>
+			<CreateGenreField className={styles['create-genre-field']} onValidate={validateGenreName} />
+			<ErrorAlert error={error} message="Не удалось получить жанры" />
+			{isLoading ? (
+				<CircularProgress size="l" aria-label="Получение жанров" absCenter />
+			) : genres && genres.length > 0 ? (
+				<ul className={styles["item-list"]}>{renderGenres}</ul>
+			) : (
+				<Typography component="p" color="soft" size="default">
+					Не найдено ниодно жанра
+				</Typography>
+			)}
+		</div>
 	)
 }

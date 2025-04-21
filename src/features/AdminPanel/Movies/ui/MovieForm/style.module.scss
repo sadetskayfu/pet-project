@@ -1,0 +1,88 @@
+@use '@/app/styles/helpers' as *;
+
+.form {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(30);
+    @include max-width(730) {
+        .fields {  
+            grid-template-columns: 1fr;
+        }
+        .description-field {
+            grid-column: 1;
+        }
+        .actors {
+            grid-column: 1;
+        }
+    }
+}
+
+.toggle-button-group {
+    width: 100%;
+    button {
+        width: 100%;
+        min-width: max-content;
+    }
+}
+
+.fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: var(--padding-30);
+    column-gap: var(--padding-20);
+}
+
+.actors {
+    grid-column: span 2;
+    background-color: var(--theme-color-grey-dark);
+    border-radius: var(--border-radius-m);
+    padding: rem(10);
+    &__tabs {
+        display: flex;
+        column-gap: rem(10);
+        button {
+            width: 100%;
+        }
+    }
+}
+
+.description-field {
+    grid-column: span 2;
+}
+
+.actions {
+    display: flex;
+    column-gap: rem(10);
+    align-self: end;
+}
+
+.skeleton {
+    &__toggle-button-group {
+        display: flex;
+        column-gap: rem(10);
+    }
+    &__toggle-button {
+        height: var(--button-height-s);
+        width: 100%;
+    }
+    &__field {
+        height: var(--button-height-m);
+    }
+    &__description-field {
+        height: rem(78);
+        @include mobile {
+            height: rem(70);
+        }
+    }
+    &__actors {
+        width: 100%;
+        height: rem(143);
+        @include mobile {
+            height: rem(130);
+        }
+    }
+    &__button {
+        height: var(--button-height-s);
+        width: rem(120);
+    }
+}

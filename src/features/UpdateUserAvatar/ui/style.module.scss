@@ -1,0 +1,34 @@
+@use '@/app/styles/helpers' as *;
+
+.dialog {
+    max-width: rem(800);
+    width: 100%;
+}
+
+.title {
+    padding-right: calc(var(--button-height-s) + var(--padding-10) * 2);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding: var(--padding-20);
+    row-gap: var(--padding-20);
+}
+
+.close-button {
+    position: absolute;
+    top: var(--padding-10);
+    right: var(--padding-10);
+}
+
+.actions {
+    align-self: center;
+    display: flex;
+    margin-top: var(--padding-20);
+    column-gap: rem(10);
+    @include max-width(500) {
+        flex-direction: column;
+        row-gap: rem(10);
+    }
+}

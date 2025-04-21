@@ -7,7 +7,7 @@
     overflow-y: auto;
     background-color: var(--theme-color-dark);
     border-radius: var(--border-radius-m);
-    border: var(--border-weight-soft) solid var(--border-color-grey);
+    box-shadow: var(--box-shadow-paper);
     transition: transform 0.2s;
     transform: translateY(-50px);
     &.open {

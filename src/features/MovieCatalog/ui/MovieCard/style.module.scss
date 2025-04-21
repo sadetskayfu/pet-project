@@ -4,9 +4,21 @@
     color: var(--color-grey-500);
     &.active {
         color: var(--color-primary-500);
+    }
+}
+
+.watched-button {
+    &.active {
         svg {
-            animation: scale 0.5s;
+            animation: scale 0.3s;
         }
     }
 }
 
+.wished-button {
+    &.active {
+        svg {
+            animation: scale-with-snaking 0.6s;
+        }
+    }
+}

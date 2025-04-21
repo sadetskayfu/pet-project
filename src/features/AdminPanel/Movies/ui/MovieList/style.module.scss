@@ -1,7 +1,37 @@
 @use '@/app/styles/helpers' as *;
 
-.list {
+.movie-list {
     display: flex;
     flex-direction: column;
-    row-gap: rem(10);
+    row-gap: var(--padding-30);
+    padding-top: var(--padding-30);
+    padding-bottom: rem(60);
+}
+
+.item-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: rem(20);
+    @include max-width(1300) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    @include max-width(1050) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @include max-width(820) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include mobile {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @include max-width(650) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include max-width(460) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.item {
+    min-width: 0;
 }

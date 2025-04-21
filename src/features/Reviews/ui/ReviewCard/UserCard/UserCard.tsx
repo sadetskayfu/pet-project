@@ -39,7 +39,7 @@ export const UserCard = memo((props: UserCardProps) => {
 								<Link
 									className={styles["avatar-link"]}
 									aria-label={`Перейти на страницу профиля к пользователю ${name}`}
-									to={`${ROUTES.USER_PROFILE}/${id}`}
+									to={`${ROUTES.PROFILE}/${id}`}
 								>
 									<Avatar
 										src={avatarUrl}

@@ -73,8 +73,8 @@ export const BaseConfirmationDialog = (props: BaseConfirmationDialogProps) => {
 
 	const helperText =
 		confirmationVariant === 'mail'
-			? `Code has been sent on email: ${email}.`
-			: `Code has been sent on phone number: ${phone}.`
+			? `Код был отправлен на элекнтрнную почту: ${email}.`
+			: `Код был отправлен на номер телефона: ${phone}.`
 
 	return (
 		<Dialog {...otherProps}>
@@ -91,14 +91,14 @@ export const BaseConfirmationDialog = (props: BaseConfirmationDialogProps) => {
 				<ErrorAlert
 					id={errorAlertId}
 					error={sendCodeError}
-					message="Error while sending code"
+					message="Не удалось отправить код"
 					fullWidth
 				/>
 				<div className={styles['send-code-section']}>
 					{isRunning ? (
 						<Typography role="alert" component="p" size="helper">
 							{helperText}<br/>
-							Code will expire after {time}s.
+							Код устареет через {time}с.
 						</Typography>
 					) : (
 						<div style={{ position: 'relative' }}>
@@ -108,7 +108,7 @@ export const BaseConfirmationDialog = (props: BaseConfirmationDialogProps) => {
 								disabled={isSendCodePending}
 								onClick={() => sendCode({ userId, confirmationVariant })}
 							>
-								Send code
+								Отправить код
 							</Button>
 							{isSendCodePending && (
 								<CircularProgress aria-label="Sending code" absCenter />
@@ -118,7 +118,7 @@ export const BaseConfirmationDialog = (props: BaseConfirmationDialogProps) => {
 				</div>
 				{isExpired && (
 					<Alert fullWidth variant="outlined" icon={<Warning size="m" />} severity="warning">
-						Code has expired. Send code again
+						Код устарел, отправте код еще раз
 					</Alert>
 				)}
 				<ConfirmationForm
@@ -128,7 +128,7 @@ export const BaseConfirmationDialog = (props: BaseConfirmationDialogProps) => {
 					onConfirm={onConfirm}
 				>
 					<DialogClose>
-						<Button variant="clear">Cancel</Button>
+						<Button variant="clear">Отмена</Button>
 					</DialogClose>
 				</ConfirmationForm>
 			</DialogContent>

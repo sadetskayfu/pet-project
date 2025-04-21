@@ -1,48 +1,51 @@
 import { useInfiniteQuery } from "@tanstack/react-query"
-import { movieApi, MovieInfinityListQueryParams } from "@/entities/movies"
+import {
+	ExtendedMediaType,
+	MediaType,
+	movieApi,
+	MovieInfinityListQueryParams,
+} from "@/entities/movies"
 import { Skeletons } from "@/shared/ui/Skeleton"
 import { MovieCardSkeleton } from "@/shared/ui/MovieCard"
 import { MovieCard } from "../MovieCard/MovieCard"
-import { Alert } from "@/shared/ui/Alert"
-import { XMark } from "@/shared/assets/icons"
-import { getErrorMessage } from "@/shared/helpers/getErrorMessage"
 import { Typography } from "@/shared/ui/Typography"
 import { PaginationCursor } from "@/shared/ui/PaginationCursor"
 import { VirtuosoGrid } from "react-virtuoso"
 import { useCallback, useRef, useState } from "react"
 import { ReviewDialog } from "@/features/Reviews"
+import { useToggleWatched } from "../../services/useToggleWatched"
+import { useToggleWished } from "../../services/useToggleWished"
+import { usePrivateHandler } from "@/shared/hooks"
+import { ErrorAlert } from "@/widgets/ErrorAlert"
 import { useSelector } from "react-redux"
 import { userSelectors } from "@/entities/user"
-import { useLocation, useNavigate } from "react-router-dom"
-import { ROUTES } from "@/shared/constants/routes"
-import { ToggleWatchedBody, useToggleWatched } from "../../services/useToggleWatched"
-import { ToggleWishedBody, useToggleWished } from "../../services/useToggleWished"
+import { SectionTitle } from "@/shared/ui/SectionTitle"
 import styles from "./style.module.scss"
 
 export type MutationMovieData = {
 	id: number
 	title: string
+	mediaType: MediaType
 }
 
 export const MovieCatalogList = ({
 	queryParams,
-	className,
+	mediaType,
 }: {
 	queryParams: MovieInfinityListQueryParams
-	className?: string
+	mediaType: ExtendedMediaType
 }) => {
 	const [isOpenReviewDialog, setIsOpenReviewDialog] = useState<boolean>(false)
 	const [mutationMovieData, setMutationMovieData] = useState<MutationMovieData>({
 		id: -1,
 		title: "",
+		mediaType: 'movie'
 	})
 
-	const reviewButtonRef = useRef<HTMLButtonElement | null>(null)
-
-	const navigate = useNavigate()
-	const location = useLocation()
-
 	const user = useSelector(userSelectors.getUser)
+
+	const reviewButtonRef = useRef<HTMLButtonElement | null>(null)
+	const isMutatingRef = useRef<boolean>(false)
 
 	const {
 		data: movies,
@@ -55,98 +58,94 @@ export const MovieCatalogList = ({
 		...movieApi.getMoviesInfinityQueryOptions(queryParams),
 	})
 
-	const { toggleWatched } = useToggleWatched(queryParams)
-	const { toggleWished } = useToggleWished(queryParams)
-
-	const redirectToAuth = useCallback(() => {
-		navigate(ROUTES.AUTH, {
-			state: { from: `${location.pathname}${location.search}` },
-		})
-	}, [navigate, location.pathname, location.search])
+	const { toggleWatched } = useToggleWatched(isMutatingRef, queryParams)
+	const { toggleWished } = useToggleWished(isMutatingRef, queryParams)
 
 	const startReview = useCallback(
 		(
 			data: MutationMovieData,
 			buttonRef: React.RefObject<HTMLButtonElement | null>
 		) => {
-			if (user) {
-				reviewButtonRef.current = buttonRef.current
-				setMutationMovieData(data)
-				setIsOpenReviewDialog(true)
-			} else {
-				redirectToAuth()
-			}
+			reviewButtonRef.current = buttonRef.current
+			setMutationMovieData(data)
+			setIsOpenReviewDialog(true)
 		},
-		[user, redirectToAuth]
+		[]
 	)
 
-	const handleToggleWatched = useCallback((body: ToggleWatchedBody) => {
-		if(user) {
-			toggleWatched(body)
-		} else {
-			redirectToAuth()
-		}
-	}, [redirectToAuth, toggleWatched, user])
+	const privateStartReview = usePrivateHandler(startReview)
+	const privateToggleWatched = usePrivateHandler(toggleWatched)
+	const privateToggleWished = usePrivateHandler(toggleWished)
 
-	const handleToggleWished = useCallback((body: ToggleWishedBody) => {
-		if(user) {
-			toggleWished(body)
-		} else {
-			redirectToAuth()
-		}
-	}, [redirectToAuth, toggleWished, user])
+	const closeReviewDialog = useCallback(() => {
+		setIsOpenReviewDialog(false)
+	}, [])
+
+	const title = `Список ${mediaType === "movie" ? "фильмов" : mediaType === "series" ? "сериалов" : mediaType === "animated_film" ? "мультфильмов" : "медиа"}`
 
 	return (
-		<div className={className}>
+		<div className={styles["movie-list"]}>
+			<SectionTitle
+				component="h1"
+				className={styles["movie-list__title"]}
+				label={title}
+			/>
 			{error ? (
-				<Alert
-					variant="outlined"
-					severity="error"
-					icon={<XMark size="m" variant="outlined" />}
-				>
-					{getErrorMessage(error, "Error while getting movies. Try reload page")}
-				</Alert>
+				<ErrorAlert error={error} message="Ошибка при получении медиа" />
 			) : isLoading ? (
-				<Skeletons count={10} withContainer className={styles["list"]}>
+				<Skeletons
+					count={12}
+					withContainer
+					className={styles["movie-list__item-list"]}
+				>
 					<MovieCardSkeleton />
 				</Skeletons>
 			) : movies && movies.length > 0 ? (
-				<>
-					<VirtuosoGrid
-						listClassName={styles["list"]}
-						itemClassName={styles["item"]}
-						useWindowScroll
-						totalCount={movies.length}
-						data={movies}
-						itemContent={(_, movie) => (
-							<MovieCard
-								key={movie.id}
-								onStartReview={startReview}
-								onToggleWatched={handleToggleWatched}
-								onToggleWished={handleToggleWished}
-								data={movie}
+				<VirtuosoGrid
+					listClassName={styles["movie-list__item-list"]}
+					itemClassName={styles["movie-list__item"]}
+					useWindowScroll
+					totalCount={movies.length}
+					data={movies}
+					endReached={() => {
+						if (hasNextPage && !isFetchingNextPage) {
+							fetchNextPage()
+						}
+					}}
+					components={{
+						Footer: () => (
+							<PaginationCursor
+								hasNextPage={hasNextPage}
+								loading={isFetchingNextPage}
 							/>
-						)}
-					/>
-					<PaginationCursor
-						onFetchNextPage={fetchNextPage}
-						hasNextPage={hasNextPage}
-						loading={isFetchingNextPage}
-					/>
-				</>
+						),
+					}}
+					itemContent={(_, movie) => (
+						<MovieCard
+							onStartReview={privateStartReview}
+							onToggleWatched={privateToggleWatched}
+							onToggleWished={privateToggleWished}
+							data={movie}
+						/>
+					)}
+				/>
 			) : (
 				<Typography textAlign="center" component="p" color="soft">
-					Not a single movie was found for your search. Try changing the filters
+					По вашим критериями не найденого ниодного медиа. Попробуйте изменить
+					фильтры
 				</Typography>
 			)}
-			<ReviewDialog
-				movieId={mutationMovieData.id}
-				movieTitle={mutationMovieData.title}
-				open={isOpenReviewDialog}
-				setOpen={setIsOpenReviewDialog}
-				returnFocus={reviewButtonRef}
-				onSuccess={() => setIsOpenReviewDialog(false)}
-			/>
+			{user && (
+				<ReviewDialog
+					movieId={mutationMovieData.id}
+					movieTitle={mutationMovieData.title}
+					mediaType={mutationMovieData.mediaType}
+					open={isOpenReviewDialog}
+					setOpen={setIsOpenReviewDialog}
+					returnFocus={reviewButtonRef}
+					onSuccess={closeReviewDialog}
+				/>
+			)}
 		</div>
 	)
 }

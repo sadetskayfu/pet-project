@@ -31,7 +31,7 @@ export const PaginationButton = memo((props: PaginationButtonProps) => {
 				</div>
 			) : (
 				<Typography textAlign="center" color="soft" size="default">
-					{message ?? "Больше ничего нету"}
+					{message ?? "Вы посмотрели все"}
 				</Typography>
 			)}
 		</div>

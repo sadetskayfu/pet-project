@@ -19,7 +19,7 @@ export class ApiError extends Error {
 
 export const jsonApiInstance = async <T>(
   url: string,
-  init?: RequestInit & { json?: unknown }
+  init?: RequestInit & { json?: unknown; formData?: FormData }
 ) => {
 
   let headers = init?.headers ?? {}
@@ -31,6 +31,8 @@ export const jsonApiInstance = async <T>(
   }
 
     init.body = JSON.stringify(init.json)
+  } else if (init?.formData) {
+    init.body = init.formData
   }
 
   const result = await fetch(`${BASE_URL}${url}`, {

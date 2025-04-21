@@ -3,6 +3,7 @@ import { movieMetaDataLabels } from "@/shared/helpers/movieMetaDataLabels"
 import { memo } from "react"
 import { classNames } from "@/shared/helpers/classNames"
 import { SectionTitle } from "@/shared/ui/SectionTitle"
+import { MediaType } from "@/entities/movies"
 import styles from "./style.module.scss"
 
 interface ShowDescriptionProps {
@@ -12,7 +13,7 @@ interface ShowDescriptionProps {
 	ageLimit: number
 	releaseDate: string
 	duration: number
-	entity: "movie" | "series"
+	mediaType: MediaType
 }
 
 export const ShowDescription = memo((props: ShowDescriptionProps) => {
@@ -23,12 +24,12 @@ export const ShowDescription = memo((props: ShowDescriptionProps) => {
 		releaseDate,
 		ageLimit,
 		duration,
-		entity,
+		mediaType
 	} = props
 
 	return (
 		<div className={classNames(styles["description"], ['section'])}>
-			<SectionTitle label={`Информация о ${entity === "movie" ? "фильме" : "сериале"}`}/>
+			<SectionTitle label={`Информация о ${mediaType === "movie" ? "фильме" : mediaType === 'series' ? "сериале" : 'мультфильме'}`}/>
 			<div>
 				<Typography component="h3">
 					Описание
@@ -56,7 +57,7 @@ export const ShowDescription = memo((props: ShowDescriptionProps) => {
 				</div>
 				<div>
 					<Typography component="h3">Длительность</Typography>
-					<span>{movieMetaDataLabels.getDurationLabel(duration, entity)}</span>
+					<span>{movieMetaDataLabels.getDurationLabel(duration, mediaType)}</span>
 				</div>
 			</div>
 		</div>

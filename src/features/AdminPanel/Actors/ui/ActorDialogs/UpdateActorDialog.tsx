@@ -4,14 +4,17 @@ import {
 	DialogContent,
 	DialogHeading,
 	DialogProps,
-} from '@/shared/ui/Dialog'
-import { Typography } from '@/shared/ui/Typography'
-import { Button } from '@/shared/ui/Button'
-import { FormSchema } from '../../model/FormSchema'
-import { UpdateActorForm } from '../ActorForms/UpdateActorForm'
-import styles from './style.module.scss'
+} from "@/shared/ui/Dialog"
+import { Typography } from "@/shared/ui/Typography"
+import { Button } from "@/shared/ui/Button"
+import { FormSchema } from "../../model/FormSchema"
+import { lazy, Suspense, useCallback } from "react"
+import { ActorFormSkeleton } from "../ActorForms/ActorFormSkeleton"
+import styles from "./style.module.scss"
 
-type BaseDialogProps = Omit<DialogProps, 'children'>
+const UpdateActorForm = lazy(() => import("../ActorForms/UpdateActorForm"))
+
+type BaseDialogProps = Omit<DialogProps, "children">
 
 interface UpdateActorDialogProps extends BaseDialogProps {
 	actorId: number
@@ -21,19 +24,32 @@ interface UpdateActorDialogProps extends BaseDialogProps {
 export const UpdateActorDialog = (props: UpdateActorDialogProps) => {
 	const { setOpen, actorId, defaultFormValues, ...otherProps } = props
 
+	const handleCloseDialog = useCallback(() => {
+		setOpen?.(false)
+	}, [setOpen])
+
 	return (
 		<Dialog {...otherProps} setOpen={setOpen}>
-			<DialogContent className={styles['dialog']}>
+			<DialogContent
+				containerClassName={styles["dialog"]}
+				className={styles["dialog__content"]}
+			>
 				<DialogHeading>
-					<Typography component="h3" size="h5" color="primary">
-						Update actor
+					<Typography textAlign="center" size="h4" color="primary">
+						Измените актера {defaultFormValues.firstName} {defaultFormValues.lastName}
 					</Typography>
 				</DialogHeading>
-				<UpdateActorForm onCloseDialog={() => setOpen?.(false)} actorId={actorId} defaultValues={defaultFormValues}> 
-					<DialogClose>
-						<Button variant="clear">Cancel</Button>
-					</DialogClose>
-				</UpdateActorForm>
+				<Suspense fallback={<ActorFormSkeleton />}>
+					<UpdateActorForm
+						onCloseDialog={handleCloseDialog}
+						actorId={actorId}
+						defaultValues={defaultFormValues}
+					>
+						<DialogClose>
+							<Button variant="clear">Отмена</Button>
+						</DialogClose>
+					</UpdateActorForm>
+				</Suspense>
 			</DialogContent>
 		</Dialog>
 	)

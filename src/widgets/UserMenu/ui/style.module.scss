@@ -1,0 +1,45 @@
+@use '@/app/styles/helpers' as *;
+
+.menu {
+    min-width: rem(250);
+}
+
+.button {
+    --height: var(--button-height-s);
+    height: var(--height);
+    padding: 0px;
+    border: none;
+    border-radius: var(--border-radius-m);
+    display: flex;
+    align-items: center;
+    column-gap: rem(7);
+    padding-right: rem(7);
+    color: var(--font-color-soft);
+    background-color: transparent;
+    transition: background-color 0.2s;
+    font-size: var(--font-size-s);
+    @include hover {
+        background-color: var(--color-grey-opacity-soft);
+    }
+    &[data-open] {
+        background-color: var(--color-grey-opacity-soft);
+    }
+    &:focus-visible {
+        @include focus-outline;
+    }
+    svg {
+        transition: transform 0.2s;
+    }
+    &[data-open] {
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+    &__avatar {
+        height: 100%;
+        width: var(--height);
+        font-size: calc(var(--height) / 1.75);
+        color: var(--font-color-hard);
+    }
+}
+

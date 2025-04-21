@@ -1,0 +1,12 @@
+@use '@/app/styles/helpers' as *;
+
+.section {
+    margin-top: var(--section-padding);
+}
+
+.tabs {
+    margin-top: var(--padding-30);
+    button {
+        width: 100%;
+    }
+}

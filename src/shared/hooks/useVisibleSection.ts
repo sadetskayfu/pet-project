@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
-export const useVisibleSection = (threshold: number = 0.2) => {
+export const useVisibleSection = (externalSectionRef?: React.RefObject<HTMLElement | null>, threshold: number = 0.2) => {
     const [isVisibleSection, setIsVisibleSection] = useState(false);
     const sectionRef = useRef(null);
+
+    const ref = externalSectionRef ?? sectionRef
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -17,16 +19,16 @@ export const useVisibleSection = (threshold: number = 0.2) => {
             }
         );
 
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
+        if (ref.current) {
+            observer.observe(ref.current);
         }
 
         return () => {
-            if (sectionRef.current) {
-                observer.unobserve(sectionRef.current);
+            if (ref.current) {
+                observer.unobserve(ref.current);
             }
         };
-    }, [sectionRef, threshold]);
+    }, [ref, threshold]);
 
     return { sectionRef, isVisibleSection };
 };

@@ -1,14 +1,9 @@
 import { movieApi, MovieInfinityListQueryParams } from "@/entities/movies"
-import { MovieForCard } from "@/entities/movies/model"
 import { addNotification } from "@/features/Notifications"
 import { queryClient } from "@/shared/api"
 import { useAppDispatch } from "@/shared/redux/redux"
 import { useMutation } from "@tanstack/react-query"
-import { useCallback, useRef } from "react"
-
-type PageData = {
-	data: MovieForCard[]
-}
+import { useCallback } from "react"
 
 export type ToggleWishedBody = {
 	id: number
@@ -17,13 +12,12 @@ export type ToggleWishedBody = {
 }
 
 export const useToggleWished = (
+	isMutatingRef: React.RefObject<boolean>,
 	queryParams: MovieInfinityListQueryParams
 ) => {
-    const isMutatingRef = useRef<boolean>(false)
-
 	const dispatch = useAppDispatch()
 
-	const queryKey = [movieApi.baseKey, "list", queryParams]
+	const queryKey = movieApi.getMoviesInfinityQueryOptions(queryParams).queryKey
 
 	const { mutate } = useMutation({
 		mutationFn: ({
@@ -37,23 +31,19 @@ export const useToggleWished = (
 
 			await queryClient.cancelQueries({ queryKey })
 
-			const previousData = queryClient.getQueryData([
-				movieApi.baseKey,
-				"list",
-				queryParams,
-			])
+			const previousData = queryClient.getQueryData(queryKey)
 
-			queryClient.setQueryData(queryKey, (oldData: { pages: PageData[] }) => {
-				if (!oldData) return oldData
-
-				return {
-					...oldData,
-					pages: oldData.pages.map((page) => ({
-						...page,
-						data: page.data.map((movie) =>
-							movie.id === id ? { ...movie, isWished: !isWished } : movie
-						),
-					})),
+			queryClient.setQueryData(queryKey, (oldData) => {
+				if(oldData) {
+					return {
+						...oldData,
+						pages: oldData.pages.map((page) => ({
+							...page,
+							data: page.data.map((movie) =>
+								movie.id === id ? { ...movie, isWished: !isWished } : movie
+							),
+						})),
+					}
 				}
 			})
 
@@ -66,13 +56,13 @@ export const useToggleWished = (
 			dispatch(
 				addNotification({
 					severity: "error",
-					message: `Failed to add/remove the movie "${title}" from wished list.`,
+					message: `Ошибка при добавлении/удалении ${title} из списка желаемых`,
 				})
 			)
 
             isMutatingRef.current = false
 		},
-		onSuccess: (_, id) => {
+		onSuccess: (_, { id }) => {
 			queryClient.invalidateQueries({ queryKey: [movieApi.baseKey, "list"] })
 			queryClient.invalidateQueries({ queryKey: [movieApi.baseKey, id] })
 
@@ -84,7 +74,7 @@ export const useToggleWished = (
         if(!isMutatingRef.current) {
             mutate(body)
         }
-    }, [mutate])
+    }, [mutate, isMutatingRef])
 
 	return { toggleWished }
 }

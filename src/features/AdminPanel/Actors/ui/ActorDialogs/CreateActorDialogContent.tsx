@@ -1,22 +1,30 @@
-import { DialogClose, DialogContent, DialogHeading } from '@/shared/ui/Dialog'
-import { Typography } from '@/shared/ui/Typography'
-import { Button } from '@/shared/ui/Button'
-import { CreateActorForm } from '../ActorForms/CreateActorForm'
-import styles from './style.module.scss'
+import { DialogClose, DialogContent, DialogHeading } from "@/shared/ui/Dialog"
+import { Typography } from "@/shared/ui/Typography"
+import { Button } from "@/shared/ui/Button"
+import { lazy, memo, Suspense } from "react"
+import { ActorFormSkeleton } from "../ActorForms/ActorFormSkeleton"
+import styles from "./style.module.scss"
 
-export const CreateActorDialogContent = () => {
+const CreateActorForm = lazy(() => import("../ActorForms/CreateActorForm"))
+
+export const CreateActorDialogContent = memo(() => {
 	return (
-		<DialogContent className={styles['dialog']}>
+		<DialogContent
+			containerClassName={styles["dialog"]}
+			className={styles["dialog__content"]}
+		>
 			<DialogHeading>
-				<Typography component="h3" size="h5" color="primary">
-					Create actor
+				<Typography textAlign="center" size="h4" color="primary">
+					Создайте актера
 				</Typography>
 			</DialogHeading>
-			<CreateActorForm>
-				<DialogClose>
-					<Button variant="clear">Cancel</Button>
-				</DialogClose>
-			</CreateActorForm>
+			<Suspense fallback={<ActorFormSkeleton />}>
+				<CreateActorForm>
+					<DialogClose>
+						<Button variant="clear">Отмена</Button>
+					</DialogClose>
+				</CreateActorForm>
+			</Suspense>
 		</DialogContent>
 	)
-}
+})

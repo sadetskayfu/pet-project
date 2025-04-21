@@ -1,8 +1,8 @@
-import { cloneElement, ReactElement, useCallback } from 'react'
+import { cloneElement, HTMLAttributes, ReactElement, useCallback } from 'react'
 import { useAsideMenuContext } from '../model/useAsideMenuContext'
 
 interface AsideMenuCloseProps {
-	children: ReactElement
+	children: ReactElement<HTMLAttributes<HTMLElement>>
 }
 
 export const AsideMenuClose = (props: AsideMenuCloseProps) => {

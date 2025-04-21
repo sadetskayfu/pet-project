@@ -4,12 +4,12 @@
     padding: var(--padding-20);
     display: flex;
     flex-direction: column;
-    max-width: rem(500);
-    width: 100%;
+    max-width: rem(800);
+    min-width: rem(300);
 }
 
 .actions {
-    margin-top: rem(10);
+    margin-top: var(--padding-30);
     display: flex;
     margin-left: auto;
     column-gap: rem(10);

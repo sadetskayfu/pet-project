@@ -1,0 +1,21 @@
+@use '@/app/styles/helpers' as *;
+
+.header {
+    display: flex;
+    column-gap: rem(10);
+    align-items: center;
+    @include mobile {
+        align-self: center;
+        h2 {
+            text-align: center;
+        }
+    }
+}
+
+.description {
+    color: var(--font-color-hard);
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--padding-30);
+    row-gap: var(--padding-20);
+}

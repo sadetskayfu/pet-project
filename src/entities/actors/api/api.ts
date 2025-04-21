@@ -45,7 +45,7 @@ export const actorApi = {
 
 	getActorsInfinityQueryOptions: (params: QueryParams) => {
 		return infiniteQueryOptions({
-			queryKey: [actorApi.baseKey, 'list', params],
+			queryKey: [actorApi.baseKey, 'infinity-list', params],
 			queryFn: ({ pageParam, signal }) =>
 				jsonApiInstance<ActorsResponse>(
 					`/actors?${getQueries({ ...params, nextCursor: pageParam })}`,
@@ -70,14 +70,14 @@ export const actorApi = {
 		})
 	},
 
-	// getActorsQueryOptions: (params: QueryParams) => {
-	// 	return queryOptions({
-	// 		queryKey: [actorApi.baseKey, 'list', params],
-	// 		queryFn: ({ signal }) =>
-	// 			jsonApiInstance<ActorsResponse>(`/actors?${getQueries({ ...params })}`, {
-	// 				signal,
-	// 			}),
-	// 		staleTime: Infinity,
-	// 	})
-	// },
+	getActorsQueryOptions: (params: QueryParams) => {
+		return queryOptions({
+			queryKey: [actorApi.baseKey, 'list', params],
+			queryFn: ({ signal }) =>
+				jsonApiInstance<ActorsResponse>(`/actors?${getQueries({ ...params })}`, {
+					signal,
+				}),
+			staleTime: Infinity,
+		})
+	},
 }

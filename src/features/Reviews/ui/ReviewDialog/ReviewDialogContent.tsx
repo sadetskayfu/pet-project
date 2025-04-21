@@ -5,6 +5,7 @@ import { ReviewFormSkeleton } from "../ReviewForm/ReviewFormSkeleton"
 import { Button } from "@/shared/ui/Button"
 import { ReviewFormSchema } from "../../model/ReviewFormSchema"
 import styles from "./style.module.scss"
+import { MediaType } from "@/entities/movies"
 
 const CreateReviewForm = lazy(() => import("../ReviewForm/CreateReviewForm"))
 const UpdateReviewForm = lazy(() => import("../ReviewForm/UpdateReviewForm"))
@@ -14,12 +15,15 @@ export interface ReviewDialogContentProps {
 	reviewId?: number
 	movieId?: number
 	movieTitle: string
+	mediaType: MediaType
 	defaultValues?: ReviewFormSchema
 	onSuccess: () => void
 }
 
 export const ReviewDialogContent = (props: ReviewDialogContentProps) => {
-	const { id, reviewId, movieId, movieTitle, defaultValues, onSuccess } = props
+	const { id, reviewId, movieId, movieTitle, mediaType, defaultValues, onSuccess } = props
+
+	const entity = mediaType === 'movie' ? 'фильм' : mediaType === 'series' ? 'сериал' : 'мультфильм'
 
 	return (
 		<DialogContent
@@ -30,8 +34,8 @@ export const ReviewDialogContent = (props: ReviewDialogContentProps) => {
 			<DialogHeading>
 				<Typography color="hard" size="h5">
 					{reviewId
-						? `Измените свой отзыв к фильму ${movieTitle}`
-						: `Оцените фильм ${movieTitle}`}
+						? `Измените свой отзыв на ${entity} ${movieTitle}`
+						: `Оцените ${entity} ${movieTitle}`}
 				</Typography>
 			</DialogHeading>
 			<Suspense fallback={<ReviewFormSkeleton />}>

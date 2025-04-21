@@ -31,7 +31,7 @@ const LoginConfirmationDialog = memo((
 			confirmationVariant={confirmationVariant}
 			userId={userId || 0}
 			email={userEmail || ''}
-			title={`Please confirm that it is you`}
+			title={`Подвтердите что это вы`}
 		/>
 	)
 })

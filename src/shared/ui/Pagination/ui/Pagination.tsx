@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 import { classNames } from '@/shared/helpers/classNames'
 import { IconButton, IconButtonBorderRadius } from '@/shared/ui/IconButton'
 import { Arrow } from '@/shared/assets/icons'
@@ -17,7 +17,7 @@ interface PaginationProps {
 	totalItems: number
 	totalItemsOnPage: number
 	currentPage: number
-	maxDisplayedPages: number
+	maxDisplayedPages?: number
 	onChange: (page: number) => void
 }
 
@@ -31,7 +31,7 @@ export const Pagination = memo(
 		totalItems,
 		totalItemsOnPage,
 		currentPage,
-		maxDisplayedPages,
+		maxDisplayedPages = 5,
 		onChange,
 	}: PaginationProps) => {
 		const totalPages = Math.ceil(totalItems / totalItemsOnPage)
@@ -84,6 +84,15 @@ export const Pagination = memo(
 			return pageNumbers
 		}
 
+
+		// Если мы находимся на последней странице и у нас там только 1 айтем, и мы его удаляем, мы переходим на предыдущую страницу
+		useEffect(() => {
+			if(totalPages > 0 && totalPages < currentPage) {
+				onChange(totalPages)
+			}
+		// eslint-disable-next-line
+		}, [totalPages])
+
 		const renderButtons = () => {
 			return getPageNumbers().map((page, index) => {
 				if (typeof page === 'string') {
@@ -117,6 +126,8 @@ export const Pagination = memo(
 
 		const additionalClasses: Array<string | undefined> = [className, styles[size]]
 
+		if(totalPages < 1) return null
+
 		return (
 			<nav
 				aria-label="pagination navigation"
@@ -131,7 +142,7 @@ export const Pagination = memo(
 							color="secondary"
 							borderRadius={borderRadius}
 							onClick={() => handleChangePage(currentPage - 1)}
-							disabled={currentPage === 1 && !infinity}
+							disabled={(currentPage === 1 && !infinity) || totalPages === 1}
 							aria-label="Preview page"
 						>
 							<Arrow className={styles['arrow-icon']} />
@@ -146,7 +157,7 @@ export const Pagination = memo(
 							color="secondary"
 							borderRadius={borderRadius}
 							onClick={() => handleChangePage(currentPage + 1)}
-							disabled={currentPage === totalPages && !infinity}
+							disabled={(currentPage === totalPages && !infinity) || totalPages === 1}
 							aria-label="Next page"
 						>
 							<Arrow className={styles['arrow-icon']} />

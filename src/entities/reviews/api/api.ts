@@ -57,6 +57,7 @@ const getInfinityListQueries = (params: InfinityListQueryParams = {}) => {
 export const reviewApi = {
 	baseKey: "review",
 	popularKey: "popular",
+	lastKey: 'last',
 
 	createReview: (body: CreateReviewBody) =>
 		jsonApiInstance<CreateReviewResponse>("/reviews", {
@@ -89,7 +90,7 @@ export const reviewApi = {
 
 	getLastReviewsQueryOptions: (limit: number = 30) => {
 		return queryOptions({
-			queryKey: [reviewApi.baseKey, "last"],
+			queryKey: [reviewApi.baseKey, reviewApi.lastKey],
 			queryFn: ({ signal }) =>
 				jsonApiInstance<CardReview[]>(`/reviews/last?limit=${limit}`, { signal }),
 		})
@@ -107,7 +108,7 @@ export const reviewApi = {
 
 	getLastReviewsForMovieQueryOptions: (movieId: number, limit: number = 10) => {
 		return queryOptions({
-			queryKey: [reviewApi.baseKey, "last", movieId],
+			queryKey: [reviewApi.baseKey, reviewApi.lastKey, movieId],
 			queryFn: ({ signal }) =>
 				jsonApiInstance<CardReview[]>(
 					`/reviews/${movieId}/last?limit=${limit}`,
@@ -155,7 +156,7 @@ export const reviewApi = {
 			initialPageParam: {} as Cursor,
 			getNextPageParam: (result) => result.nextCursor,
 			select: (result) => result.pages.flatMap((page) => page.data),
-			//placeholderData: keepPreviousData,
+			placeholderData: keepPreviousData,
 		})
 	},
 }

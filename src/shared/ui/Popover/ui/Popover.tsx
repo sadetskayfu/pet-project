@@ -2,7 +2,7 @@ import { PopoverContext } from '../model/PopoverContext'
 import { UsePopoverProps, usePopover } from '../model/usePopover'
 import { ReactNode } from 'react'
 
-interface PopoverProps extends UsePopoverProps {
+export interface PopoverProps extends UsePopoverProps {
 	children: ReactNode
 }
 

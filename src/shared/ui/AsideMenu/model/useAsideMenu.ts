@@ -45,7 +45,7 @@ export const useAsideMenu = (props: UseAsideMenuProps) => {
     const context = data.context
 
     const click = useClick(context, {
-        enabled: controlledOpen == null,
+        //enabled: controlledOpen == null,
     })
     const dismiss = useDismiss(context)
     const role = useRole(context, { role: 'dialog' })

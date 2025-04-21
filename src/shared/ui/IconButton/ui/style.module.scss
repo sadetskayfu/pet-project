@@ -7,6 +7,7 @@
 	--borderRadius: ;
 	height: var(--height);
 	width: var(--height);
+	font-size: calc(var(--height) / 2);
 	border: none;
 	position: relative;
 	display: flex;
@@ -118,27 +119,15 @@
 .button {
 	&.xxs {
 		--height: var(--button-height-xxs);
-		font-size: var(--fz-icon-xxs);
 	}
 	&.xs {
 		--height: var(--button-height-xs);
-		font-size: var(--fz-icon-xs);
 	}
 	&.s {
 		--height: var(--button-height-s);
-		font-size: var(--fz-icon-s);
-		@include mobile {
-			--height: #{rem(40)};
-			font-size: calc(--height / 2);
-		}
 	}
 	&.m {
 		--height: var(--button-height-m);
-		font-size: var(--fz-icon-m);
-		@include mobile {
-			--height: var(--button-height-s);
-			font-size: var(--fz-icon-s);
-		}
 	}
 }
 

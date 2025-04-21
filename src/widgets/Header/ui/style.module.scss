@@ -2,10 +2,10 @@
 
 .header {
     position: fixed;
-    width: 100%;
-    border-bottom: var(--border-weight-soft) solid var(--border-color-grey);
-    background-color: var(--theme-color-dark);
+    width: 100vw;
+    background-color: var(--theme-color-grey-dark);
     z-index: 100;
+    padding-right: 16px;
 }
 
 .inner {
@@ -32,7 +32,10 @@
     align-items: center;
     column-gap: rem(10);
     &__skeleton-btn {
-        height: var(--button-height-s);
-        width: rem(80);
+        height: var(--button-height-m);
+        width: rem(100);
+        @include mobile {
+            height: var(--button-height-s);
+        }
     }
 }

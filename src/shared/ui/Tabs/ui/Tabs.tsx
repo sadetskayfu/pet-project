@@ -1,4 +1,4 @@
-import { ReactElement, useMemo } from 'react'
+import { ReactNode, useMemo } from 'react'
 import { AdditionalClasses, classNames, Mods } from '@/shared/helpers/classNames'
 import { IndicatorPosition } from '@/shared/ui/Indicator'
 import { Composite } from '@floating-ui/react'
@@ -12,19 +12,19 @@ interface AriaAttributes {
 
 export type TabsOrientation = 'horizontal' | 'vertical'
 
-export interface TabsProps extends AriaAttributes {
+export interface TabsProps<V extends string> extends AriaAttributes {
 	className?: string
-	children: ReactElement[]
-	value: string
+	children: ReactNode
 	orientation?: TabsOrientation
 	indicator?: boolean
 	indicatorPosition?: IndicatorPosition
 	fullWidth?: boolean
 	style?: React.CSSProperties
-	onChange: (value: string) => void
+	value: V
+	onChange: (value: V) => void
 }
 
-export const Tabs = (props: TabsProps) => {
+export const Tabs = <V extends string>(props: TabsProps<V>) => {
 	const {
 		className,
 		children,

@@ -1,49 +1,40 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { ActorList } from '../ActorList/ActorList'
 import { SearchInput } from '@/shared/ui/SearchInput'
 import { Button } from '@/shared/ui/Button'
 import { CreateActorDialogContent } from '../ActorDialogs/CreateActorDialogContent'
-import { useSearchParams } from 'react-router-dom'
 import { Dialog, DialogTrigger } from '@/shared/ui/Dialog'
+import { useWindowWidth } from '@/app/providers/windowWidth'
 import styles from './style.module.scss'
 
 const ActorPanel = () => {
-	const [searchParams, setSearchParams] = useSearchParams()
+	const [searchValue, setSearchValue] = useState<string>('')
 
-	const [searchValue, setSearchValue] = useState<string>(
-		searchParams.get('search') || ''
-	)
-
-	const handleSearchChange = useCallback(
-		(value: string) => {
-			setSearchValue(value)
-			setSearchParams({ search: value })
-		},
-		[setSearchParams]
-	)
+	const { windowWidth } = useWindowWidth()
 
 	return (
-		<section className={styles['section']}>
+		<div className={styles['actor-panel']}>
 			<Dialog>
 				<div className={styles['actions']}>
 					<SearchInput
+						className={styles['search-field']}
 						variant="outlined"
-						label="Search actor by name"
+						label="Найти актера по имени"
 						hiddenLabel
 						fullWidth
-						placeholder="Enter actor name"
+						placeholder="Введите имя актора"
 						value={searchValue}
-						onChange={handleSearchChange}
-						defaultDirty={searchValue.length > 0}
+						onChange={setSearchValue}
+						borderPlacement={windowWidth > 580 ? 'left' : 'all'}
 					/>
 					<DialogTrigger>
-						<Button size="m">Add actor</Button>
+						<Button borderPlacement={windowWidth > 580 ? 'right' : 'all'} className={styles['create-button']} size="m">Добавить актора</Button>
 					</DialogTrigger>
 				</div>
 				<ActorList searchValue={searchValue} />
 				<CreateActorDialogContent />
 			</Dialog>
-		</section>
+		</div>
 	)
 }
 

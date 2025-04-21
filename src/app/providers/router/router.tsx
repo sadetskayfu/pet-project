@@ -5,13 +5,11 @@ import { ROUTES } from '@/shared/constants/routes'
 import { createBrowserRouter } from 'react-router-dom'
 import { ProfilePage } from '@/pages/ProfilePage'
 import { AdminPage } from '@/pages/AdminPage'
-import { ProtectedRoute } from './ProtectedRoute'
 import { ForbiddenPage } from '@/pages/ForbiddenPage'
 import { MainLayout } from './MainLayout/MainLayout'
 import { AuthLayout } from './AuthLayout/AuthLayout'
 import { ActorPanel, GenrePanel, MoviePanel } from '@/features/adminPanel'
 import { MoviePage } from '@/pages/MoviePage'
-import { UserProfilePage } from '@/pages/UserProfilePage'
 
 export const router = createBrowserRouter([
 	{
@@ -22,25 +20,17 @@ export const router = createBrowserRouter([
 				element: <HomePage />,
 			},
 			{
-				path: ROUTES.MOVIES,
+				path: ROUTES.CATALOG,
 				element: <MoviesPage />,
 			},
 			{
-				path: `${ROUTES.MOVIES}/:movieId`,
+				path: `${ROUTES.CATALOG}/:movieId`,
 				element: <MoviePage />,
 			},
 			{
 				path: `${ROUTES.PROFILE}/:userId`,
 				element: (
-					<ProtectedRoute>
 						<ProfilePage />
-					</ProtectedRoute>
-				),
-			},
-			{
-				path: `${ROUTES.USER_PROFILE}/:userId`,
-				element: (
-						<UserProfilePage />
 				),
 			},
 			{

@@ -10,7 +10,7 @@ export interface ReviewDialogProps
 		Omit<DialogProps, "children"> {}
 
 export const ReviewDialog = memo((props: ReviewDialogProps) => {
-	const { id, movieTitle, movieId, reviewId, defaultValues, onSuccess, ...otherProps } = props
+	const { id, movieTitle, movieId, mediaType, reviewId, defaultValues, onSuccess, ...otherProps } = props
 
 	return (
 		<Dialog {...otherProps}>
@@ -18,6 +18,7 @@ export const ReviewDialog = memo((props: ReviewDialogProps) => {
 				id={id}
 				movieTitle={movieTitle}
 				movieId={movieId}
+				mediaType={mediaType}
 				reviewId={reviewId}
 				defaultValues={defaultValues}
 				onSuccess={onSuccess}

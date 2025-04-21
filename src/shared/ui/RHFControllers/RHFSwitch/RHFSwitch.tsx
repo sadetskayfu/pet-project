@@ -27,7 +27,7 @@ export const RHFSwitch = <T extends FieldValues>(props: Props<T>) => {
 		<Controller
 			control={control}
 			name={name}
-			render={({ field: { onBlur, ...otherFieldProps } }) => {
+			render={({ field: { value, onBlur, ...otherFieldProps } }) => {
 				if (label) {
 					return (
 						<FormLabel
@@ -38,7 +38,8 @@ export const RHFSwitch = <T extends FieldValues>(props: Props<T>) => {
 							labelPlacement={labelPlacement}
 							control={
 								<Switch
-									onBlur={mergeEventHandlers(onBlur, externalOnBlur)}
+									onBlur={mergeEventHandlers([onBlur, externalOnBlur])}
+									defaultChecked={value}
 									{...otherFieldProps}
 									{...otherProps}
 								/>
@@ -48,10 +49,11 @@ export const RHFSwitch = <T extends FieldValues>(props: Props<T>) => {
 				} else {
 					return (
 						<Switch
-							onBlur={mergeEventHandlers(onBlur, externalOnBlur)}
+							onBlur={mergeEventHandlers([onBlur, externalOnBlur])}
 							className={className}
 							disabled={disabled}
 							required={required}
+							defaultChecked={value}
 							{...otherFieldProps}
 							{...otherProps}
 						/>

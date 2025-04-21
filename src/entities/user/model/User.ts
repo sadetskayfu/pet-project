@@ -3,3 +3,9 @@ export type User = {
     email: string
     roles: string[]
 }
+
+export type MutationAvatarResponse = {
+    id: number
+    avatarSmall: string | null
+    avatarMedium: string | null
+}

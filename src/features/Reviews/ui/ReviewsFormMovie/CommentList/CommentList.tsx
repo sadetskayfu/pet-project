@@ -174,16 +174,17 @@ export const CommentList = (props: CommentListProps) => {
 					<CommentCardSkeleton />
 				</Skeletons>
 			) : error ? (
-				<ErrorAlert error={error} message="Ошибка при получении коментариев" />
+				<ErrorAlert error={error} message="Ошибка при получении комментариев" />
 			) : comments && comments.length > 0 ? (
 				<>
+					<div className={styles["comment-list"]}>
 						<Virtuoso
 							useWindowScroll
 							totalCount={comments.length}
 							data={comments}
 							itemContent={(index, comment) => (
 								<CommentCard
-									{...comment}
+									data={comment}
 									paddingTop={index === 0 ? 0 : undefined}
 									isExpandedMessage={expandedCommentMessages[comment.id]}
 									onToggleLike={handleToggleCommentLike}
@@ -194,6 +195,7 @@ export const CommentList = (props: CommentListProps) => {
 								></CommentCard>
 							)}
 						/>
+					</div>
 					<div className={styles["footer"]}>
 						<PaginationButton
 							loading={isFetchingNextPage}
@@ -215,9 +217,15 @@ export const CommentList = (props: CommentListProps) => {
 					</div>
 				</>
 			) : (
-				<Typography textAlign="center" component="p" color="soft">
-					У этого отзыва нет ниодного комментария. Станьте первыми
-				</Typography>
+				<div className={styles["no-comments-label"]}>
+					<Typography
+						textAlign="center"
+						component="p"
+						color="soft"
+					>
+						У этого отзыва нет ниодного комментария. Станьте первыми
+					</Typography>
+				</div>
 			)}
 			{user && (
 				<Suspense>

@@ -1,14 +1,14 @@
-import { FieldSkeleton } from '@/shared/ui/Field'
 import { Skeleton, Skeletons } from '@/shared/ui/Skeleton'
+import { classNames } from '@/shared/helpers/classNames'
 import styles from './style.module.scss'
 
 export const LoginFormSkeleton = () => {
 	return (
-		<div className={styles['form']}>
+		<div className={classNames(styles['skeleton'], [styles['form']])}>
 			<Skeletons count={2}>
-				<FieldSkeleton withLabel />
+				<Skeleton className={styles['skeleton__field']} />
 			</Skeletons>
-			<Skeleton className={styles['skeleton-button']}/>
+			<Skeleton className={styles['skeleton__button']}/>
 		</div>
 	)
 }

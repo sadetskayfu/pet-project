@@ -1,21 +1,17 @@
-import { lazy, Suspense, useState } from 'react'
-import { RegisterFormSkeleton } from '../AuthForm/RegisterFormSkeleton'
-import { Typography } from '@/shared/ui/Typography'
-import { Button } from '@/shared/ui/Button'
-import { useAppDispatch } from '@/shared/redux/redux'
-import { authActions, authSelectors } from '../../slice/authSlice'
-import { classNames, Mods } from '@/shared/helpers/classNames'
-import { useSelector } from 'react-redux'
-import { useDebounce } from '@/shared/hooks'
-import { AuthType } from '../../model/Auth'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/Tooltip'
-import { Mobile } from '@/shared/assets/icons'
-import { Divider } from '@/shared/ui/Divider'
-import { NavigateActions } from './NavigateActions'
-import styles from './style.module.scss'
+import { lazy, Suspense, useState } from "react"
+import { RegisterFormSkeleton } from "../AuthForm/RegisterFormSkeleton"
+import { Typography } from "@/shared/ui/Typography"
+import { useAppDispatch } from "@/shared/redux/redux"
+import { authActions, authSelectors } from "../../slice/authSlice"
+import { classNames, Mods } from "@/shared/helpers/classNames"
+import { useSelector } from "react-redux"
+import { useDebounce } from "@/shared/hooks"
+import { AuthType } from "../../model/Auth"
+import { NavigateActions } from "./NavigateActions"
+import styles from "./style.module.scss"
 
 const RegisterFormByEmail = lazy(
-	() => import('../AuthForm/RegisterFormByEmail')
+	() => import("../AuthForm/RegisterFormByEmail")
 )
 
 export const RegisterWindowByEmail = () => {
@@ -35,84 +31,30 @@ export const RegisterWindowByEmail = () => {
 		setIsUnmountingAnimation(true)
 	}
 
-	const goToRegisterByPhone = () => {
-		handleChangeAuthType('register-by-phone')
-		setIsUnmountingAnimation(true)
-	}
-
 	const mods: Mods = {
-		[styles['visible']]: authType === 'register-by-email',
-		[styles['unmounting']]: isUnmountingAnimation,
+		[styles["visible"]]: authType === "register-by-email",
+		[styles["unmounting"]]: isUnmountingAnimation,
 	}
 
 	return (
-		<div className={classNames(styles['window-container'], [], mods)}>
-			<div className={styles['window']}>
-				<div className={styles['header']}>
-					<Typography
-						className={styles['title']}
-						component="h1"
-						size="h4"
-						color="primary"
-					>
-						Create account
+		<div className={classNames(styles["window-container"], [], mods)}>
+			<div className={styles["window"]}>
+				<div className={styles["header"]}>
+					<Typography component="h1" size="h4" color="primary">
+						Создать аккаунт
 					</Typography>
-					<Tooltip>
-						<TooltipTrigger>
-							<Button
-								onClick={goToRegisterByPhone}
-								aria-label="Create account by phone"
-								borderPlacement="right"
-								className={styles['header-button']}
-								variant="clear"
-								size="xs"
-								disabled
-							>
-								<span className={styles['header-button__label']}>
-									Create account by phone
-								</span>
-								<Mobile />
-							</Button>
-						</TooltipTrigger>
-						<TooltipContent>
-							<Typography component="p" color="hard" size="helper">
-								Create account by phone
-							</Typography>
-						</TooltipContent>
-					</Tooltip>
+					<NavigateActions />
 				</div>
-				<NavigateActions />
 				<Suspense fallback={<RegisterFormSkeleton />}>
 					<RegisterFormByEmail />
 				</Suspense>
-				<div className={styles['switch-auth-type-section']}>
-					<Typography component="p">
-						If you already have an account, log in by
-					</Typography>
-					<div className={styles['switch-auth-type-section__actions']}>
-						<Button
-							borderPlacement="left"
-							variant="clear"
-							size="xs"
-							aria-label="Create account by email"
-							onClick={() => goToLogin('login-by-email')}
-							disabled={isUnmountingAnimation}
-						>
-							email
-						</Button>
-						<Divider style={{ marginInline: '0px' }} component="hr" />
-						<Button
-							borderPlacement="right"
-							variant="clear"
-							size="xs"
-							aria-label="Create account by phone"
-							onClick={() => goToLogin('login-by-phone')}
-							disabled
-						>
-							phone
-						</Button>
-					</div>
-				</div>
+				<button
+					onClick={() => goToLogin("login-by-email")}
+					disabled={isUnmountingAnimation}
+					className={classNames("text-button", [styles["switch-auth-type-button"]])}
+				>
+					Войти в аккаунт
+				</button>
 			</div>
 		</div>
 	)

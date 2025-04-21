@@ -11,6 +11,7 @@ import styles from './style.module.scss'
 
 interface PopoverContentProps {
 	className?: string
+	containerClassName?: string
 	children: ReactNode
 	style?: React.CSSProperties
 	zIndex?: number
@@ -18,7 +19,7 @@ interface PopoverContentProps {
 }
 
 export const PopoverContent = (props: PopoverContentProps) => {
-	const { className, children, style, id, zIndex = 1500 } = props
+	const { className, containerClassName, children, style, id, zIndex = 1500 } = props
 
 	const {
 		context,
@@ -80,9 +81,9 @@ export const PopoverContent = (props: PopoverContentProps) => {
 				context={context}
 				modal={modal}
 			>
-				<div ref={refs.setFloating} style={{...floatingStyles, zIndex}} role="presentation">
+				<div className={containerClassName} ref={refs.setFloating} style={{...floatingStyles, zIndex}} role="presentation">
 					<div
-						className={classNames(styles['popover'], [className], mods)}
+						className={classNames(styles['content'], [className], mods)}
 						style={style}
 						ref={popoverRef}
 						aria-labelledby={labelId}

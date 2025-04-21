@@ -43,7 +43,7 @@ export const useUpdateReview = (onSuccess?: () => void) => {
 			dispatch(
 				addNotification({
 					severity: "success",
-					message: `Review of the movie "${data.movie.title}" has been successfully updated`,
+					message: `Отзыв к меида "${data.movie.title}" успещнл изменен`,
 				})
 			)
 

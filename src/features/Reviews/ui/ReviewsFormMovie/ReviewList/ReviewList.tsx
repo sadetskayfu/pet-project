@@ -57,7 +57,7 @@ export const ReviewList = (props: ReviewListProps) => {
 
 	const { sectionRef, isVisibleSection } = useVisibleSection()
 
-	const { movieId, movieTitle, hasMutationRef } = useReviewsContext()
+	const { movieId, movieTitle, mediaType, hasMutationRef } = useReviewsContext()
 
 	const {
 		reviews,
@@ -131,10 +131,10 @@ export const ReviewList = (props: ReviewListProps) => {
 
 	return (
 		<div
-			aria-label={`Список отзывов для фильма ${movieTitle}`}
+			aria-label={`Список отзывов для медиа ${movieTitle}`}
 			tabIndex={-1}
 			ref={useMergeRefs([sectionRef, saveFocusRef])}
-			className={styles["review-list"]}
+			className={styles["review-list-container"]}
 		>
 			{isVisibleSection &&
 				(error ? (
@@ -150,7 +150,7 @@ export const ReviewList = (props: ReviewListProps) => {
 									<ReviewCardSkeleton />
 								) : (
 									<ReviewCard
-										{...review}
+										data={review}
 										className={styles["review-card"]}
 										isUserReview={review.userId === user?.id}
 										isOpenComments={openComments[review.id]}
@@ -180,16 +180,19 @@ export const ReviewList = (props: ReviewListProps) => {
 						)}
 					</>
 				) : (
-					<Typography textAlign="center" component="p" color="soft">
+					<div>
+											<Typography textAlign="center" component="p" color="soft">
 						{totalReviews === 0
-							? "У этого фильма нету ниодного отзыва. Станьте первыми"
+							? "У этого медиа нету ниодного отзыва. Станьте первыми"
 							: "По вашим критериям не найдено ниодного отзыва. Попробуйте изменить фильтры"}
 					</Typography>
+					</div>
 				))}
 			{user && (
 				<ReviewDialog
 					movieTitle={movieTitle}
 					movieId={movieId}
+					mediaType={mediaType}
 					reviewId={mutationReviewData.reviewId}
 					defaultValues={{
 						message: mutationReviewData.message || "",
@@ -203,7 +206,7 @@ export const ReviewList = (props: ReviewListProps) => {
 			)}
 			{user && (
 				<ConfirmationDeleteDialog
-					title={`Вы уверены, что хотите удалить свой отзыв к фильму ${movieTitle}?`}
+					title={`Вы уверены, что хотите удалить свой отзыв к медиа ${movieTitle}?`}
 					open={isOpenDeleteDialog}
 					setOpen={setIsOpenDeleteDialog}
 					returnFocus={deleteButtonRef}

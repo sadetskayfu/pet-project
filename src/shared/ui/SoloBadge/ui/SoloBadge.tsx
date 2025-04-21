@@ -6,7 +6,7 @@ export type SoloBadgeColor = 'grey' | 'green-light' | 'green'
 type SoloBadgeSize = 's' | 'm'
 
 type AriaAttributes = {
-    'aria-label': string
+    'aria-label'?: string
 }
 
 interface SoloBadgeProps extends AriaAttributes {

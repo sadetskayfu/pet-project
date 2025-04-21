@@ -1,18 +1,37 @@
-import { actorSchema } from '@/entities/actors/model/Actor'
-import { genreSchema } from '@/entities/genres'
-import { z } from 'zod'
+import { MediaType } from "@/entities/movies"
+import { z } from "zod"
+
+const genreSchema = z.object({
+    id: z.number(),
+    name: z.string()
+})
+
+const actorSchema = z.object({
+    id: z.number(),
+    firstName: z.string(),
+    lastName: z.string(),
+    birthDate: z.string(),
+    photoUrl: z.string().optional().nullable()
+})
 
 export const formSchema = z.object({
-	title: z.string().min(1, { message: 'Title is required' }),
-	description: z.string().min(1, { message: 'Description is required' }),
-	releaseDate: z.string().min(1, { message: 'Release date is required' }),
-	cardImgUrl: z.string().min(1, { message: 'Card img url is required' }),
-	videoUrl: z.string().min(1, { message: 'Video url is required' }),
-	ageLimit: z.string().min(1, { message: 'Age limit is required' }),
-	countries: z.array(z.string()).min(1, { message: 'Country is required' }),
-	duration: z.string().min(1, { message: 'Duration is required' }),
-	genres: z.array(genreSchema).min(1, { message: 'Genres is required' }),
-	actors: z.array(actorSchema).min(1, { message: 'Actors is required' }),
+	title: z.string().min(1, { message: "Обязательное поле" }),
+	description: z.string().min(1, { message: "Обязательное поле" }),
+	releaseDate: z.string().min(1, { message: "Обязательное поле" }),
+	cardImgUrl: z.string().min(1, { message: "Обязательное поле" }),
+	posterUrl: z.string().min(1, { message: "Обязательное поле" }),
+	ageLimit: z.string().min(1, { message: "Обязательное поле" }),
+	countries: z.array(z.string()).min(1, { message: "Обязательное поле" }),
+	duration: z.string().min(1, { message: "Обязательное поле" }),
+	genres: z.array(genreSchema).min(1, { message: "Обязательное поле" }),
+	actors: z.array(actorSchema),
+	directors: z.array(actorSchema),
+	writers: z.array(actorSchema),
+	type: z.enum([
+		'movie',
+		'series',
+		'animated_films'
+	]) as z.ZodType<MediaType>,
 })
 
 export type FormSchema = z.infer<typeof formSchema>

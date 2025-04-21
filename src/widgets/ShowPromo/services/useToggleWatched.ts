@@ -45,7 +45,7 @@ export const useToggleWatched = (
 			dispatch(
 				addNotification({
 					severity: "error",
-					message: `Ошибка при добавлении/удалении фильма "${title}" из списка просмотренных`,
+					message: `Ошибка при добавлении/удалении медиа "${title}" из списка просмотренных`,
 				})
 			)
 
@@ -53,6 +53,9 @@ export const useToggleWatched = (
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: [movieApi.baseKey, "list"] })
+			
+			// По хорошему добавить userId, чтобы инвалидировать только свой watch list
+			queryClient.invalidateQueries({ queryKey: [movieApi.baseKey, movieApi.watched] })
 
 			isMutatingRef.current = false
 		},

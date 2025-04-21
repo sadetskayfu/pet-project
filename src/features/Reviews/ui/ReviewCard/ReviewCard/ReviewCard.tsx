@@ -7,7 +7,7 @@ import { ToggleReviewDislikeBody, ToggleReviewLikeBody } from "../../../types"
 import { classNames } from "@/shared/helpers/classNames"
 import { IconButton } from "@/shared/ui/IconButton"
 import { Chat } from "@/shared/assets/icons"
-import { Review, ReviewUserResponse } from "@/entities/reviews"
+import { Review } from "@/entities/reviews"
 import { useAppDispatch } from "@/shared/redux/redux"
 import { reviewActions } from "@/features/Reviews/model/reviewSlice"
 import { Composite, CompositeItem } from "@floating-ui/react"
@@ -18,10 +18,10 @@ import styles from "./style.module.scss"
 
 const UserActions = lazy(() => import("./UserActions"))
 
-interface ReviewCardProps extends Review {
+interface ReviewCardProps {
+	data: Review
 	className?: string
 	children?: ReactNode
-	user: ReviewUserResponse
 	isExpandedMessage: boolean
 	isOpenComments: boolean
 	isUserReview?: boolean
@@ -39,20 +39,9 @@ interface ReviewCardProps extends Review {
 
 export const ReviewCard = memo((props: ReviewCardProps) => {
 	const {
+		data,
 		className,
 		children,
-		id: reviewId,
-		user,
-		message,
-		rating,
-		createdAt,
-		isCommented,
-		isDisliked,
-		isLiked,
-		isChanged,
-		totalLikes,
-		totalComments,
-		totalDislikes,
 		isExpandedMessage,
 		isOpenComments,
 		isUserReview,
@@ -61,6 +50,21 @@ export const ReviewCard = memo((props: ReviewCardProps) => {
 		onDelete,
 		onEdit,
 	} = props
+
+	const {
+		id: reviewId,
+		createdAt,
+		isChanged,
+		isCommented,
+		isDisliked,
+		isLiked,
+		message,
+		rating,
+		totalComments,
+		totalDislikes,
+		totalLikes,
+		user,
+	} = data
 
 	const id = useId()
 	const commentsBodyId = id + "comments-body"
@@ -99,7 +103,7 @@ export const ReviewCard = memo((props: ReviewCardProps) => {
 
 	const handleEdit = useCallback(
 		(editButtonRef: React.RefObject<HTMLButtonElement | null>) => {
-			onEdit?.({reviewId, message, rating}, editButtonRef)
+			onEdit?.({ reviewId, message, rating }, editButtonRef)
 		},
 		[reviewId, message, rating, onEdit]
 	)
@@ -114,6 +118,7 @@ export const ReviewCard = memo((props: ReviewCardProps) => {
 							name={userName}
 							country={user.country.label}
 							isUser={isUserReview}
+							avatarUrl={user.avatarSmall}
 						/>
 						<div className={styles["body"]}>
 							<div className={styles["body__header"]}>
@@ -133,7 +138,7 @@ export const ReviewCard = memo((props: ReviewCardProps) => {
 								expanded={isExpandedMessage}
 								onToggle={toggleMessage}
 								onClose={closeMessage}
-								getButtonLabel={(expanded) => expanded ? 'Скрыть' : 'Читать все'}
+								getButtonLabel={(expanded) => (expanded ? "Скрыть" : "Читать все")}
 								compositeButton
 							>
 								{message}

@@ -1,14 +1,12 @@
-import { z } from 'zod'
+export type ActorRole = "actor" | "director" | "writer"
 
-export const actorSchema = z.object({
-    id: z.number(),
-    firstName: z.string(),
-    lastName: z.string(),
-    birthDate: z.string(),
-    photoUrl: z.string().optional().nullable()
-})
-
-export type Actor = z.infer<typeof actorSchema>
+export type Actor = {
+    id: number
+    firstName: string
+    lastName: string
+    birthDate: string
+    photoUrl: string
+}
 
 export type CreateActorBody = {
     firstName: string
@@ -18,7 +16,7 @@ export type CreateActorBody = {
 }
 
 export interface ActorForMovie extends Actor  {
-    role: string
+    role: ActorRole
 }
 
 export type ActorsResponse = {

@@ -1,9 +1,7 @@
 export const ROUTES = {
     HOME: '/',
-    MOVIES: '/movies',
-    SERIALS: '/serials',
+    CATALOG: '/catalog',
     PROFILE: '/profile',
-    USER_PROFILE: '/user-profile',
     ADMIN: '/admin',
     ADMIN_GENRES: '/admin/genres',
     ADMIN_MOVIES: '/admin/movies',

@@ -42,6 +42,10 @@
 
 // Sizes
 .tab {
+    &.s {
+        padding-block: var(--button-padding-block-s);
+        padding-inline: var(--button-padding-inline-s);
+    }
     &.m {
         padding-block: var(--button-padding-block-m);
         padding-inline: var(--button-padding-inline-m);
@@ -68,7 +72,7 @@
 // Mods
 .tab {
     &:focus-visible {
-        @include focus-outline-inset;
+        @include focus-outline;
     }
     &:disabled {
         @include disabled;

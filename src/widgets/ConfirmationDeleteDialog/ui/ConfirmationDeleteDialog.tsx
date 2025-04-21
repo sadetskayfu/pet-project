@@ -71,7 +71,7 @@ const ConfirmationDeleteDialog = (props: ConfirmationDeleteDialogProps) => {
 					<DialogClose>
 						<Button
 							ref={cancelButtonRef}
-							size="xs"
+							size="s"
 							color="secondary"
 							variant="outlined"
 						>
@@ -83,7 +83,7 @@ const ConfirmationDeleteDialog = (props: ConfirmationDeleteDialogProps) => {
 							disabled={loading}
 							onClick={handleDelete}
 							variant="filled"
-							size="xs"
+							size="s"
 							color="red"
 						>
 							Удалить

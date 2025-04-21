@@ -6,48 +6,26 @@ import throttle from "lodash/throttle"
 import styles from "./style.module.scss"
 
 interface ScrollButtonProps {
-	targetRef?: React.RefObject<HTMLElement>
-	targetFocusRef?: React.RefObject<HTMLElement>
+	focusRef?: React.RefObject<HTMLElement | null>
 	label: string
-	offset?: number
 	visibleRange?: number
 }
 
 export const ScrollButton = memo((props: ScrollButtonProps) => {
 	const {
-		targetRef,
-		targetFocusRef,
+		focusRef,
 		label,
-		offset = 0,
 		visibleRange = 500,
 	} = props
 
 	const [isVisible, setIsVisible] = useState<boolean>(false)
 
 	const handleScroll = useCallback(() => {
-		if (targetRef?.current) {
-			const top =
-				targetRef.current.getBoundingClientRect().top + window.scrollY - offset
-			window.scrollTo({ top, behavior: "smooth" })
-			targetFocusRef?.current.focus()
-		} else {
-			window.scrollTo({ top: 0, behavior: "smooth" })
-			targetFocusRef?.current.focus()
-		}
-	}, [targetRef, targetFocusRef, offset])
+		window.scrollTo({ top: 0, behavior: "smooth" })
+		focusRef?.current?.focus()
+	}, [focusRef])
 
 	useEffect(() => {
-		// const setVisible = () => throttle(() => {
-		//     console.log('sd')
-		//     if(targetRef?.current) {
-		//         const targetTopPosition = targetRef.current.getBoundingClientRect().top
-		//         setIsVisible(window.scrollY - targetTopPosition > visibleRange)
-		//     } else {
-
-		//         setIsVisible(window.scrollY > visibleRange)
-		//     }
-		// }, 50)
-
 		const setVisible = throttle(() => {
 			console.log("sd")
 			setIsVisible(window.scrollY > visibleRange)
@@ -59,14 +37,14 @@ export const ScrollButton = memo((props: ScrollButtonProps) => {
 			window.removeEventListener("scroll", setVisible)
             setVisible.cancel()
 		}
-	}, [visibleRange, targetRef])
+	}, [visibleRange])
 
 	const mods: Mods = {
 		[styles["visible"]]: isVisible,
 	}
 
 	return (
-		<BaseTooltip placement="left" label={label}>
+		<BaseTooltip placement="top" label={label}>
 			<button
 				onClick={handleScroll}
 				aria-label={label}

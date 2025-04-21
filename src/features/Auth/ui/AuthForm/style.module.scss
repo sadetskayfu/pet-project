@@ -7,7 +7,23 @@
     width: 100%;
 }
 
-.skeleton-button {
+.submit-button {
     width: 100%;
-    height: var(--button-height-s);
+}
+
+.skeleton {
+    &__field {
+        width: 100%;
+        height: var(--button-height-m);
+        @include mobile {
+            height: var(--button-height-s);
+        }
+    }
+    &__button {
+        width: 100%;
+        height: var(--button-height-s);
+        @include mobile {
+            height: rem(40);
+        }
+    }
 }

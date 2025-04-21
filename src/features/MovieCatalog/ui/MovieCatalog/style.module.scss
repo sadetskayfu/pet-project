@@ -8,3 +8,12 @@
 .list {
     padding-top: rem(40);
 }
+
+.media-type-buttons {
+    margin-top: var(--padding-20);
+    column-gap: rem(10);
+    button {
+        max-width: rem(200);
+        width: 100%;
+    }
+}

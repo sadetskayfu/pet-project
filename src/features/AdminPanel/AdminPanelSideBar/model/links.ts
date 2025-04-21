@@ -1,5 +1,3 @@
-//import { ROUTES } from "@/shared/constants/routes"
-
 import { ROUTES } from "@/shared/constants/routes"
 
 type LinkType = {
@@ -10,14 +8,14 @@ type LinkType = {
 export const links: LinkType[] = [
     {
         path: ROUTES.ADMIN_GENRES,
-        label: 'Genres',
+        label: 'Жанры',
     },
     {
         path: ROUTES.ADMIN_ACTORS,
-        label: 'Actors',
+        label: 'Акторы',
     },
     {
         path: ROUTES.ADMIN_MOVIES,
-        label: 'Movies'
+        label: 'Фильмы'
     }
 ]

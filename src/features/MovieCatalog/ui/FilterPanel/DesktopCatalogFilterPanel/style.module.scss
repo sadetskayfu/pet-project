@@ -1,0 +1,27 @@
+@use '@/app/styles/helpers' as *;
+
+.filter-panel {
+    display: flex;
+    column-gap: rem(10);
+    &__collapse-trigger {
+        width: rem(300);
+        svg {
+            transition: transform 0.2s;
+        }
+        &[data-open] {
+            svg {
+                transform: rotate(45deg);
+            }
+        }
+    }
+    &__collapse-body {
+        padding-top: var(--padding-30);
+        padding-bottom: var(--padding-20);
+        row-gap: var(--padding-20);
+        display: flex;
+        flex-direction: column; 
+        border-bottom: var(--border-weight-soft) solid var(--border-color-grey);
+    }
+}
+
+

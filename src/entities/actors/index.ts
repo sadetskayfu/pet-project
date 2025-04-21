@@ -1,2 +1,2 @@
 export { actorApi } from './api/api'
-export { actorSchema, type Actor } from './model/Actor'
+export type { Actor, ActorRole } from './model/Actor'

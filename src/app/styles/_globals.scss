@@ -4,6 +4,7 @@ body {
 	font-family: var(--font-family-base);
 	color: var(--font-color-hard);
 	background-color: var(--theme-color-dark);
+	overflow-x: hidden;
 }
 
 a {

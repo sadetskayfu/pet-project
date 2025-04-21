@@ -4,7 +4,7 @@ import { UserCard } from "../UserCard/UserCard"
 import { Actions } from "../Actions/Actions"
 import { ToggleCommentDislikeBody, ToggleCommentLikeBody } from "../../../types"
 import { classNames } from "@/shared/helpers/classNames"
-import { Comment, CommentUserResponse } from "@/entities/comments"
+import { Comment } from "@/entities/comments"
 import { useAppDispatch } from "@/shared/redux/redux"
 import { reviewActions } from "@/features/Reviews/model/reviewSlice"
 import { Composite } from "@floating-ui/react"
@@ -14,9 +14,9 @@ import styles from "./style.module.scss"
 
 const UserActions = lazy(() => import("./UserActions"))
 
-interface CommentCardProps extends Comment {
+interface CommentCardProps {
+	data: Comment
 	className?: string
-	user: CommentUserResponse
 	isUserComment?: boolean
 	isExpandedMessage: boolean
 	isOpenUpdateCommentForm?: boolean
@@ -36,16 +36,8 @@ interface CommentCardProps extends Comment {
 
 export const CommentCard = memo((props: CommentCardProps) => {
 	const {
+		data,
 		className,
-		id,
-		user,
-		message,
-		createdAt,
-		isDisliked,
-		isLiked,
-		isChanged,
-		totalLikes,
-		totalDislikes,
 		isUserComment,
 		isExpandedMessage,
 		paddingTop,
@@ -54,6 +46,19 @@ export const CommentCard = memo((props: CommentCardProps) => {
 		onDelete,
 		onEdit,
 	} = props
+
+	const {
+		id,
+		createdAt,
+		isChanged,
+		isDisliked,
+		isLiked,
+		message,
+		totalDislikes,
+		totalLikes,
+		user,
+	} = data
+
 	const dispatch = useAppDispatch()
 
 	const userName = user.displayName || user.email
@@ -92,16 +97,17 @@ export const CommentCard = memo((props: CommentCardProps) => {
 		<Composite
 			render={
 				<div
-					style={{paddingTop}}
+					style={{ paddingTop }}
 					className={classNames(styles["comment-card-container"], [className])}
 				>
-					<div className={styles['comment-card']}>
+					<div className={styles["comment-card"]}>
 						<UserCard
 							{...user}
 							country={user.country.label}
 							name={userName}
 							isComment
 							isUser={isUserComment}
+							avatarUrl={user.avatarSmall}
 						/>
 						<div className={styles["comment-card__body"]}>
 							<Typography size="helper">
@@ -114,7 +120,7 @@ export const CommentCard = memo((props: CommentCardProps) => {
 								onToggle={toggleMessage}
 								onClose={closeMessage}
 								buttonColor="grey-dark"
-								getButtonLabel={(expanded) => expanded ? 'Скрыть' : 'Читать все'}
+								getButtonLabel={(expanded) => (expanded ? "Скрыть" : "Читать все")}
 								compositeButton
 							>
 								{message}

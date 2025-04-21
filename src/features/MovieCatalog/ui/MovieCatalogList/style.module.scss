@@ -1,23 +1,35 @@
 @use '@/app/styles/helpers' as *;
 
-.list {
-    gap: rem(20);
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    @include max-width(1050) {
-        grid-template-columns: repeat(4, 1fr);
+.movie-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--padding-30);
+    padding-top: var(--padding-30);
+    padding-bottom: rem(60);
+    &__title {
+        align-self: center;
     }
-    @include max-width(800) {
-        grid-template-columns: repeat(3, 1fr);
+    &__item-list {
+        gap: rem(20);
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        @include max-width(1600) {
+            grid-template-columns: repeat(5, 1fr);
+        }
+        @include max-width(1250) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        @include max-width(1000) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @include max-width(730) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @include max-width(500) {
+            grid-template-columns: repeat(1, 1fr);
+        }
     }
-    @include max-width(630) {
-        grid-template-columns: repeat(2, 1fr);
+    &__item {
+        min-width: 0;
     }
-    @include max-width(450) {
-        grid-template-columns: repeat(1, 1fr);
-    }
-}
-
-.item {
-    min-width: 0;
 }

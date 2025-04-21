@@ -1,8 +1,20 @@
+import { SectionTitle } from "@/shared/ui/SectionTitle"
+import { HeightRatedMovies } from "@/widgets/HeightRatedMovies"
+import { LastMovies } from "@/widgets/LastMovies"
+import { LastReviews } from "@/widgets/LastReviews"
+import { PopularMovies } from "@/widgets/PopularMovies"
+import { PopularReviews } from "@/widgets/PopularReviews"
+
 const HomePage = () => {
     return (
         <div className='page'>
             <div className='container'>
-                HomePage
+                <SectionTitle centering component="h2" label="Добро пожаловать на МойЛокалхост"/>
+                <LastMovies />
+                <LastReviews />
+                <HeightRatedMovies />
+                <PopularMovies />
+                <PopularReviews />
             </div>
         </div>
     )

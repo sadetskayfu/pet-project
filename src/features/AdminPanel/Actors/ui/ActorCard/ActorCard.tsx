@@ -13,12 +13,12 @@ interface ActorCardProps extends BaseActorCardProps {
 	onDelete: (
 		actorId: number,
 		actorData: FormSchema,
-		buttonRef: React.RefObject<HTMLButtonElement>
+		buttonRef: React.RefObject<HTMLButtonElement | null>
 	) => void
 	onEdit: (
 		actorId: number,
 		actorData: FormSchema,
-		buttonRef: React.RefObject<HTMLButtonElement>
+		buttonRef: React.RefObject<HTMLButtonElement | null>
 	) => void
 }
 
@@ -58,8 +58,9 @@ export const ActorCard = memo((props: ActorCardProps) => {
 						borderPlacement="top"
 						variant="clear"
 						onClick={() => onEdit(id, actorData, editButtonRef)}
-						aria-label="Edit actor"
+						aria-label="Изменить актера"
 						aria-haspopup="dialog"
+						size='xs'
 					>
 						<Edit />
 					</IconButton>
@@ -75,7 +76,8 @@ export const ActorCard = memo((props: ActorCardProps) => {
 						borderRadius="s"
 						borderPlacement="bottom"
 						variant="clear"
-						aria-label="Delete actor"
+						aria-label="Удалить актора"
+						size='xs'
 					>
 						<Trash />
 					</IconButton>

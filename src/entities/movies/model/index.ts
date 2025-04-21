@@ -1,5 +1,9 @@
+import { ActorRole } from "@/entities/actors"
 import { Country } from "@/entities/countries"
 import { Genre } from "@/entities/genres"
+
+export type MediaType = 'movie' | 'series' | 'animated_film'
+export type ExtendedMediaType = MediaType | 'all'
 
 export type MovieForCard = {
     id: number
@@ -15,6 +19,7 @@ export type MovieForCard = {
     isWished: boolean
     isRated: boolean
     ageLimit: number
+    type: MediaType
 }
 
 export interface Movie extends MovieForCard {
@@ -36,6 +41,11 @@ export type MovieForCardsResponse = {
     nextCursor: Cursor | null
 }
 
+export type CreateMovieActorBody = {
+    id: number
+    role: ActorRole
+}
+
 export type CreateMovieBody = {
     title: string
     description: string
@@ -44,9 +54,10 @@ export type CreateMovieBody = {
     countries: string[]
     duration: number
     cardImgUrl: string
-    videoUrl: string
+    posterUrl: string
     genres: number[]
-    actors: number[]
+    actors: CreateMovieActorBody[]
+    type: MediaType
 }
 
 export type WatchedMovieResponse = {
@@ -57,4 +68,23 @@ export type WatchedMovieResponse = {
 export type WishedMovieResponse = {
     id: number
     title: string
+}
+
+export type MovieSortValue =
+	| "rating-asc"
+	| "rating-desc"
+	| "releaseYear-asc"
+	| "releaseYear-desc"
+    | 'desc'
+
+export type PaginationMeta = {
+    total: number
+    page: number
+    limit: number
+    totalPages: number
+}
+
+export type UserMoviesResponse = {
+    data: MovieForCard[]
+    meta: PaginationMeta
 }

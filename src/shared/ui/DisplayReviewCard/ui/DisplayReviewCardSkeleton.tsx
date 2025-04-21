@@ -3,7 +3,11 @@ import { AvatarSkeleton } from "../../Avatar"
 import { Skeleton, Skeletons } from "../../Skeleton"
 import styles from "./style.module.scss"
 
-export const DisplayReviewCardSkeleton = () => {
+export const DisplayReviewCardSkeleton = ({
+	withMovieTitle,
+}: {
+	withMovieTitle?: boolean
+}) => {
 	return (
 		<div
 			className={classNames(styles["skeleton"], [styles["display-review-card"]])}
@@ -23,15 +27,16 @@ export const DisplayReviewCardSkeleton = () => {
 					className={classNames(styles["skeleton__rating"], [
 						styles["display-review-card__rating"],
 					])}
-                    borderRadius="full"
+					borderRadius="full"
 				/>
-				<Skeletons
-					count={4}
-					withContainer
-					className={styles["skeleton__message"]}
-				>
-					<Skeleton className={styles["skeleton__text"]} />
-				</Skeletons>
+				{withMovieTitle && (
+					<Skeleton
+						className={classNames(styles["skeleton__movie-title"], [
+							styles["display-review-card__movie-title"],
+						])}
+					/>
+				)}
+				<Skeleton className={styles["skeleton__message"]} />
 			</div>
 		</div>
 	)

@@ -4,6 +4,7 @@ import { DisplayStarRating } from "@/shared/ui/StarRating"
 import { memo } from "react"
 import { TextWithToggle } from "@/shared/ui/TextWithToggle"
 import { Composite } from "@floating-ui/react"
+import { Heart } from "@/shared/assets/icons"
 import styles from "./style.module.scss"
 
 interface DisplayReviewCardProps {
@@ -14,6 +15,8 @@ interface DisplayReviewCardProps {
 	rating: number
 	message: string
 	totalReviews: number
+	totalLikes: number
+	movieTitle?: string
 	onFocus?: (event: React.FocusEvent<HTMLElement>) => void
 }
 
@@ -26,12 +29,14 @@ export const DisplayReviewCard = memo((props: DisplayReviewCardProps) => {
 		message,
 		totalReviews,
 		rating,
+		movieTitle,
+		totalLikes,
 		onFocus,
 	} = props
 
 	return (
 		<Composite
-            orientation="horizontal"
+			orientation="horizontal"
 			render={
 				<div className={styles["display-review-card"]}>
 					<div className={styles["display-review-card__user"]}>
@@ -50,23 +55,37 @@ export const DisplayReviewCard = memo((props: DisplayReviewCardProps) => {
 						</div>
 					</div>
 					<div className={styles["display-review-card__body"]}>
-						<DisplayStarRating
-							className={styles["display-review-card__rating"]}
-							size="xs"
-							value={rating}
-							aria-label={`Рейтинг отзыва ${rating}`}
-						/>
+						{movieTitle && (
+							<span className={styles["display-review-card__movie-title"]}>
+								Отзыв на {movieTitle}
+							</span>
+						)}
 						<TextWithToggle
 							getButtonLabel={(expanded) => (expanded ? "Скрыть" : "Читать все")}
 							centering
 							buttonColor="grey-dark"
 							maxHeight={200}
 							onFocus={onFocus}
-                            compositeButton
-                            onMouseDown={(event) => event.preventDefault()}
+							compositeButton
+							onMouseDown={(event) => event.preventDefault()}
 						>
 							{message}
 						</TextWithToggle>
+						<DisplayStarRating
+							className={styles["display-review-card__rating"]}
+							size="xs"
+							value={rating}
+							aria-label={`Рейтинг отзыва ${rating}`}
+						/>
+						<span
+							aria-label={`У отзыва ${totalLikes} лайков`}
+							className={styles["display-review-card__likes"]}
+						>
+							<Heart size="l" variant="filled" />
+							<Typography size="helper">
+								{totalLikes}
+							</Typography>
+						</span>
 					</div>
 				</div>
 			}

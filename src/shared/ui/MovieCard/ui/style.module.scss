@@ -11,7 +11,8 @@
 .image-container {
     position: relative;
     border-radius: var(--border-radius-m);
-    transition: box-shadow 0.2s;
+    transition: border-color 0.2s;
+    border-bottom: var(--border-weight-hard) solid transparent;
     @include hover {
         .details {
             opacity: 1;
@@ -19,6 +20,9 @@
         }
         .age-limit-badge {
             opacity: 1;
+        }
+        img {
+            transform: scale(1.05);
         }
     }
     &:focus-within {
@@ -30,14 +34,17 @@
         }
     }
     &:focus-visible {
-        box-shadow: 0 0 0 var(--border-weight-soft) var(--theme-color-primary-main);
+        border-color: var(--theme-color-primary-main);
     }
 }
 
 .image {
     width: 100%;
     height: auto;
-    aspect-ratio: 9 / 14; 
+    aspect-ratio: 9 / 14;
+    img {
+        transition: transform 0.4s;
+    } 
 }
 
 .details {
@@ -93,6 +100,6 @@
     }
     &__description {
         width: 100%;
-        height: rem(45);
+        height: rem(51);
     }
 }

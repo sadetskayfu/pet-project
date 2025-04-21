@@ -17,17 +17,18 @@ import { ReviewDialog } from "../ReviewDialog/ReviewDialog"
 import { usePrivateHandler } from "@/shared/hooks"
 import { SectionTitle } from "@/shared/ui/SectionTitle"
 import styles from "./style.module.scss"
+import { MediaType } from "@/entities/movies"
 
 interface ReviewsForMovieProps {
 	movieId: number
 	movieTitle: string
 	totalReviews: number
 	isRated?: boolean
-	entity: 'movie' | 'series'
+	mediaType: MediaType
 }
 
 export const ReviewsForMovie = memo((props: ReviewsForMovieProps) => {
-	const { movieId, movieTitle, totalReviews, isRated, entity } = props
+	const { movieId, movieTitle, totalReviews, isRated, mediaType } = props
 
 	const [isOpenReviewDialog, setIsOpenReviewDialog] = useState<boolean>(false)
 	const [filterValue, setFilterValue] = useState<ReviewFilterValue[]>(["all"])
@@ -92,12 +93,12 @@ export const ReviewsForMovie = memo((props: ReviewsForMovieProps) => {
 
 	return (
 		<div ref={saveFocusRef} tabIndex={-1} className="section">
-			<SectionTitle label={`Отзывы к ${entity === 'movie' ? 'фильму' : 'сериалу'} ${movieTitle}`} />
+			<SectionTitle label={`Отзывы к ${mediaType === 'movie' ? 'фильму' : mediaType === 'series' ? 'сериалу' : 'мультфильму'} ${movieTitle}`} />
 			<div className={styles["reviews"]}>
 				{!isRated && (
 					<div className={styles["reviews__rate-movie"]}>
 						<Typography color="soft" size="inherit">
-							Уже посмотрели фильм?
+							Уже посмотрели?
 						</Typography>
 						<Button
 							ref={reviewButtonRef}
@@ -123,6 +124,7 @@ export const ReviewsForMovie = memo((props: ReviewsForMovieProps) => {
 					value={{
 						movieId,
 						movieTitle,
+						mediaType,
 						hasMutationRef,
 					}}
 				>
@@ -136,6 +138,7 @@ export const ReviewsForMovie = memo((props: ReviewsForMovieProps) => {
 						open={isOpenReviewDialog}
 						setOpen={setIsOpenReviewDialog}
 						movieTitle={movieTitle}
+						mediaType={mediaType}
 						movieId={movieId}
 						id={reviewDialogId}
 						returnFocus={reviewButtonRef}

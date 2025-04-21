@@ -5,6 +5,7 @@ import { classNames } from "@/shared/helpers/classNames"
 import { Composite } from "@floating-ui/react"
 import { Badge } from "@/shared/ui/Badge"
 import { getAgeLabel } from "@/shared/helpers/getAgeLabel"
+import { ActorRole } from "@/entities/actors"
 import styles from "./style.module.scss"
 
 export interface ActorCardProps {
@@ -14,7 +15,7 @@ export interface ActorCardProps {
 	birthDate: string
 	photoUrl?: string | null
 	actions?: ReactNode
-	role?: string
+	role?: ActorRole
 }
 
 export const ActorCard = memo((props: ActorCardProps) => {
@@ -29,14 +30,13 @@ export const ActorCard = memo((props: ActorCardProps) => {
 					className={styles["actor-card__photo"]}
 					borderRadius="circular"
 					src={photoUrl}
-					alt="Actor photo"
 				/>
 			</Badge>
 			<div className={styles["actor-card__description"]}>
 				<Typography size="helper" color="hard">
 					{firstName} {lastName}
 				</Typography>
-				<Typography size="helper">{role || 'Актор'}</Typography>
+				{role && <Typography size="helper">{role === 'actor' ? 'актор' : role === 'director' ? 'режиссер' : 'сценарист'}</Typography>}
 			</div>
 			{actions && (
 				<Composite className={styles["actor-card__actions"]}>{actions}</Composite>

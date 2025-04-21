@@ -1,0 +1,15 @@
+@use '@/app/styles/helpers' as *;
+
+.side-bar {
+    max-width: rem(200);
+    padding-right: var(--container-padding-x);
+    width: 100%;
+    border-right: var(--border-weight-soft) solid var(--border-color-grey);
+}
+
+.list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(5);
+}

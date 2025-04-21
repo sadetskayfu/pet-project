@@ -50,7 +50,7 @@ export const useDeleteReview = (onSuccess?: () => void) => {
 			dispatch(
 				addNotification({
 					severity: "success",
-					message: `Отзыв на фильм ${movieTitle} успешно удален`,
+					message: `Отзыв на медиа ${movieTitle} успешно удален`,
 				})
 			)
 

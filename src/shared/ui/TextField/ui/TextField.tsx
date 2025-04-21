@@ -34,7 +34,7 @@ export interface TextFieldProps extends HTMLInputProps {
 	size?: FieldSize
 	borderPlacement?: FieldBorderPlacement
 	hiddenLabel?: boolean
-	helperText?: string
+	helperText?: string | null
 	helperTextIds?: string[]
 	actions?: (ReactElement | null)[]
 	startAdornment?: ReactNode
@@ -155,6 +155,7 @@ export const TextField = memo(
 							color="secondary"
 							tabIndex={-1}
 							stopFocus
+							size='xs'
 						>
 							<XMark />
 						</IconButtonLazy>

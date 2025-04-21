@@ -1,7 +1,7 @@
-import { ImgHTMLAttributes, memo, ReactElement, useState } from 'react'
+import { ImgHTMLAttributes, memo, ReactElement } from 'react'
 import { classNames, Mods } from '@/shared/helpers/classNames'
 import { getFirstLetter } from '@/shared/helpers/formattingString'
-import { Skeleton } from '@/shared/ui/Skeleton'
+//import { Skeleton } from '@/shared/ui/Skeleton'
 import styles from './style.module.scss'
 
 export type AvatarBorderRadius = 's' | 'm' | 'l' | 'circular' | 'none'
@@ -45,8 +45,8 @@ export const Avatar = memo((props: AvatarProps) => {
 		loading = 'lazy',
 	} = props
 
-	const [isError, setIsError] = useState(false)
-	const [isLoaded, setIsLoaded] = useState(false)
+	//const [isError, setIsError] = useState(false)
+	//const [isLoaded, setIsLoaded] = useState(false)
 
 	const isEmptySrc = !src || src.trim() === ''
 
@@ -68,23 +68,22 @@ export const Avatar = memo((props: AvatarProps) => {
 			style={style}
 			className={classNames(styles['avatar'], additionalClasses, mods)}
 		>
-			{isError || isEmptySrc ? (
+			{isEmptySrc ? (
 				reserveContent
 			) : (
 				<img
-					key={src}
 					loading={loading}
-					onError={() => setIsError(true)}
-					onLoad={() => setIsLoaded(true)}
+					//onError={() => setIsError(true)}
+					//onLoad={() => setIsLoaded(true)}
 					src={src}
 					alt={alt}
 					className={styles['img']}
 					{...imgProps}
 				/>
 			)}
-			{!isEmptySrc && !isError && !isLoaded && (
+			{/* {!isEmptySrc && !isError && !isLoaded && (
 				<Skeleton borderRadius={borderRadius} className={styles['skeleton']} />
-			)}
+			)} */}
 		</div>
 	)
 })

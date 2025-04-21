@@ -51,14 +51,14 @@ export const ConfirmationForm = (props: ConfirmationFormProps) => {
 			>
 				<RHFPinCodeField<FormSchema>
 					name="code"
-					label="Enter code"
+					label="Введите код"
 					required
 					hiddenLabel
 				/>
 				<ErrorAlert
 					id={errorAlertId}
 					error={error}
-					message="Error while confirmation"
+					message="Ошибка при подвтерждении"
 					fullWidth
 				/>
 				<div className={styles['actions']}>
@@ -69,9 +69,9 @@ export const ConfirmationForm = (props: ConfirmationFormProps) => {
 							color="primary"
 							disabled={!methods.formState.isValid || isPending || disabled}
 						>
-							Confirm
+							Подвтердить
 						</Button>
-						{isPending && <CircularProgress aria-label="Confirmation" absCenter />}
+						{isPending && <CircularProgress aria-label="Подвтерждение" absCenter />}
 					</div>
 				</div>
 			</form>

@@ -6,7 +6,6 @@ import { useAppDispatch } from "@/shared/redux/redux"
 import { useEffect } from "react"
 import { getSessionInfo } from "@/features/session"
 import { Notifications } from "@/features/Notifications"
-import { ScrollButton } from "@/shared/ui/ScrollButton"
 
 export function App() {
 	const dispatch = useAppDispatch()
@@ -19,7 +18,6 @@ export function App() {
 		<>
 			<RouterProvider router={router} />
 			<Notifications />
-			<ScrollButton label="Прокрутить страницу в самый вверх"/>
 		</>
 	)
 }

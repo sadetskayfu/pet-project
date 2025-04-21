@@ -1,3 +1,4 @@
+import { MediaType } from "@/entities/movies"
 import { getDateLabel } from "./getDateLabel"
 import { getSeasonLabel } from "./getSeasonLabel"
 
@@ -11,7 +12,7 @@ export const movieMetaDataLabels = {
 		return genresWithLimit.join(" • ")
 	},
 	getReleaseDateLabel: getDateLabel,
-	getDurationLabel: (duration: number, entity: "movie" | "series") => {
+	getDurationLabel: (duration: number, entity: MediaType) => {
 		if (entity === "series") {
 			return getSeasonLabel(duration)
 		} else {

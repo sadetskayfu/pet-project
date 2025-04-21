@@ -25,7 +25,7 @@ export type FieldSize = 'm' | 'l'
 export type FieldBorderPlacement = 'left' | 'right' | 'all'
 
 interface FieldProps {
-	children: ReactElement
+	children: ReactElement<HTMLElement>
 	label: string
 	labelId: string
 	inputId?: string
@@ -39,7 +39,7 @@ interface FieldProps {
 	errored?: boolean
 	actions?: (ReactElement | null)[]
 	startAdornment?: ReactNode
-	helperText?: string
+	helperText?: string | null
 	helperTextId?: string
 	targetFocusRef?: React.RefObject<HTMLElement | null>
 	disabled?: boolean

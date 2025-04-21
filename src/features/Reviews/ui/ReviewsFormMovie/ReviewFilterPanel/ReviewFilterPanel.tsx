@@ -1,7 +1,7 @@
 import { ToggleButtonGroup } from "@/shared/ui/ToggleButtonGroup"
 import { ToggleButton } from "@/shared/ui/ToggleButton"
 import { useCallback, useMemo } from "react"
-import { Composite, CompositeItem } from "@floating-ui/react"
+import { CompositeItem } from "@floating-ui/react"
 import { Select } from "@/shared/ui/Select"
 import { OptionItem } from "@/shared/ui/OptionItem"
 import { ReviewFilterValue, ReviewSortValue } from "@/entities/reviews"
@@ -137,19 +137,15 @@ export const ReviewFilterPanel = (props: ReviewFilterPanelProps) => {
 
 			return (
 				<BaseTooltip key={option.value} label={option.label}>
-					<CompositeItem
-						render={
-							<ToggleButton aria-label={option.label} size="m" value={option.value}>
-								{option.value === "meLiked" ? (
-									<Heart />
-								) : option.value === "meDisliked" ? (
-									<Dislike />
-								) : (
-									<Chat />
-								)}
-							</ToggleButton>
-						}
-					/>
+					<ToggleButton aria-label={option.label} size="m" value={option.value}>
+						{option.value === "meLiked" ? (
+							<Heart />
+						) : option.value === "meDisliked" ? (
+							<Dislike />
+						) : (
+							<Chat />
+						)}
+					</ToggleButton>
 				</BaseTooltip>
 			)
 		})
@@ -165,20 +161,16 @@ export const ReviewFilterPanel = (props: ReviewFilterPanelProps) => {
 
 	return (
 		<div className={styles["review-filter-panel"]}>
-			<Composite
-				render={
-					<ToggleButtonGroup
-						className={styles["toggle-button-group"]}
-						stack={false}
-						value={filterValue}
-						onChange={handleChangeFilterValue}
-						disabled={!user}
-						aria-label="Группа кнопок для фильтрации отзывов"
-					>
-						{renderToggleButtons}
-					</ToggleButtonGroup>
-				}
-			/>
+			<ToggleButtonGroup
+				className={styles["toggle-button-group"]}
+				stack={false}
+				value={filterValue}
+				onChange={handleChangeFilterValue}
+				disabled={!user}
+				aria-label="Группа кнопок для фильтрации отзывов"
+			>
+				{renderToggleButtons}
+			</ToggleButtonGroup>
 			<Select
 				className={styles["select"]}
 				label="Сортировка отзывов"

@@ -116,6 +116,18 @@
 		--padding-15: #{rem(12)};
 		--padding-10: #{rem(8)};
 		--section-padding: #{rem(60)};
+		
+		--button-height-l: #{rem(55)};
+		--button-padding-inline-l: #{rem(20)};
+		--button-padding-block-l: #{rem(14)};
+
+		--button-height-m: #{rem(50)};
+		--button-padding-inline-m: #{rem(16)};
+		--button-padding-block-m: #{rem(12)};
+
+		--button-height-s: #{rem(40)};
+		--button-padding-inline-s: #{rem(14)};
+		--button-padding-block-s: #{rem(9)};
 	}
 	@include mobile-s {
 		--section-padding: #{rem(50)};

@@ -5,28 +5,28 @@ import {
 	ReactElement,
 	Suspense,
 	useRef,
-} from 'react'
+} from "react"
 import {
 	AdditionalClasses,
 	classNames,
 	Mods,
-} from '@/shared/helpers/classNames'
-import { RippleWrapper } from '@/shared/ui/RippleWrapper'
-import { handleRipple, handleRippleCursorPosition } from '@/shared/lib/ripple'
-import { IndicatorLazy } from '@/shared/ui/Indicator'
-import { useTabContext } from '@/shared/ui/Tabs/model/useTabContext'
-import { CompositeItem } from '@floating-ui/react'
-import styles from './style.module.scss'
+} from "@/shared/helpers/classNames"
+import { RippleWrapper } from "@/shared/ui/RippleWrapper"
+import { handleRipple, handleRippleCursorPosition } from "@/shared/lib/ripple"
+import { IndicatorLazy } from "@/shared/ui/Indicator"
+import { useTabContext } from "@/shared/ui/Tabs/model/useTabContext"
+import styles from "./style.module.scss"
+import { CompositeItem } from "@floating-ui/react"
 
-type TabSize = 'm' | 'l'
-type TabIconPosition = 'left' | 'top' | 'right' | 'bottom'
-export type TabVariant = 'filled' | 'clear'
+type TabSize = "s" | "m" | "l"
+type TabIconPosition = "left" | "top" | "right" | "bottom"
+export type TabVariant = "filled" | "clear"
 
 interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	id: string
 	panelId: string
 	value: string
-	label?: string
+	label?: string | ReactElement
 	icon?: ReactElement
 	size?: TabSize
 	variant?: TabVariant
@@ -42,21 +42,16 @@ export const Tab = memo(
 			value,
 			label,
 			icon,
-			size = 'm',
-			iconPosition = 'left',
-			variant = 'filled',
+			size = "m",
+			iconPosition = "left",
+			variant = "filled",
 			...otherProps
 		} = props
 
 		const rippleWrapperRef = useRef<HTMLSpanElement>(null)
 
-		const {
-			indicator,
-			indicatorPosition,
-			fullWidth,
-			onChange,
-			selectedValue,
-		} = useTabContext()
+		const { indicator, indicatorPosition, fullWidth, onChange, selectedValue } =
+			useTabContext()
 
 		const isSelected = selectedValue === value
 
@@ -80,29 +75,29 @@ export const Tab = memo(
 		]
 
 		const mods: Mods = {
-			[styles['selected']]: isSelected,
-			[styles['full-width']]: fullWidth
+			[styles["selected"]]: isSelected,
+			[styles["full-width"]]: fullWidth,
 		}
 
 		return (
 			<CompositeItem
+				ref={ref}
 				render={
 					<button
-						className={classNames(styles['tab'], additionalClasses, mods)}
-						ref={ref}
+						className={classNames(styles["tab"], additionalClasses, mods)}
 						id={id}
 						onClick={handleClick}
 						type="button"
 						role="tab"
-						aria-selected={isSelected ? 'true' : 'false'}
+						aria-selected={isSelected ? "true" : "false"}
 						aria-controls={panelId}
 						{...otherProps}
 					>
-						{icon && <span className={styles['icon']}>{icon}</span>}
+						{icon && <span className={styles["icon"]}>{icon}</span>}
 						{label && label}
 						<RippleWrapper ref={rippleWrapperRef} />
 						{indicator && (
-							<Suspense fallback="">
+							<Suspense fallback={null}>
 								<IndicatorLazy active={isSelected} position={indicatorPosition} />
 							</Suspense>
 						)}

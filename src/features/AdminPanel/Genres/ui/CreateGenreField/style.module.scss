@@ -1,0 +1,22 @@
+@use '@/app/styles/helpers' as *;
+
+.create-genre-field {
+    display: flex;
+    width: 100%;
+    @include max-width(580) {
+        flex-direction: column;
+        row-gap: rem(10);
+    }
+}
+
+.field {
+    z-index: 1;
+}
+
+.create-button {
+    flex-shrink: 0;
+    margin-left: rem(-1);
+    @include max-width(580) {
+        margin-left: auto;
+    }
+}

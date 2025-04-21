@@ -4,24 +4,25 @@ import {
 	memo,
 	ReactNode,
 	useRef,
-} from 'react'
-import { RippleWrapper } from '@/shared/ui/RippleWrapper'
+} from "react"
+import { RippleWrapper } from "@/shared/ui/RippleWrapper"
 import {
 	AdditionalClasses,
 	classNames,
 	Mods,
-} from '@/shared/helpers/classNames'
-import { handleRipple, handleRippleCursorPosition } from '@/shared/lib/ripple'
-import { useToggleButtonGroupContext } from '@/shared/ui/ToggleButtonGroup'
-import { mergeEventHandlers } from '@/shared/helpers/mergeEventHandlers'
-import { isValueSelected } from '@/shared/helpers/isValueSelected'
-import styles from './style.module.scss'
+} from "@/shared/helpers/classNames"
+import { handleRipple, handleRippleCursorPosition } from "@/shared/lib/ripple"
+import { useToggleButtonGroupContext } from "@/shared/ui/ToggleButtonGroup"
+import { mergeEventHandlers } from "@/shared/helpers/mergeEventHandlers"
+import { isValueSelected } from "@/shared/helpers/isValueSelected"
+import { CompositeItem } from "@floating-ui/react"
+import styles from "./style.module.scss"
 
-export type ToggleButtonSize = 'xs' | 's' | 'm' | 'l'
-export type ToggleButtonColor = 'primary' | 'secondary'
-export type ToggleButtonBorderRadius = 's' | 'm' | 'full' | 'none'
+export type ToggleButtonSize = "xs" | "s" | "m" | "l"
+export type ToggleButtonColor = "primary" | "secondary"
+export type ToggleButtonBorderRadius = "s" | "m" | "full" | "none"
 
-type HTMLButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange'>
+type HTMLButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onChange">
 
 export interface ToggleButtonProps extends HTMLButtonProps {
 	className?: string
@@ -38,9 +39,9 @@ export const ToggleButton = memo(
 		(props: ToggleButtonProps, ref: React.ForwardedRef<HTMLButtonElement>) => {
 			const {
 				className,
-				size = 's',
-				color = 'primary',
-				borderRadius = 'm',
+				size = "s",
+				color = "primary",
+				borderRadius = "m",
 				children,
 				value,
 				disabled,
@@ -71,7 +72,7 @@ export const ToggleButton = memo(
 			}
 
 			const mods: Mods = {
-				[styles['selected']]: isSelected,
+				[styles["selected"]]: isSelected,
 			}
 
 			const additionalClasses: AdditionalClasses = [
@@ -82,19 +83,23 @@ export const ToggleButton = memo(
 			]
 
 			return (
-				<button
-					className={classNames(styles['button'], additionalClasses, mods)}
+				<CompositeItem
 					ref={ref}
-					disabled={isDisabled}
-					tabIndex={isDisabled ? -1 : tabIndex}
-					type="button"
-					onClick={mergeEventHandlers([handleClick, onClick])}
-					aria-pressed={isSelected ? 'true' : 'false'}
-					{...otherProps}
-				>
-					{children}
-					<RippleWrapper ref={rippleWrapperRef} />
-				</button>
+					render={
+						<button
+							className={classNames(styles["button"], additionalClasses, mods)}
+							disabled={isDisabled}
+							tabIndex={isDisabled ? -1 : tabIndex}
+							type="button"
+							onClick={mergeEventHandlers([handleClick, onClick])}
+							aria-pressed={isSelected ? "true" : "false"}
+							{...otherProps}
+						>
+							{children}
+							<RippleWrapper ref={rippleWrapperRef} />
+						</button>
+					}
+				/>
 			)
 		}
 	)

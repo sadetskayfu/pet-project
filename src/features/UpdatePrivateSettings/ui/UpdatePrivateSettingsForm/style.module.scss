@@ -1,0 +1,38 @@
+@use '@/app/styles/helpers' as *;
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons {
+    display: flex;
+    column-gap: rem(10);
+    margin-top: var(--padding-30);
+    margin-left: auto;
+}
+
+.switch {
+    justify-content: space-between;
+}
+
+.skeleton {
+    &__switch-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        height: rem(135);
+        @include mobile {
+            height: rem(120);
+        }
+    }
+    &__switch {
+        height: var(--font-size-default);
+        width: 100%;
+    }
+    &__button {
+        height: var(--button-height-s);
+        width: rem(100);
+    }
+}

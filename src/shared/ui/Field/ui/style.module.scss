@@ -44,10 +44,12 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-shrink: 0;
 }
 
 .actions {
 	display: flex;
+	align-items: center;
 	padding-left: calc(var(--paddingInline) - var(--button-height-xxs) / 4);
 	padding-right: calc(var(--actionsPaddingRight) - var(--button-height-xxs) / 4);
 }
@@ -151,7 +153,6 @@
 			--height: var(--button-height-m);
 			--paddingBlock: #{rem(10)};
 			@include mobile {
-				--height: var(--button-height-s);
 				--paddingBlock: #{rem(5)};
 			}
 		}
@@ -159,18 +160,16 @@
 	&:not(.standard) {
 		&.m {
 			--height: var(--button-height-m);
-			--paddingBlock: #{rem(10)};
+			--paddingBlock: #{rem(12)};
 			@include mobile {
-				--height: var(--button-height-s);
-				--paddingBlock: #{rem(5)};
+				--paddingBlock: #{rem(8)};
 			}
 		}
 		&.l {
 			--height: var(--button-height-l);
 			--paddingBlock: #{rem(15)};
 			@include mobile {
-				--height: var(--button-height-m);
-				--paddingBlock: #{rem(10)};
+				--paddingBlock: #{rem(12)};
 			}
 		}
 		&.with-actions {

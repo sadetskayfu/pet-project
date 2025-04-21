@@ -3,13 +3,13 @@ import { z } from 'zod'
 export const formSchema = z.object({
 	firstName: z
 		.string()
-		.min(1, { message: 'First name is required' })
-		.max(32, { message: 'Max length 32 characters' }),
+		.min(1, { message: 'Имя обязательно' })
+		.max(32, { message: 'Максимальная длина 32 символа' }),
 	lastName: z
 		.string()
-		.min(1, { message: 'First name is required' })
-		.max(32, { message: 'Max length 32 characters' }),
-	birthDate: z.string().min(1, { message: 'Birth date is required' }),
+		.min(1, { message: 'Фамилия обязательна' })
+		.max(32, { message: 'Максимальная длина 32 символа' }),
+	birthDate: z.string().min(1, { message: 'Дата рождения обязательна' }),
 	photoUrl: z.string(),
 })
 

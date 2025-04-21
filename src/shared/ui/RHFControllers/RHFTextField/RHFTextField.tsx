@@ -4,6 +4,7 @@ import { TextField, TextFieldProps } from '@/shared/ui/TextField'
 
 interface Props<T extends FieldValues> extends TextFieldProps {
 	name: Path<T>
+	trim?: boolean
 }
 
 export const RHFTextField = <T extends FieldValues>(props: Props<T>) => {
@@ -12,6 +13,7 @@ export const RHFTextField = <T extends FieldValues>(props: Props<T>) => {
 		helperText,
 		onBlur: externalOnBlur,
         clearButton,
+		trim,
 		...otherProps
 	} = props
 
@@ -27,7 +29,10 @@ export const RHFTextField = <T extends FieldValues>(props: Props<T>) => {
 			}) => (
 				<TextField
 					onBlur={mergeEventHandlers([onBlur, externalOnBlur])}
-                    onChange={onChange}
+                    onChange={(event) => {
+						const value = event.target.value
+						onChange(trim ? value.trim() : value)
+					}}
                     onClear={clearButton ? () => onChange('') : undefined}
                     clearButton={clearButton}
 					errored={!!error}

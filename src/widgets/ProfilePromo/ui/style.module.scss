@@ -1,0 +1,141 @@
+@use "@/app/styles/helpers" as *;
+
+.promo {
+	display: flex;
+	column-gap: var(--padding-20);
+    position: relative;
+}
+
+.poster {
+    position: relative;
+    height: 500px;
+    width: auto;
+    margin-left: auto;
+    &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+            to right,
+            var(--theme-color-dark) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
+    }
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(
+            to top,
+            var(--theme-color-dark) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+    }
+    @include mobile {
+        height: 600px;
+        &:after {
+            height: 100%;
+        }
+    }
+}
+
+.details {
+    position: absolute;
+    left: 50%;
+	translate: -50% 0;
+	z-index: 1;
+    max-width: var(--container-width);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: var(--container-padding-x);
+    @include max-width(1649) {
+		max-width: 100%;
+		padding-inline: var(--container-padding-x);
+	}
+    @include mobile {
+        justify-content: center;
+    }
+}
+
+.user-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--padding-20);
+}
+
+.avatar-container {
+    position: relative;
+    font-size: fluid-text(100, 80);
+    border-radius: 50%;
+}
+
+.avatar {
+    --height: #{fluid-text(200, 180)};
+    width: var(--height);
+    height: var(--height);
+    font-size: calc(var(--height) / 1.75);
+}
+
+.upload-avatar-button {
+    font-size: var(--font-size-default);
+    position: absolute;
+    top: 50%;
+    translate: 50% -50%;
+    right: 0;
+}
+
+.crown {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    translate: -50% 20%;
+}
+
+.total-reviews-badge {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    translate: -50% -50%;
+    padding-inline: rem(12);
+    width: max-content;
+    padding-block: rem(3);
+    background-color: var(--theme-color-dark);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-s);
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__location {
+        display: flex;
+		align-items: center;
+		column-gap: rem(5);
+		font-size: rem(26);
+		color: var(--font-color-soft);
+    }
+}
+
+.bottom-actions {
+    position: absolute;
+    right: var(--container-padding-x);
+    bottom: var(--container-padding-x);
+    display: flex;
+    column-gap: rem(10);
+}

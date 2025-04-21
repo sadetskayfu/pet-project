@@ -216,7 +216,13 @@ export const useNavigation = <T>(props: UseNavigationProps<T>) => {
                 if (lastSelectedOption && lastSelectedOptionIndex) {
                     setActiveOption(Number(lastSelectedOptionIndex))
                     scrollToItem(lastSelectedOption, optionList)
-                    console.log('Scroll to selected item after open menu')
+                } else {
+                    const option = options[activeIndex]
+                
+                    if(option) {
+                        setActiveOption(activeIndex)
+                        scrollToItem(options[activeIndex], optionList)
+                    } 
                 }
             } else {
                 const option = options[activeIndex]
@@ -224,7 +230,6 @@ export const useNavigation = <T>(props: UseNavigationProps<T>) => {
                 if(option) {
                     setActiveOption(activeIndex)
                     scrollToItem(options[activeIndex], optionList)
-                    console.log('Scroll to item after open menu')
                 }
             }
         }

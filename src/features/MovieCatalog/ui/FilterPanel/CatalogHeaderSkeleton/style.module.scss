@@ -1,0 +1,23 @@
+@use '@/app/styles/helpers' as *;
+
+.skeleton {
+    display: flex;
+    column-gap: rem(10);
+    height: var(--button-height-m);
+    @include mobile {
+        height: var(--button-height-s);
+        &__button {
+            width: var(--button-height-s);
+        }
+    }
+    &__button {
+        width: rem(175);
+    }
+    &__button,
+    &__field {
+        height: 100%;
+    }
+    &__field {
+        width: 100%;
+    }
+}

@@ -1,12 +1,29 @@
 @use '@/app/styles/helpers' as *;
 
-.section {
+.actor-panel {
     display: flex;
     flex-direction: column;
-    gap: rem(40); 
 }
 
 .actions {
     display: flex;
-    column-gap: rem(10);
+    @include mobile {
+        padding-left: calc(var(--button-height-m) + rem(10));
+    }
+    @include max-width(580) {
+        flex-direction: column;
+        row-gap: rem(10);
+    }
+}
+
+.create-button {
+    flex-shrink: 0;
+    margin-left: rem(-1);
+    @include max-width(580) {
+        margin-left: auto;
+    }
+}
+
+.search-field {
+    z-index: 1;
 }

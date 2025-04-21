@@ -1,16 +1,29 @@
 @use '@/app/styles/helpers' as *;
 
-.section {
+.genre-list {
+    height: 100%;
+    position: relative;
     display: flex;
-    align-items: center;
-    gap: rem(10);
-    flex-wrap: wrap;
-    &.loading {
-        opacity: var(--opacity-disabled);
+    flex-direction: column;
+    row-gap: var(--padding-30);
+}
+
+.create-genre-field {
+    @include mobile {
+        padding-left: calc(var(--button-height-m) + rem(10));
     }
 }
 
 .item-list {
-    display: contents;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    gap: var(--padding-20);
+    @include max-width(1000) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include mobile {
+        grid-template-columns: 1fr;
+    }
 }
 

@@ -35,6 +35,7 @@ import styles from './style.module.scss'
 type MenuOpenVariant = 'click' | 'hover'
 
 interface MenuProps {
+	className?: string
 	trigger: ReactElement
 	children?: React.ReactNode
 	placementRoot?: Placement
@@ -49,6 +50,7 @@ interface MenuProps {
 
 export const MenuComponent = (props: MenuProps) => {
 	const {
+		className,
 		trigger,
 		children,
 		placementRoot = 'bottom-start',
@@ -204,10 +206,10 @@ export const MenuComponent = (props: MenuProps) => {
 								initialFocus={isNested ? -1 : 0}
 								returnFocus={false}
 							>
-								<div role="presentation" ref={refs.setFloating} style={floatingStyles}>
+								<div role="presentation" ref={refs.setFloating} style={{...floatingStyles, zIndex: 1500}}>
 									<ul
 										{...getFloatingProps()}
-										className={classNames(styles['menu'], [], mods)}
+										className={classNames(styles['menu'], [className], mods)}
 										style={{ ...style, padding }}
 									>
 										{children}
