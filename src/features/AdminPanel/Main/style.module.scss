@@ -1,0 +1,7 @@
+@use '@/app/styles/helpers' as *;
+
+.title {
+    @include mobile {
+        padding-left: calc(var(--button-height-m) + rem(20));
+    }
+}

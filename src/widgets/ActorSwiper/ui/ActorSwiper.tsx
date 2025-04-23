@@ -12,6 +12,16 @@ export const ActorSwiper = memo((props: ActorSwiperProps) => {
 	const { actors } = props
 
 	const renderActors = useMemo(() => {
+		if(!actors) {
+			return Array(8)
+			.fill(null)
+			.map(() => (
+				<SwiperSlide>
+					<ActorCardSkeleton />
+				</SwiperSlide>
+			))
+		}
+
 		if (actors.length > 0) {
 			return actors.map((actor) => (
 				<SwiperSlide key={actor.id}>
@@ -19,14 +29,6 @@ export const ActorSwiper = memo((props: ActorSwiperProps) => {
 				</SwiperSlide>
 			))
 		}
-
-		return Array(8)
-			.fill(null)
-			.map(() => (
-				<SwiperSlide>
-					<ActorCardSkeleton />
-				</SwiperSlide>
-			))
 	}, [actors])
 
 	return (

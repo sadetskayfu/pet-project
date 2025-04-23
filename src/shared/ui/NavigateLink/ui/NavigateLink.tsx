@@ -8,15 +8,16 @@ type HTMLLinkProps = AnchorHTMLAttributes<HTMLAnchorElement>
 interface NavigateLinkProps extends HTMLLinkProps {
 	children: ReactNode
 	to: string
+	activeWhileStartWithTo?: boolean
 }
 
 export const NavigateLink = memo(
 	forwardRef(
 		(props: NavigateLinkProps, ref: React.ForwardedRef<HTMLAnchorElement>) => {
-			const { className, children, to, ...otherProps } = props
+			const { className, children, to, activeWhileStartWithTo, ...otherProps } = props
 
 			const location = useLocation()
-			const isActive = location.pathname === to
+			const isActive = location.pathname === to || (activeWhileStartWithTo && location.pathname.startsWith(to))
 
 			const mods: Record<string, boolean | undefined> = {
 				[styles['active']]: isActive,

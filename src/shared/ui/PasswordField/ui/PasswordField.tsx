@@ -27,6 +27,7 @@ export const PasswordField = memo(
 					onClick={() => setIsVisiblePassword((prev) => !prev)}
 					stopPropagation
 					variant="clear"
+					size="xs"
 					aria-label={isVisiblePassword ? "Скрыть пароль" : "Показать пароль"}
 				>
 					<Eye />

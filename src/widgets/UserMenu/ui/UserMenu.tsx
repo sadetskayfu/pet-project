@@ -22,8 +22,6 @@ export const UserMenu = memo(() => {
 
 	const isAdmin = user?.roles.find((role) => role === "admin")
 
-	console.log(user?.roles)
-
 	return (
 		<Menu
 			className={styles['menu']}

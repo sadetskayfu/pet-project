@@ -19,11 +19,11 @@ import styles from "./style.module.scss"
 
 interface UpdateUserAvatarDialogProps extends Omit<DialogProps, "children"> {
 	id?: string
-	avatar?: string | null
+	hasAvatar?: boolean
 }
 
-const UpdateUserAvatarDialog = memo(
-	({ setOpen, id, avatar, ...otherProps }: UpdateUserAvatarDialogProps) => {
+export const UpdateUserAvatarDialog = memo(
+	({ setOpen, id, hasAvatar, ...otherProps }: UpdateUserAvatarDialogProps) => {
 		const handleCloseDialog = useCallback(() => {
 			setOpen?.(false)
 		}, [setOpen])
@@ -64,7 +64,7 @@ const UpdateUserAvatarDialog = memo(
 				>
 					<DialogHeading>
 						<Typography className={styles["title"]} color="hard" size="h4">
-							{avatar
+							{hasAvatar
 								? "Выбирите новое изображение или удалите текущее"
 								: "Выберите изображение"}
 						</Typography>
@@ -84,7 +84,7 @@ const UpdateUserAvatarDialog = memo(
 						</Typography>
 					</DialogDescription>
 					<div className={styles["actions"]}>
-						{avatar && (
+						{hasAvatar && (
 							<Button
 								onClick={() => deleteAvatar()}
 								disabled={isPending}
@@ -122,4 +122,3 @@ const UpdateUserAvatarDialog = memo(
 	}
 )
 
-export default UpdateUserAvatarDialog

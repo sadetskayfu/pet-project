@@ -5,6 +5,7 @@ import { useAppDispatch } from "@/shared/redux/redux"
 import { useMutation } from "@tanstack/react-query"
 import { MutationMovieData } from "../model/MutationMovieData"
 import { queryClient } from "@/shared/api"
+import { profileApi } from "@/entities/profile"
 
 export const useDeleteFromWished = (userId: number, onSuccess?: () => void) => {
 	const dispatch = useAppDispatch()
@@ -12,8 +13,14 @@ export const useDeleteFromWished = (userId: number, onSuccess?: () => void) => {
 	const { mutate, isPending } = useMutation({
 		mutationFn: ({ id }: MutationMovieData) => movieApi.removeFromWished(id),
 
-        onSuccess: async (_, { title, id }) => {
+        onSuccess: async (data, { title, id }) => {
             await queryClient.invalidateQueries({queryKey: [movieApi.baseKey, movieApi.wished, userId]})
+
+			queryClient.setQueryData(profileApi.getUserProfileQueryOptions(userId).queryKey, (oldData) => {
+				if(oldData) {
+					return {...oldData, totalWishedMedia: data.totalWishedMedia}
+				}
+			})
 
             queryClient.invalidateQueries({queryKey: [movieApi.baseKey, 'list']})
             queryClient.invalidateQueries({queryKey: [movieApi.baseKey, id]})

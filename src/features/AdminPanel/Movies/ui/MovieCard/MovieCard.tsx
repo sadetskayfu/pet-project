@@ -22,7 +22,7 @@ interface MovieCardProps {
 export const MovieCard = memo((props: MovieCardProps) => {
 	const { data, onEdit, onDelete } = props
 
-	const { id, title, genres, countries, cardImgUrl, ...otherData } = data
+	const { id, title, genres, countries, cardImgUrl, type, ...otherData } = data
 
 	const editButtonRef = useRef<HTMLButtonElement>(null)
 	const deleteButtonRef = useRef<HTMLButtonElement>(null)
@@ -71,6 +71,7 @@ export const MovieCard = memo((props: MovieCardProps) => {
 			countries={countries.map((country) => country.code)}
 			title={title}
 			actions={actions}
+			mediaType={type}
 			
 			{...otherData}
 		/>

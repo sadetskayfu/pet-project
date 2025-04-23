@@ -12,11 +12,11 @@ export const HeightRatedMovies = memo(() => {
 
 	return (
 		<div ref={sectionRef} className="section">
-			<SectionTitleWithArrows label="Фильмы с высоким рейтингом" />
+			<SectionTitleWithArrows label="Медиа с высоким рейтингом" />
 			{error ? (
 				<ErrorAlert
 					error={error}
-					message="Ошибка при получении высокооцененных фильмов"
+					message="Ошибка при получении высокооцененного медиа"
 				/>
 			) : (
 				<MovieSwiper movies={movies || []} />

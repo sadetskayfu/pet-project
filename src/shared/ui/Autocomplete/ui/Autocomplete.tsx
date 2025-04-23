@@ -337,7 +337,7 @@ export const AutocompleteComponent = <T, M extends boolean = false>(props: Autoc
 			if (loading) {
 				return (
 					<OptionItem aria-hidden="true" value="" readOnly>
-						Loading...
+						Загрузка...
 					</OptionItem>
 				)
 			}

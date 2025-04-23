@@ -16,11 +16,12 @@ interface WatchedPanelProps {
 	userId: number
 	isMe: boolean
 	isMobile?: boolean
+	totalWatched: number
 	sectionRef: React.RefObject<HTMLElement | null>
 }
 
 export const WatchedPanel = memo((props: WatchedPanelProps) => {
-	const { userId, isMe, isMobile, sectionRef } = props
+	const { userId, isMe, isMobile, totalWatched, sectionRef } = props
 
 	const [page, setPage] = useState<number>(1)
 	const [title, setTitle] = useState<string>("")
@@ -38,7 +39,8 @@ export const WatchedPanel = memo((props: WatchedPanelProps) => {
 			page,
 			title,
 			limit: 12,
-		}
+		},
+		totalWatched > 0
 	)
 
 	const handleCloseDeleteDialog = useCallback(() => {
@@ -107,41 +109,48 @@ export const WatchedPanel = memo((props: WatchedPanelProps) => {
 					error={error}
 					message="Не удалось получить просмотренные медиа"
 				/>
-				{!error && (
-					<SearchInput
-						value={title}
-						onChange={handleChangeTitle}
-						label="Поиск медиа по названию"
-						placeholder="Введите название медиа"
-						hiddenLabel
-						fullWidth
-					/>
-				)}
-				{isLoading && (
-					<Skeletons withContainer count={12} className={styles["movie-list"]}>
-						<MovieCardSkeleton />
-					</Skeletons>
-				)}
-				{!isLoading && movies && movies.length > 0 && (
-					<div className={styles["movie-list"]}>{renderMovies}</div>
-				)}
-				{!isLoading && movies && movies.length === 0 && (
-					<Typography textAlign="center">
-						По вашему запросу не найдено ниодного медиа. Попробуйте изменить поисковое
-						название
+				{totalWatched === 0 ? (
+					<Typography color="soft">
+						Не добавлено ниодного просмотренного медиа
 					</Typography>
-				)}
-
-				{movies && (
-					<Pagination
-						infinity
-						currentPage={page}
-						onChange={handleChangePage}
-						maxDisplayedPages={isMobile ? 3 : 5}
-						totalItemsOnPage={12}
-						totalItems={total!}
-						size="s"
-					/>
+				) : (
+					<>
+						{!error && (
+							<SearchInput
+								value={title}
+								onChange={handleChangeTitle}
+								label="Поиск медиа по названию"
+								placeholder="Введите название медиа"
+								hiddenLabel
+								fullWidth
+							/>
+						)}
+						{isLoading && (
+							<Skeletons withContainer count={12} className={styles["movie-list"]}>
+								<MovieCardSkeleton />
+							</Skeletons>
+						)}
+						{!isLoading && movies && movies.length > 0 && (
+							<div className={styles["movie-list"]}>{renderMovies}</div>
+						)}
+						{!isLoading && movies && movies.length === 0 && (
+							<Typography textAlign="center">
+								По вашему запросу не найдено ниодного медиа. Попробуйте изменить
+								поисковое название
+							</Typography>
+						)}
+						{movies && (
+							<Pagination
+								infinity
+								currentPage={page}
+								onChange={handleChangePage}
+								maxDisplayedPages={isMobile ? 3 : 5}
+								totalItemsOnPage={12}
+								totalItems={total!}
+								size="s"
+							/>
+						)}
+					</>
 				)}
 			</div>
 			<ConfirmationDeleteDialog

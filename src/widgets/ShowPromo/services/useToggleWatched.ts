@@ -1,4 +1,5 @@
 import { movieApi } from "@/entities/movies"
+import { profileApi } from "@/entities/profile"
 import { addNotification } from "@/features/Notifications"
 import { queryClient } from "@/shared/api"
 import { useAppDispatch } from "@/shared/redux/redux"
@@ -51,11 +52,11 @@ export const useToggleWatched = (
 
 			isMutatingRef.current = false
 		},
-		onSuccess: () => {
+		onSuccess: (data) => {
 			queryClient.invalidateQueries({ queryKey: [movieApi.baseKey, "list"] })
 			
-			// По хорошему добавить userId, чтобы инвалидировать только свой watch list
-			queryClient.invalidateQueries({ queryKey: [movieApi.baseKey, movieApi.watched] })
+			queryClient.invalidateQueries({ queryKey: [movieApi.baseKey, movieApi.watched, data.userId] })
+			queryClient.invalidateQueries({ queryKey: [profileApi.baseKey, data.userId] })
 
 			isMutatingRef.current = false
 		},

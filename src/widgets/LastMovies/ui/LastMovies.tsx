@@ -14,7 +14,7 @@ export const LastMovies = memo(() => {
 		<div ref={sectionRef} className="section">
 			<SectionTitleWithArrows label="Новинки" />
 			{error ? (
-				<ErrorAlert error={error} message="Ошибка при получении новых фильмов" />
+				<ErrorAlert error={error} message="Ошибка при получении новинок" />
 			) : (
 				<MovieSwiper movies={movies || []}/>
 			)}

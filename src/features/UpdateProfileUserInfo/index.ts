@@ -1,3 +1,2 @@
-import { lazy } from "react"
-
-export const UpdateProfileUserInfoDialog = lazy(() => import('./ui/UpdateProfileUserInfoDialog/UpdateProfileUserInfoDialog'))
+export { UpdateProfileUserInfoDialog } from "./ui/UpdateProfileUserInfoDialog//UpdateProfileUserInfoDialog"
+export type { FormSchema } from './model/FormSchema'

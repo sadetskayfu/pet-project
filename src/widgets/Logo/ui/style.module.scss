@@ -2,14 +2,19 @@
 
 .logo {
     position: relative;
-    font-size: rem(30);
-    height: 100%;
+    font-size: calc(var(--header-height) / 2);
+    width: rem(50);
+    height: var(--button-height-m);
     display: flex;
     align-items: center;
-    &:focus-visible {
-        @include focus-outline-inset;
-    }
-    &:before {
-        @include header-circle-decoration;
+    justify-content: space-between;
+    border-radius: var(--border-radius-m);
+    @include user-select-off;
+    &:after {
+        content: '';
+        width: rem(20);
+        height: rem(20);
+        background-color: var(--theme-color-primary-main);
+        border-radius: 50%;
     }
 }

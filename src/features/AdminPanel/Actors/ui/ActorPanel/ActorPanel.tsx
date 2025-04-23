@@ -14,6 +14,7 @@ const ActorPanel = () => {
 
 	return (
 		<div className={styles['actor-panel']}>
+			<h1 className="visually-hidden">Список актеров</h1>
 			<Dialog>
 				<div className={styles['actions']}>
 					<SearchInput

@@ -12,9 +12,9 @@ export const PopularMovies = memo(() => {
 
 	return (
 		<div ref={sectionRef} className="section">
-			<SectionTitleWithArrows label="Популярные фильмы" />
+			<SectionTitleWithArrows label="Популярное медиа" />
 			{error ? (
-				<ErrorAlert error={error} message="Не удалось получить популярные фильмы" />
+				<ErrorAlert error={error} message="Не удалось получить популярное медиа" />
 			) : (
 				<MovieSwiper movies={movies || []} />
 			)}

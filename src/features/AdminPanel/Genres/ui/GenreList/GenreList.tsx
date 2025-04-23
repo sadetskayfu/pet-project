@@ -39,7 +39,7 @@ export const GenreList = () => {
 	const { deleteGenre, getIsPending: getIsDeletePending } = useDeleteGenre()
 
 	const renderGenres = useMemo(() => {
-		if (genres) {
+		if (genres && genres.length > 0) {
 			return genres.map((genre) => (
 				<li key={genre.id}>
 					<GenreField
@@ -57,6 +57,7 @@ export const GenreList = () => {
 
 	return (
 		<div className={styles["genre-list"]}>
+			<h1 className="visually-hidden">Список жанров</h1>
 			<CreateGenreField className={styles['create-genre-field']} onValidate={validateGenreName} />
 			<ErrorAlert error={error} message="Не удалось получить жанры" />
 			{isLoading ? (

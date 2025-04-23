@@ -6,7 +6,7 @@ import {
 	PopoverHeading,
 	PopoverProps,
 } from "@/shared/ui/Popover"
-import { lazy, memo, Suspense, useCallback } from "react"
+import { lazy, Suspense, useCallback } from "react"
 import { FormSchema } from "../../model/FormSchema"
 import { UpdatePrivateSettingsFormSkeleton } from "../UpdatePrivateSettingsForm/UpdatePrivateSettingsFormSkeleton"
 import { Typography } from "@/shared/ui/Typography"
@@ -21,35 +21,36 @@ interface Props extends Omit<PopoverProps, "children"> {
 	popoverId?: string
 }
 
-const UpdatePrivateSettingsPopover = memo(
-	({ defaultValues, popoverId, setOpen, ...otherProps }: Props) => {
-		const handleClose = useCallback(() => {
-			setOpen?.(false)
-		}, [setOpen])
+export const UpdatePrivateSettingsPopover = ({
+	defaultValues,
+	popoverId,
+	setOpen,
+	...otherProps
+}: Props) => {
+	const handleClose = useCallback(() => {
+		setOpen?.(false)
+	}, [setOpen])
 
-		return (
-			<Popover  modal placement="bottom-end" setOpen={setOpen} {...otherProps}>
-				<PopoverContent
-					id={popoverId}
-					containerClassName={styles["popover"]}
-					className={styles["popover__content"]}
-				>
-					<PopoverHeading>
-						<Typography color="hard" size="h5">
-							Измените настройки приватности
-						</Typography>
-					</PopoverHeading>
-					<Suspense fallback={<UpdatePrivateSettingsFormSkeleton />}>
-						<Form defaultValues={defaultValues} onSuccess={handleClose}>
-							<PopoverClose>
-								<Button variant="clear">Отмена</Button>
-							</PopoverClose>
-						</Form>
-					</Suspense>
-				</PopoverContent>
-			</Popover>
-		)
-	}
-)
-
-export default UpdatePrivateSettingsPopover
+	return (
+		<Popover modal placement="bottom-end" setOpen={setOpen} {...otherProps}>
+			<PopoverContent
+				id={popoverId}
+				containerClassName={styles["popover"]}
+				className={styles["popover__content"]}
+			>
+				<PopoverHeading>
+					<Typography color="hard" size="h5">
+						Измените настройки приватности
+					</Typography>
+				</PopoverHeading>
+				<Suspense fallback={<UpdatePrivateSettingsFormSkeleton />}>
+					<Form defaultValues={defaultValues} onSuccess={handleClose}>
+						<PopoverClose>
+							<Button variant="clear">Отмена</Button>
+						</PopoverClose>
+					</Form>
+				</Suspense>
+			</PopoverContent>
+		</Popover>
+	)
+}

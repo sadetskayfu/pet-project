@@ -8,6 +8,8 @@ export type Profile = {
     displayName: string | null
     avatarMedium: string | null
     totalReviews: number
+    totalWatchedMedia: number
+    totalWishedMedia: number
     country: Country
     firstName: string | null
     lastName: string | null

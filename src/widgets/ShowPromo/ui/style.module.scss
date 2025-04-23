@@ -2,7 +2,7 @@
 
 .promo {
 	position: relative;
-	background-color: var(--color-dark);
+	background-color: var(--theme-color-dark);
 	@include tablet {
         height: rem(600);
 		.details {
@@ -48,7 +48,7 @@
         height: 100%;
         background: linear-gradient(
             to right,
-            var(--color-dark) 0%,
+            var(--theme-color-dark) 0%,
             rgba(0, 0, 0, 0) 100%
         );
     }
@@ -61,7 +61,7 @@
         height: 40%;
         background: linear-gradient(
             to top,
-            var(--color-dark) 0%,
+            var(--theme-color-dark) 0%,
             rgba(0, 0, 0, 0) 100%
         );
     }
@@ -80,8 +80,8 @@
 		    height: 100%;
 		    background: linear-gradient(
 		        to top,
-		        var(--color-dark) 0%,
-		        var(--color-dark) 35%,
+		        var(--theme-color-dark) 0%,
+		        var(--theme-color-dark) 35%,
 		        rgba(0, 0, 0, 0) 100%
 		    );
 		}
@@ -111,7 +111,6 @@
 	bottom: 0;
 	z-index: 1;
 	padding-bottom: var(--container-padding-x);
-	color: var(--color-light);
 	display: flex;
 	flex-direction: column;
 	row-gap: var(--padding-10);

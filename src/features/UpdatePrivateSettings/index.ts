@@ -1,5 +1,2 @@
-import { lazy } from "react"
-
-export const UpdatePrivateSettingsPopover = lazy(
-	() => import("./ui/UpdatePrivateSettingsPopover/UpdatePrivateSettingsPopover")
-)
+export { UpdatePrivateSettingsPopover } from "./ui/UpdatePrivateSettingsPopover/UpdatePrivateSettingsPopover"
+export type { FormSchema } from './model/FormSchema'

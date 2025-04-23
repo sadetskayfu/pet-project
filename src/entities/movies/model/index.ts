@@ -62,12 +62,16 @@ export type CreateMovieBody = {
 
 export type WatchedMovieResponse = {
     id: number
+    userId: number
     title: string
+    totalWatchedMedia: number
 }
 
 export type WishedMovieResponse = {
     id: number
+    userId: number
     title: string
+    totalWishedMedia: number
 }
 
 export type MovieSortValue =

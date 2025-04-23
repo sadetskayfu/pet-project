@@ -1,4 +1,5 @@
 import { movieApi, MovieInfinityListQueryParams } from "@/entities/movies"
+import { profileApi } from "@/entities/profile"
 import { addNotification } from "@/features/Notifications"
 import { queryClient } from "@/shared/api"
 import { useAppDispatch } from "@/shared/redux/redux"
@@ -62,9 +63,12 @@ export const useToggleWished = (
 
             isMutatingRef.current = false
 		},
-		onSuccess: (_, { id }) => {
+		onSuccess: (data, { id }) => {
 			queryClient.invalidateQueries({ queryKey: [movieApi.baseKey, "list"] })
 			queryClient.invalidateQueries({ queryKey: [movieApi.baseKey, id] })
+
+			queryClient.invalidateQueries({queryKey: [movieApi.baseKey, movieApi.wished, data.userId]})
+			queryClient.invalidateQueries({queryKey: [profileApi.baseKey, data.userId]})
 
             isMutatingRef.current = false
 		},

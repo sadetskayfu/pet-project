@@ -14,6 +14,7 @@ const MoviePanel = () => {
 
 	return (
 		<div className={styles["movie-panel"]}>
+			<h1 className="visually-hidden">Список фильмов</h1>
 			<Dialog>
 				<div className={styles["actions"]}>
 					<SearchInput

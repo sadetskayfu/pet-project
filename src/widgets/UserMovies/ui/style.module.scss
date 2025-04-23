@@ -2,10 +2,20 @@
 
 .section {
     margin-top: var(--section-padding);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--padding-30);
+}
+
+.no-media {
+    display: flex;
+    column-gap: rem(10);
+    align-items: center;
+    align-self: center;
 }
 
 .tabs {
-    margin-top: var(--padding-30);
     button {
         width: 100%;
     }

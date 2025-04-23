@@ -53,6 +53,8 @@ const ProfilePage = () => {
 									gender={profile.gender}
 									isHiddenWatched={profile.isHiddenWatchedMovies}
 									isHiddenWished={profile.isHiddenWishedMovies}
+									totalWatched={profile.totalWatchedMedia}
+									totalWished={profile.totalWishedMedia}
 								/>
 							)}
 						</div>

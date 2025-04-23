@@ -108,7 +108,7 @@ export const ShowPromo = memo((props: ShowPromoProps) => {
 					className={styles["title"]}
 					component="h1"
 					size="h1"
-					color="inherit"
+					color="hard"
 				>
 					{title}
 				</Typography>

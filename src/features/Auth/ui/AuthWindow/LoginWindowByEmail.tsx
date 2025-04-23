@@ -1,7 +1,6 @@
 import { lazy, Suspense, useState } from "react"
 import { LoginFormSkeleton } from "../AuthForm/LoginFormSkeleton"
 import { Typography } from "@/shared/ui/Typography"
-import { Button } from "@/shared/ui/Button"
 import { useAppDispatch } from "@/shared/redux/redux"
 import { authActions, authSelectors } from "../../slice/authSlice"
 import { useSelector } from "react-redux"
@@ -40,7 +39,7 @@ export const LoginWindowByEmail = () => {
 			<div className={styles["window"]}>
 				<div className={styles["header"]}>
 					<Typography component="h1" size="h4" color="primary">
-						Войдтие в аккаунт
+						Войдите в аккаунт
 					</Typography>
 					<NavigateActions />
 				</div>

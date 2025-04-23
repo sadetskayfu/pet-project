@@ -4,9 +4,11 @@ import { useQuery } from "@tanstack/react-query"
 export const useWatchedMovies = (
 	userId: number,
 	params: UserMoviesQueryParams,
+	enabled: boolean
 ) => {
 	const { data, error, isLoading } = useQuery({
 		...movieApi.getWatchedMoviesQueryOptions(userId, params),
+		enabled
 	})
 
 	return { data, error, isLoading }

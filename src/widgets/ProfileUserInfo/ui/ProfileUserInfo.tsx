@@ -1,56 +1,45 @@
 import { Typography } from "@/shared/ui/Typography"
 import { getDateLabel } from "@/shared/helpers/getDateLabel"
-import {  memo, Suspense, useCallback, useId, useRef, useState } from "react"
-import { IconButton } from "@/shared/ui/IconButton"
-import { Edit } from "@/shared/assets/icons"
-import { BaseTooltip } from "@/shared/ui/Tooltip"
+import {
+	lazy,
+	memo,
+	Suspense,
+} from "react"
 import { Profile } from "@/entities/profile/model"
 import { getAgeLabel } from "@/shared/helpers/getAgeLabel"
 import { SectionTitle } from "@/shared/ui/SectionTitle"
-import { UpdateProfileUserInfoDialog } from "@/features/UpdateProfileUserInfo"
 import styles from "./style.module.scss"
+
+const UpdateUserInfo = lazy(() => import("./UpdateUserInfo/UpdateUserInfo"))
 
 interface ProfileUserInfoProps {
 	profile: Profile
 }
 
 export const ProfileUserInfo = memo(({ profile }: ProfileUserInfoProps) => {
-	const [isOpenUpdateDialog, setIsOpenUpdateDialog] = useState<boolean>(false)
-	const updateDialogId = useId()
-
-	const updateProfileButtonRef = useRef<HTMLButtonElement>(null)
-
-	const handleOpenUpdateDialog = useCallback(() => {
-		setIsOpenUpdateDialog(true)
-	}, [])
-
 	const birthDateLabel = profile.birthDate
 		? `${getDateLabel(profile.birthDate)} (${getAgeLabel(profile.birthDate)})`
 		: "Не указано"
 
 	return (
 		<>
-			<div className='section'>
+			<div className="section">
 				<div className={styles["header"]}>
 					<SectionTitle
 						label={profile.isMe ? "Информация обо мне" : "Информация о пользователе"}
 					/>
 					{profile.isMe && (
-						<BaseTooltip label="Изменить информацию о себе">
-							<IconButton
-								onClick={handleOpenUpdateDialog}
-								ref={updateProfileButtonRef}
-								aria-label="Изменить информацию о себе"
-								aria-controls={isOpenUpdateDialog ? updateDialogId : undefined}
-								aria-expanded={isOpenUpdateDialog ? "true" : "false"}
-								aria-haspopup="dialog"
-								borderRadius="m"
-								size="s"
-								variant="clear"
-							>
-								<Edit />
-							</IconButton>
-						</BaseTooltip>
+						<Suspense fallback={null}>
+							<UpdateUserInfo
+								defaultValues={{
+									birthDate: profile.birthDate || "",
+									firstName: profile.firstName || "",
+									lastName: profile.lastName || "",
+									displayName: profile.displayName || "",
+									gender: profile.gender || "",
+								}}
+							/>
+						</Suspense>
 					)}
 				</div>
 				<div className={styles["description"]}>
@@ -78,23 +67,6 @@ export const ProfileUserInfo = memo(({ profile }: ProfileUserInfoProps) => {
 					</div>
 				</div>
 			</div>
-			{profile.isMe && (
-				<Suspense fallback={null}>
-					<UpdateProfileUserInfoDialog
-						id={updateDialogId}
-						returnFocus={updateProfileButtonRef}
-						defaultValues={{
-							birthDate: profile.birthDate || "",
-							firstName: profile.firstName || "",
-							lastName: profile.lastName || "",
-							displayName: profile.displayName || "",
-							gender: profile.gender || "",
-						}}
-						open={isOpenUpdateDialog}
-						setOpen={setIsOpenUpdateDialog}
-					/>
-				</Suspense>
-			)}
 		</>
 	)
 })

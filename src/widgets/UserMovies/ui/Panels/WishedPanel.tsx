@@ -15,12 +15,13 @@ import styles from "./style.module.scss"
 interface WishedPanelProps {
 	userId: number
 	isMe: boolean
-    isMobile?: boolean
-    sectionRef: React.RefObject<HTMLElement | null>
+	isMobile?: boolean
+	totalWished: number
+	sectionRef: React.RefObject<HTMLElement | null>
 }
 
 export const WishedPanel = memo((props: WishedPanelProps) => {
-	const { userId, isMe, isMobile, sectionRef } = props
+	const { userId, isMe, isMobile, totalWished, sectionRef } = props
 
 	const [page, setPage] = useState<number>(1)
 	const [title, setTitle] = useState<string>("")
@@ -32,11 +33,15 @@ export const WishedPanel = memo((props: WishedPanelProps) => {
 
 	const deleteButtonRef = useRef<HTMLButtonElement>(null)
 
-	const { data, error, isLoading } = useWishedMovies(userId, {
-		page,
-		title,
-		limit: 12,
-	})
+	const { data, error, isLoading } = useWishedMovies(
+		userId,
+		{
+			page,
+			title,
+			limit: 12,
+		},
+		totalWished > 0
+	)
 
 	const handleCloseDeleteDialog = useCallback(() => {
 		setIsOpenDeleteDialog(false)
@@ -85,7 +90,7 @@ export const WishedPanel = memo((props: WishedPanelProps) => {
 		if (movies && movies?.length > 0) {
 			return movies.map((movie) => (
 				<MovieCard
-                    key={movie.id}
+					key={movie.id}
 					data={movie}
 					className={styles["list-item"]}
 					isMe={isMe}
@@ -99,41 +104,46 @@ export const WishedPanel = memo((props: WishedPanelProps) => {
 		<>
 			<div className={styles["panel"]}>
 				<ErrorAlert error={error} message="Не удалось получить желаемые медиа" />
-				{!error && (
-					<SearchInput
-						value={title}
-						onChange={handleChangeTitle}
-						label="Поиск медиа по названию"
-						placeholder="Введите название медиа"
-						hiddenLabel
-						fullWidth
-					/>
-				)}
-				{isLoading && (
-					<Skeletons withContainer count={12} className={styles["movie-list"]}>
-						<MovieCardSkeleton />
-					</Skeletons>
-				)}
-				{!isLoading && movies && movies.length > 0 && (
-					<div className={styles["movie-list"]}>{renderMovies}</div>
-				)}
-				{!isLoading && movies && movies.length === 0 && (
-					<Typography textAlign="center">
-						По вашему запросу не найдено ниодного медиа. Попробуйте изменить поисковое
-						название
-					</Typography>
-				)}
-
-				{movies && (
-					<Pagination
-						infinity
-						currentPage={page}
-						onChange={handleChangePage}
-						maxDisplayedPages={isMobile ? 3 : 5}
-						totalItemsOnPage={12}
-						totalItems={data.meta.total}
-						size="s"
-					/>
+				{totalWished === 0 ? (
+					<Typography color="soft">Не добавлено ниодного желаемого медиа</Typography>
+				) : (
+					<>
+						{!error && (
+							<SearchInput
+								value={title}
+								onChange={handleChangeTitle}
+								label="Поиск медиа по названию"
+								placeholder="Введите название медиа"
+								hiddenLabel
+								fullWidth
+							/>
+						)}
+						{isLoading && (
+							<Skeletons withContainer count={12} className={styles["movie-list"]}>
+								<MovieCardSkeleton />
+							</Skeletons>
+						)}
+						{!isLoading && movies && movies.length > 0 && (
+							<div className={styles["movie-list"]}>{renderMovies}</div>
+						)}
+						{!isLoading && movies && movies.length === 0 && (
+							<Typography textAlign="center">
+								По вашему запросу не найдено ниодного медиа. Попробуйте изменить
+								поисковое название
+							</Typography>
+						)}
+						{movies && (
+							<Pagination
+								infinity
+								currentPage={page}
+								onChange={handleChangePage}
+								maxDisplayedPages={isMobile ? 3 : 5}
+								totalItemsOnPage={12}
+								totalItems={data.meta.total}
+								size="s"
+							/>
+						)}
+					</>
 				)}
 			</div>
 			<ConfirmationDeleteDialog

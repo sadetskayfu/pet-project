@@ -9,7 +9,7 @@ import { LastReviewsForMovie } from "@/widgets/LastReviewsForMovie"
 import { PopularReviewsForMovie } from "@/widgets/PopularReviewsForMovie"
 import { ActorsForMovie } from "@/widgets/ActorsForMovie"
 import { classNames } from "@/shared/helpers/classNames"
-import styles from './style.module.scss'
+import styles from "./style.module.scss"
 
 const MoviePage = () => {
 	const { movieId: strMovieId } = useParams()
@@ -23,7 +23,13 @@ const MoviePage = () => {
 			{isLoading && (
 				<CircularProgress absCenter size="l" aria-label="Загрузка фильма" />
 			)}
-			<ErrorAlert error={error} message={`Ошибка при получении фильма`} />
+			<div className="container">
+				<ErrorAlert
+					className={styles["error-alert"]}
+					error={error}
+					message={`Ошибка при получении фильма`}
+				/>
+			</div>
 			{movie && (
 				<>
 					<ShowPromo

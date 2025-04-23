@@ -183,7 +183,7 @@ export const ReviewList = (props: ReviewListProps) => {
 					<div>
 											<Typography textAlign="center" component="p" color="soft">
 						{totalReviews === 0
-							? "У этого медиа нету ниодного отзыва. Станьте первыми"
+							? "Нету ниодного отзыва. Станьте первыми"
 							: "По вашим критериям не найдено ниодного отзыва. Попробуйте изменить фильтры"}
 					</Typography>
 					</div>

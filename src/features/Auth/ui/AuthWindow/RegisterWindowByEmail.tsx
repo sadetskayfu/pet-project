@@ -41,7 +41,7 @@ export const RegisterWindowByEmail = () => {
 			<div className={styles["window"]}>
 				<div className={styles["header"]}>
 					<Typography component="h1" size="h4" color="primary">
-						Создать аккаунт
+						Создайте аккаунт
 					</Typography>
 					<NavigateActions />
 				</div>

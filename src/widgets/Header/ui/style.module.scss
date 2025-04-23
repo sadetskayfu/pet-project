@@ -12,7 +12,7 @@
     height: var(--header-height);
     display: flex;
     align-items: center;
-    column-gap: rem(50);
+    column-gap: rem(30);
 }
 
 .logo {
@@ -24,6 +24,10 @@
 .link-list {
     display: flex;
     column-gap: rem(10);
+    @include mobile {
+        flex-direction: column;
+        row-gap: rem(10);
+    }
 }
 
 .actions {

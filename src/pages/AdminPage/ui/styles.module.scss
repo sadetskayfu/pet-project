@@ -1,14 +1,12 @@
 @use '@/app/styles/helpers' as *;
 
+.panel {
+    width: 100%;
+}
+
 .inner {
     display: flex;
     column-gap: var(--padding-30);
     min-height: calc(100vh - var(--header-height) * 2.5);
-    @include mobile {
-        
-    }
 }
 
-.panel {
-    width: 100%;
-}

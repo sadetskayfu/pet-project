@@ -22,7 +22,7 @@ export const ProtectedRoute = (props: ProtectedRouteProps) => {
         const isForbidden = !(roles.every((role) => user.roles.includes(role)))
   
         if(isForbidden) {
-            return <Navigate to={ROUTES.FORBIDDEN}/>
+            return <Navigate to={ROUTES.FORBIDDEN} />
         }
     
     }

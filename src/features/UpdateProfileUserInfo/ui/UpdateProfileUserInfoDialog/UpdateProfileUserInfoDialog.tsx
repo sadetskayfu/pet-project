@@ -7,7 +7,7 @@ import {
 	DialogProps,
 } from "@/shared/ui/Dialog"
 import { Typography } from "@/shared/ui/Typography"
-import { lazy, memo, Suspense, useCallback } from "react"
+import { lazy, Suspense, useCallback } from "react"
 import { FormSchema } from "../../model/FormSchema"
 import { UpdateProfileUserInfoFormSkeleton } from "../UpdateProfileUserInfoForm/UpdateProfileUserInfoFormSkeleton"
 import styles from "./style.module.scss"
@@ -22,7 +22,7 @@ interface UpdateProfileUserInfoDialogProps
 	id?: string
 }
 
-const UpdateProfileUserInfoDialog = memo(({
+export const UpdateProfileUserInfoDialog = ({
 	defaultValues,
 	id,
 	setOpen,
@@ -57,6 +57,5 @@ const UpdateProfileUserInfoDialog = memo(({
 			</DialogContent>
 		</Dialog>
 	)
-})
+}
 
-export default UpdateProfileUserInfoDialog

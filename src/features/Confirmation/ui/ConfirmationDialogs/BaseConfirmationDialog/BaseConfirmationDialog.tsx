@@ -83,7 +83,7 @@ export const BaseConfirmationDialog = (props: BaseConfirmationDialogProps) => {
 				className={styles['content']}
 			>
 				<DialogHeading>
-					<Typography component="h3" size="h5" color="primary">
+					<Typography size="h5" color="hard">
 						{title}
 					</Typography>
 				</DialogHeading>
@@ -103,7 +103,8 @@ export const BaseConfirmationDialog = (props: BaseConfirmationDialogProps) => {
 					) : (
 						<div style={{ position: 'relative' }}>
 							<Button
-								size="xs"
+								variant='outlined'
+								size='xs'
 								aria-description={sendCodeError ? errorAlertId : undefined}
 								disabled={isSendCodePending}
 								onClick={() => sendCode({ userId, confirmationVariant })}
@@ -111,7 +112,7 @@ export const BaseConfirmationDialog = (props: BaseConfirmationDialogProps) => {
 								Отправить код
 							</Button>
 							{isSendCodePending && (
-								<CircularProgress aria-label="Sending code" absCenter />
+								<CircularProgress aria-label="Отправка кода" absCenter />
 							)}
 						</div>
 					)}

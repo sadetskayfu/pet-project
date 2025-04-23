@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom"
 import { Suspense } from "react"
 import { useWindowWidth } from "@/app/providers/windowWidth"
-import styles from "./styles.module.scss"
 import {
 	DesktopAdminPanelSideBar,
 	MobileAdminPanelSideBar,
 } from "@/features/AdminPanel"
 import { VIEWPORT } from "@/shared/constants/viewport"
+import styles from "./styles.module.scss"
 
 const AdminPage = () => {
 	const { windowWidth } = useWindowWidth()

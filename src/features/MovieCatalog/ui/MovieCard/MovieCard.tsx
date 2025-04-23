@@ -4,10 +4,7 @@ import { memo, useRef } from "react"
 import { IconButton } from "@/shared/ui/IconButton"
 import { BookMark, Eye, Star } from "@/shared/assets/icons"
 import { CompositeItem } from "@floating-ui/react"
-import {
-	BaseTooltip,
-} from "@/shared/ui/Tooltip"
-import { DelayGroup } from "@/shared/ui/DelayGroup"
+import { BaseTooltip } from "@/shared/ui/Tooltip"
 import { MutationMovieData } from "../MovieCatalogList/MovieCatalogList"
 import { classNames } from "@/shared/helpers/classNames"
 import { ToggleWatchedBody } from "../../services/useToggleWatched"
@@ -54,8 +51,14 @@ export const MovieCard = memo((props: MovieCardProps) => {
 		: "Оценить"
 
 	const actions = (
-		<DelayGroup>
-			<BaseTooltip centering maxWidth={300} placement="right" label={reviewButtonLabel}>
+		<>
+			{" "}
+			<BaseTooltip
+				centering
+				maxWidth={300}
+				placement="right"
+				label={reviewButtonLabel}
+			>
 				<CompositeItem
 					ref={reviewButtonRef}
 					render={
@@ -117,7 +120,7 @@ export const MovieCard = memo((props: MovieCardProps) => {
 					}
 				/>
 			</BaseTooltip>
-		</DelayGroup>
+		</>
 	)
 
 	return (

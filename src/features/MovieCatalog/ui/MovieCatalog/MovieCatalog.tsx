@@ -103,7 +103,7 @@ export const MovieCatalog = () => {
 			}),
 			...(mediaType !== 'all' && { mediaType })
 		}
-		setSearchParams(params)
+		setSearchParams(params, { replace: true })
 	}
 
 	const resetForm = useCallback(() => {

@@ -1,4 +1,4 @@
-import { memo, useCallback } from "react"
+import { useCallback } from "react"
 import {
 	Dialog,
 	DialogClose,
@@ -19,11 +19,11 @@ import styles from "./style.module.scss"
 
 interface UpdateProfilePosterDialogProps extends Omit<DialogProps, "children"> {
 	id?: string
-	poster?: string | null
+	hasPoster?: boolean
 }
 
-const UpdateProfilePosterDialog = memo(
-	({ setOpen, id, poster, ...otherProps }: UpdateProfilePosterDialogProps) => {
+export const UpdateProfilePosterDialog = 
+	({ setOpen, id, hasPoster, ...otherProps }: UpdateProfilePosterDialogProps) => {
 		const handleCloseDialog = useCallback(() => {
 			setOpen?.(false)
 		}, [setOpen])
@@ -64,7 +64,7 @@ const UpdateProfilePosterDialog = memo(
 				>
 					<DialogHeading>
 						<Typography className={styles["title"]} color="hard" size="h4">
-							{poster
+							{hasPoster
 								? "Выбирите новое изображение или удалите текущее"
 								: "Выберите изображение"}
 						</Typography>
@@ -84,7 +84,7 @@ const UpdateProfilePosterDialog = memo(
 						</Typography>
 					</DialogDescription>
 					<div className={styles["actions"]}>
-						{poster && (
+						{hasPoster && (
 							<Button
 								onClick={() => deletePoster()}
 								disabled={isPending}
@@ -120,6 +120,4 @@ const UpdateProfilePosterDialog = memo(
 			</Dialog>
 		)
 	}
-)
 
-export default UpdateProfilePosterDialog

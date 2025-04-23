@@ -1,15 +1,22 @@
-import { AuthPage } from '@/pages/AuthPage'
-import { HomePage } from '@/pages/HomePage'
-import { MoviesPage } from '@/pages/MoviesPage'
-import { ROUTES } from '@/shared/constants/routes'
-import { createBrowserRouter } from 'react-router-dom'
-import { ProfilePage } from '@/pages/ProfilePage'
-import { AdminPage } from '@/pages/AdminPage'
-import { ForbiddenPage } from '@/pages/ForbiddenPage'
-import { MainLayout } from './MainLayout/MainLayout'
-import { AuthLayout } from './AuthLayout/AuthLayout'
-import { ActorPanel, GenrePanel, MoviePanel } from '@/features/adminPanel'
-import { MoviePage } from '@/pages/MoviePage'
+import { AuthPage } from "@/pages/AuthPage"
+import { HomePage } from "@/pages/HomePage"
+import { MoviesPage } from "@/pages/MoviesPage"
+import { ROUTES } from "@/shared/constants/routes"
+import { createBrowserRouter } from "react-router-dom"
+import { ProfilePage } from "@/pages/ProfilePage"
+import { AdminPage } from "@/pages/AdminPage"
+import { ForbiddenPage } from "@/pages/ForbiddenPage"
+import { MainLayout } from "./MainLayout/MainLayout"
+import { AuthLayout } from "./AuthLayout/AuthLayout"
+import {
+	AdminActorPanel,
+	AdminGenrePanel,
+	AdminMainPanel,
+	AdminMoviePanel,
+} from "@/features/AdminPanel"
+import { MoviePage } from "@/pages/MoviePage"
+import { ProtectedRoute } from "./ProtectedRoute"
+import { NotFoundPage } from "@/pages/NotFoundPage"
 
 export const router = createBrowserRouter([
 	{
@@ -29,9 +36,7 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: `${ROUTES.PROFILE}/:userId`,
-				element: (
-						<ProfilePage />
-				),
+				element: <ProfilePage />,
 			},
 			{
 				path: ROUTES.FORBIDDEN,
@@ -39,22 +44,31 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: ROUTES.ADMIN,
-				element: <AdminPage />,
+				element: (
+					<ProtectedRoute roles={['admin']}>
+						<AdminPage />
+					</ProtectedRoute>
+				),
 				children: [
+					{ path: "", element: <AdminMainPanel /> },
 					{
-						path: 'genres',
-						element: <GenrePanel />,
+						path: "genres",
+						element: <AdminGenrePanel />,
 					},
 					{
-						path: 'actors',
-						element: <ActorPanel />,
+						path: "actors",
+						element: <AdminActorPanel />,
 					},
 					{
-						path: 'movies',
-						element: <MoviePanel />,
+						path: "movies",
+						element: <AdminMoviePanel />,
 					},
 				],
 			},
+			{
+				path: '*',
+				element: <NotFoundPage />
+			}
 		],
 	},
 	{
