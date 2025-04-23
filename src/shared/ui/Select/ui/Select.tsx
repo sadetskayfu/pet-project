@@ -316,8 +316,6 @@ export const Select = <T, V extends string | string[]>(props: SelectProps<T, V>)
 		}
 
 		return Children.map(children, (child, index) => {
-			console.log('Render options')
-
 			const optionValue: string | undefined = child.props.value
 
 			if (!optionValue) {
@@ -351,7 +349,6 @@ export const Select = <T, V extends string | string[]>(props: SelectProps<T, V>)
 
 	const renderSelectedValue = useMemo(() => {
 		if (value.length > 0) {
-			console.log('Render value')
 			if (isMulti) {
 				if (renderValue) {
 					return value.map((optionValue) => {

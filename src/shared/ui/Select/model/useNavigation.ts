@@ -44,7 +44,6 @@ export const useNavigation = (props: UseNavigationProps) => {
 
 	const setActiveOption = useCallback(
 		(index: number) => {
-			console.log('Setting active option')
 			const lastActiveOption = lastActiveOptionRef.current
 			const options = optionsRef.current
 
@@ -136,7 +135,6 @@ export const useNavigation = (props: UseNavigationProps) => {
 			if (nextIndex !== currentIndex) {
 				setActiveOption(nextIndex)
 				if (optionList) {
-					console.log('Scroll to item after arrow navigation')
 					scrollToItem(options[nextIndex], optionList)
 				}
 			}
@@ -195,7 +193,6 @@ export const useNavigation = (props: UseNavigationProps) => {
 				if (lastSelectedOption && lastSelectedOptionIndex) {
 					setActiveOption(Number(lastSelectedOptionIndex))
 					scrollToItem(lastSelectedOption, optionList)
-					console.log('Scroll to item after open menu')
 				}
 			} else {
 				const option = options[activeIndex]
@@ -203,7 +200,6 @@ export const useNavigation = (props: UseNavigationProps) => {
 				if(option) {
                     setActiveOption(activeIndex)
                     scrollToItem(options[activeIndex], optionList)
-					console.log('Scroll to item after open menu')
                 }
 			}
 		}

@@ -51,7 +51,6 @@ export const useNavigation = <T>(props: UseNavigationProps<T>) => {
 
     const setActiveOption = useCallback(
         (index: number) => {
-            console.log('Setting active option')
             const lastActiveOption = lastActiveOptionRef.current
             const options = optionsRef.current
 
@@ -157,7 +156,6 @@ export const useNavigation = <T>(props: UseNavigationProps<T>) => {
             if (nextIndex !== currentIndex) {
                 setActiveOption(nextIndex)
                 if (optionList) {
-                    console.log('Scroll to item after arrow navigation')
                     scrollToItem(options[nextIndex], optionList)
                 }
             }

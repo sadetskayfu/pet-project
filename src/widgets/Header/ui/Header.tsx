@@ -8,8 +8,6 @@ import { useAppDispatch } from "@/shared/redux/redux"
 import { authActions, ConfirmRedirectToAuthDialog } from "@/features/auth"
 import { useSelector } from "react-redux"
 import { userSelectors } from "@/entities/user"
-import { sessionSelectors } from "@/features/session"
-import { Skeleton, Skeletons } from "@/shared/ui/Skeleton"
 import { Composite, CompositeItem } from "@floating-ui/react"
 import { ScrollButton } from "@/shared/ui/ScrollButton"
 import { Portal } from "@/shared/ui/Portal"
@@ -25,7 +23,6 @@ export const Header = memo(() => {
 	const dispatch = useAppDispatch()
 
 	const user = useSelector(userSelectors.getUser)
-	const isLoading = useSelector(sessionSelectors.getSessionLoading)
 
 	const startFocusItemRef = useRef<HTMLElement | null>(null)
 
@@ -69,11 +66,7 @@ export const Header = memo(() => {
 							</Suspense>
 						)}
 						<div className={styles["actions"]}>
-							{isLoading ? (
-								<Skeletons count={2}>
-									<Skeleton className={styles["actions__skeleton-btn"]} />
-								</Skeletons>
-							) : user ? (
+							{user ? (
 								<UserMenu />
 							) : (
 								<>

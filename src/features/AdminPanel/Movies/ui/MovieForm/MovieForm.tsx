@@ -10,6 +10,7 @@ import {
 	RHFDatePicker,
 	RHFTextArea,
 	RHFAutocompleteByValue,
+	RHFToggleButtonGroup
 } from "@/shared/ui/RHFControllers"
 import { ReactElement, useId, useMemo, useState } from "react"
 import { Button } from "@/shared/ui/Button"
@@ -20,7 +21,6 @@ import { useCreateMovie } from "../../services/useCreateMovie"
 import { CreateMovieActorBody, CreateMovieBody, MediaType } from "@/entities/movies"
 import { CircularProgress } from "@/shared/ui/CircularProgress"
 import { ErrorAlert } from "@/widgets/ErrorAlert"
-import { RHFToggleButtonGroup } from "@/shared/ui/RHFControllers/RHFToggleButtonGroup/RHFToggleButtonGroup"
 import { useUpdateMovie } from "../../services/useUpdateMovie"
 import { Tabs } from "@/shared/ui/Tabs"
 import { Tab } from "@/shared/ui/Tab"

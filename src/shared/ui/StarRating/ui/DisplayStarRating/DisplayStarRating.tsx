@@ -34,6 +34,7 @@ export const DisplayStarRating = memo((props: DisplayStarRatingProps) => {
 
 			return (
 				<DisplayStar
+					key={index}
 					fullFilled={isFullFilled}
 					halfFilled={isHalfFilled}
 					quarterFilled={isQuarterFilled}

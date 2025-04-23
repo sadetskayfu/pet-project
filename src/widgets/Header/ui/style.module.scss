@@ -35,11 +35,4 @@
     display: flex;
     align-items: center;
     column-gap: rem(10);
-    &__skeleton-btn {
-        height: var(--button-height-m);
-        width: rem(100);
-        @include mobile {
-            height: var(--button-height-s);
-        }
-    }
 }

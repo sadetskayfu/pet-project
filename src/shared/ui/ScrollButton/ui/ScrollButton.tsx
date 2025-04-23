@@ -27,7 +27,6 @@ export const ScrollButton = memo((props: ScrollButtonProps) => {
 
 	useEffect(() => {
 		const setVisible = throttle(() => {
-			console.log("sd")
 			setIsVisible(window.scrollY > visibleRange)
 		}, 200)
 

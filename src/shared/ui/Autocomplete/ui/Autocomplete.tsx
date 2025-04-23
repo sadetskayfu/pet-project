@@ -351,8 +351,6 @@ export const AutocompleteComponent = <T, M extends boolean = false>(props: Autoc
 			}
 
 			return options.map((option, index) => {
-				console.log('Render options')
-
 				const optionLabel = getOptionLabel(option)
 				const optionValue = getOptionValue(option)
 
@@ -396,8 +394,6 @@ export const AutocompleteComponent = <T, M extends boolean = false>(props: Autoc
 				inputValue !== '' &&
 				Array.isArray(renderOptions)
 			) {
-				console.log('Filter options')
-
 				const filteredOptions = renderOptions.filter((option) => {
 					const optionLabel = getOptionLabel(recordOptions[option.props.value])
 
@@ -426,8 +422,6 @@ export const AutocompleteComponent = <T, M extends boolean = false>(props: Autoc
 			const isMulti = Array.isArray(value)
 
 			if (isMulti && value.length > 0) {
-				console.log('Render value')
-
 				if (renderValue) {
 					return value.map((v) => {
 						return renderValue(v, () =>

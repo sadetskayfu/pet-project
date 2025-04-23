@@ -30,7 +30,7 @@ export const formSchema = z.object({
 	type: z.enum([
 		'movie',
 		'series',
-		'animated_films'
+		'animated_film'
 	]) as z.ZodType<MediaType>,
 })
 

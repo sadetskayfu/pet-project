@@ -150,6 +150,7 @@ export const ReviewList = (props: ReviewListProps) => {
 									<ReviewCardSkeleton />
 								) : (
 									<ReviewCard
+										key={review.id}
 										data={review}
 										className={styles["review-card"]}
 										isUserReview={review.userId === user?.id}
