@@ -27,11 +27,11 @@
     &:focus-visible {
         @include focus-outline;
     }
-    svg {
+    &__arrow {
         transition: transform 0.2s;
     }
     &[data-open] {
-        svg {
+        .button__arrow {
             transform: rotate(180deg);
         }
     }
@@ -40,6 +40,11 @@
         width: var(--height);
         font-size: calc(var(--height) / 1.75);
         color: var(--font-color-hard);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--border-radius-m);
+        background-color: var(--color-grey-500);
     }
 }
 

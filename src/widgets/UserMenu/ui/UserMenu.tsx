@@ -30,7 +30,7 @@ export const UserMenu = memo(() => {
 					<span className={styles['button__icon']}>
 						<User />
 					</span>
-					<Arrow direction="bottom" />
+					<Arrow className={styles['button__arrow']} direction="bottom" />
 				</button>
 			}
 		>
