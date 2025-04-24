@@ -7,6 +7,7 @@ import { Badge } from "@/shared/ui/Badge"
 import { getAgeLabel } from "@/shared/helpers/getAgeLabel"
 import { ActorRole } from "@/entities/actors"
 import styles from "./style.module.scss"
+import { getFirstLetter } from "@/shared/helpers/formattingString"
 
 export interface ActorCardProps {
 	className?: string
@@ -31,7 +32,7 @@ export const ActorCard = memo((props: ActorCardProps) => {
 					borderRadius="circular"
 					src={photoUrl}
 				>
-					{firstName}
+					{getFirstLetter(firstName)}
 				</Avatar>
 			</Badge>
 			<div className={styles["actor-card__description"]}>
