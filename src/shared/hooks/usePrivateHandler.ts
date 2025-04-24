@@ -2,7 +2,7 @@ import { useCallback } from "react"
 import { useSelector } from "react-redux"
 import { userSelectors } from "@/entities/user"
 import { useAppDispatch } from "../redux/redux"
-import { authActions } from "@/features/auth"
+import { authActions } from "@/features/Auth"
 
 export const usePrivateHandler = <T extends (...args: any[]) => any>(
 	callback: T
