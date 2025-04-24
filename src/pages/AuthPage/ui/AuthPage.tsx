@@ -1,5 +1,5 @@
 import { classNames } from '@/shared/helpers/classNames'
-import { AuthWindow } from '@/features/auth'
+import { AuthWindow } from '@/features/Auth'
 import styles from './style.module.scss'
 
 const AuthPage = () => {
