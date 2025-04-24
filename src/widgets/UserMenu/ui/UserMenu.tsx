@@ -1,10 +1,9 @@
-import { Avatar } from "@/shared/ui/Avatar"
 import { Menu } from "@/shared/ui/Menu/ui/Menu/Menu"
 import { MenuItem } from "@/shared/ui/Menu/ui/MenuItem/MenuItem"
 import { MenuItemContent } from "@/shared/ui/Menu/ui/MenuItemContent/MenuItemContent"
 import { Divider } from "@/shared/ui/Divider"
 import { memo, useCallback } from "react"
-import { Arrow } from "@/shared/assets/icons"
+import { Arrow, User } from "@/shared/assets/icons"
 import { useSelector } from "react-redux"
 import { userSelectors } from "@/entities/user"
 import { useAppDispatch } from "@/shared/redux/redux"
@@ -28,10 +27,9 @@ export const UserMenu = memo(() => {
 			placementRoot="bottom-end"
 			trigger={
 				<button className={styles["button"]}>
-					<Avatar
-						borderRadius="m"
-						className={styles["button__avatar"]}
-					/>
+					<span className={styles['button__icon']}>
+						<User />
+					</span>
 					<Arrow direction="bottom" />
 				</button>
 			}

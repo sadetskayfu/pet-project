@@ -30,7 +30,9 @@ export const ActorCard = memo((props: ActorCardProps) => {
 					className={styles["actor-card__photo"]}
 					borderRadius="circular"
 					src={photoUrl}
-				/>
+				>
+					{firstName}
+				</Avatar>
 			</Badge>
 			<div className={styles["actor-card__description"]}>
 				<Typography size="helper" color="hard">
