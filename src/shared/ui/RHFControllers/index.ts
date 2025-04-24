@@ -9,4 +9,5 @@ export { RHFTextArea } from "./RHFTextArea/RHFTextArea"
 export { RHFStartRating } from "./RHFStartRating/RHFStartRating"
 export { RHFPinCodeField } from "./RHFPinCodeField/RHFPinCodeField"
 export { RHFToggleButtonGroup } from "./RHFToggleButtonGroup/RHFToggleButtonGroup"
+export { RHFSwitch } from './RHFSwitch/RHFSwitch'
 export type { Option } from "./types/Option"

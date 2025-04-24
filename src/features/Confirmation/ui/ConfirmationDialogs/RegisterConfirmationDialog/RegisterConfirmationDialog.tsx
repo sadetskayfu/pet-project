@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { ConfirmationVariant } from '../../../model/Confirmation'
 import { useRegisterConfirmation } from '../../../services/useRegisterConfirmation'
 import { BaseConfirmationDialog } from '../BaseConfirmationDialog/BaseConfirmationDialog'
-import { authSelectors } from '@/features/auth'
+import { authSelectors } from '@/features/Auth'
 import { memo } from 'react'
 
 interface RegisterConfirmationDialogProps {
