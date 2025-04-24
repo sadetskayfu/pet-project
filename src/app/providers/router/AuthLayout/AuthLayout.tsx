@@ -5,7 +5,7 @@ export const AuthLayout = () => {
 	return (
 		<div className="app">
 			<main>
-				<Suspense>
+				<Suspense fallback={null}>
 					<Outlet />
 				</Suspense>
 			</main>

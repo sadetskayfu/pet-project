@@ -23,7 +23,7 @@ export const ActorsForMovie = memo(({ movieId }: { movieId: number }) => {
 			{error ? (
 				<ErrorAlert error={error} message="Ошибка при получении актеров" />
 			) : (
-				<ActorSwiper actors={actors || []} />
+				<ActorSwiper actors={actors} />
 			)}
 		</div>
 	)

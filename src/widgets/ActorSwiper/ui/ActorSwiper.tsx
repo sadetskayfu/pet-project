@@ -5,7 +5,7 @@ import { ActorForMovie } from "@/entities/actors/model/Actor"
 import styles from "./style.module.scss"
 
 interface ActorSwiperProps {
-	actors: ActorForMovie[]
+	actors?: ActorForMovie[]
 }
 
 export const ActorSwiper = memo((props: ActorSwiperProps) => {

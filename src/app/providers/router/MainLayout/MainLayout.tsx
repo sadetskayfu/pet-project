@@ -7,7 +7,7 @@ export const MainLayout = () => {
 		<div className="app">
 			<Header />
 			<main>
-				<Suspense>
+				<Suspense fallback={null}>
 					<Outlet />
 				</Suspense>
 			</main>
