@@ -44,7 +44,7 @@
         justify-content: center;
         align-items: center;
         border-radius: var(--border-radius-m);
-        background-color: var(--color-grey-500);
+        border: var(--border-weight-soft) solid var(--border-color-grey);
     }
 }
 
