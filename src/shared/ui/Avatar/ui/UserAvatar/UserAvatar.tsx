@@ -6,10 +6,11 @@ import { getFirstLetter } from "@/shared/helpers/formattingString"
 import { Typography } from "@/shared/ui/Typography"
 import { Badge, BadgeBorderColor } from "@/shared/ui/Badge"
 import { CompositeItem } from "@floating-ui/react"
+import { getReviewSuffix } from "@/shared/helpers/getReviewSuffix"
 import styles from "./style.module.scss"
 
 interface UserAvatarProps {
-	avatarUrl: string | null
+	avatarUrl?: string | null
 	name: string
 	userId: number
 	totalReviews: number
@@ -66,7 +67,7 @@ export const UserAvatar = (props: UserAvatarProps) => {
 					<Typography color="hard" size="helper">
 						Перейти на страницу профиля к пользователю <br />
 						<Typography size="helper">
-							{name} ({totalReviews} отзывов)
+							{name} ({totalReviews} {getReviewSuffix(totalReviews)})
 						</Typography>
 						<br />
 					</Typography>

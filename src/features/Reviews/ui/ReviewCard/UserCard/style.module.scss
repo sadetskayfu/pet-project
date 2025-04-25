@@ -20,32 +20,7 @@
     flex-direction: column;
 }
 
-.avatar-tooltip {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.avatar-link {
-    border-radius: 50%;
-    &:focus-visible {
-        @include focus-outline;
-    }
-}
-
 .skeleton {
-    &__avatar {
-        --height: #{rem(80)};
-        height: var(--height);
-        width: var(--height);
-		@include mobile {
-			--height: #{rem(70)};
-		}
-		@include mobile-s {
-			--height: #{rem(60)};
-		}
-    }
     &__user-info {
         display: flex;
         flex-direction: column;
@@ -54,16 +29,5 @@
     &__text {
         height: var(--font-size-default);
         width: rem(100);
-    }
-    &.is-comment {
-        .skeleton__avatar {
-            --height: #{rem(60)};
-            @include mobile {
-                --height: #{rem(50)};
-            }
-            @include mobile-s {
-                --height: #{rem(45)};
-            }
-        }
     }
 }
