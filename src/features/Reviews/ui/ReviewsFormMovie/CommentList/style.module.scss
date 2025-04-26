@@ -43,5 +43,11 @@
 			display: none;
 		}
 	}
+	@include mobile {
+		margin-top: 0px;
+		&__pagination-button {
+			height: max-content;
+		}
+	}
 }
 

@@ -198,6 +198,7 @@ export const CommentList = (props: CommentListProps) => {
 					</div>
 					<div className={styles["footer"]}>
 						<PaginationButton
+							className={styles['footer__pagination-button']}
 							loading={isFetchingNextPage}
 							onFetchNextPage={fetchNextPage}
 							hasNextPage={hasNextPage}
