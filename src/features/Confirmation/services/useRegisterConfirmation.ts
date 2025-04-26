@@ -15,6 +15,15 @@ export const useRegisterConfirmation = () => {
 		onSuccess: async () => {
 			try {
 				await dispatch(getSessionInfo()).unwrap()
+
+				dispatch(
+					addNotification({
+						severity: "success",
+						message: "Вы успешно создали аккаунт",
+					})
+				)
+	
+				navigate(location.state?.from || -1)
 			} catch (error) {
 				dispatch(
 					addNotification({
@@ -23,15 +32,6 @@ export const useRegisterConfirmation = () => {
 					})
 				)
 			}
-
-			dispatch(
-				addNotification({
-					severity: "success",
-					message: "Вы успешно создали аккаунт",
-				})
-			)
-
-			navigate(location.state?.from || -1)
 		},
 	})
 

@@ -14,6 +14,13 @@ export const logout = createAppAsyncThunk(
 	async (_, { dispatch }) => {
 		try {
 			await sessionApi.logout()
+
+			dispatch(userActions.removeUser())
+
+			queryClient.invalidateQueries({ queryKey: [movieApi.baseKey] })
+			queryClient.invalidateQueries({ queryKey: [reviewApi.baseKey] })
+			queryClient.invalidateQueries({ queryKey: [commentApi.baseKey] })
+			queryClient.invalidateQueries({ queryKey: [profileApi.baseKey] })
 		} catch (error) {
 			dispatch(
 				addNotification({
@@ -22,12 +29,5 @@ export const logout = createAppAsyncThunk(
 				})
 			)
 		}
-
-		dispatch(userActions.removeUser())
-
-		queryClient.invalidateQueries({ queryKey: [movieApi.baseKey] })
-		queryClient.invalidateQueries({ queryKey: [reviewApi.baseKey] })
-		queryClient.invalidateQueries({ queryKey: [commentApi.baseKey] })
-		queryClient.invalidateQueries({ queryKey: [profileApi.baseKey] })
 	}
 )

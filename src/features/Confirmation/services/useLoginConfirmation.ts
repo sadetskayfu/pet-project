@@ -15,6 +15,17 @@ export const useLoginConfirmation = () => {
 		onSuccess: async () => {
 			try {
 				await dispatch(getSessionInfo()).unwrap()
+
+				dispatch(
+					addNotification({
+						severity: 'success',
+						message: 'Вы успешно вошли в свой аккаунт',
+					})
+				)
+	
+				const redirectTo = location.state?.from
+	
+				navigate(redirectTo || -1)
 			} catch (error) {
 				dispatch(
 					addNotification({
@@ -23,17 +34,6 @@ export const useLoginConfirmation = () => {
 					})
 				)
 			}
-
-			dispatch(
-				addNotification({
-					severity: 'success',
-					message: 'Вы успешно вошли в свой аккаунт',
-				})
-			)
-
-			const redirectTo = location.state?.from
-
-			navigate(redirectTo || -1)
 		},
 	})
 
