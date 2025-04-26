@@ -1,4 +1,5 @@
 import { movieApi } from "@/entities/movies"
+import { profileApi } from "@/entities/profile"
 import { reviewApi } from "@/entities/reviews"
 import { addNotification } from "@/features/Notifications"
 import { queryClient } from "@/shared/api"
@@ -35,6 +36,9 @@ export const useCreateReview = (onSuccess?: () => void) => {
 			})
 			queryClient.invalidateQueries({
 				queryKey: reviewApi.getPopularReviewsForMovieQueryOptions(movieId).queryKey,
+			})
+			queryClient.invalidateQueries({
+				queryKey: [profileApi.baseKey, data.user.id]
 			})
 
 			dispatch(

@@ -4,6 +4,7 @@ import { useMutation } from "@tanstack/react-query"
 import { reviewApi } from "@/entities/reviews"
 import { queryClient } from "@/shared/api"
 import { movieApi } from "@/entities/movies"
+import { profileApi } from "@/entities/profile"
 
 type DeleteReviewBody = {
 	reviewId: number
@@ -44,8 +45,9 @@ export const useDeleteReview = (onSuccess?: () => void) => {
 			queryClient.invalidateQueries({
 				queryKey: reviewApi.getPopularReviewsForMovieQueryOptions(movieId).queryKey,
 			})
-
-			//const todos = queryClient.getQueryData(reviewApi.getReviewsForMovieInfinityQueryOptions().queryKey)
+			queryClient.invalidateQueries({
+				queryKey: [profileApi.baseKey, data.user.id]
+			})
 
 			dispatch(
 				addNotification({

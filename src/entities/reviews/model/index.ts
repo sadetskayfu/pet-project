@@ -11,6 +11,7 @@ export type ReviewUserResponse = {
 
 type DeleteReviewUserResponse = {
     totalReviews: number
+    id: number
 }
 
 type MovieResponse = {
