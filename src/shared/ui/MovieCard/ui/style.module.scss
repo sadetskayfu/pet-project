@@ -13,14 +13,13 @@
     border-radius: var(--border-radius-m);
     transition: border-color 0.2s;
     border-bottom: var(--border-weight-hard) solid transparent;
+    overflow: hidden;
     &:after {
         content: '';
         position: absolute;
         bottom: 0;
         height: 50%;
         width: 100%;
-        border-bottom-left-radius: var(--border-radius-m);
-        border-bottom-right-radius: var(--border-radius-m);
         background: linear-gradient(
             to top,
             var(--theme-color-dark) 0%,
