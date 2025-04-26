@@ -32,7 +32,7 @@ export const MovieSwiper = memo((props: MovieSwiperProps) => {
 					<MovieCard
 						{...movie}
 						src={movie.cardImgUrl}
-						countries={movie.countries.map((country) => country.code)}
+						countries={movie.countries.map((country) => country.label)}
 						genres={movie.genres.map((genre) => genre.name)}
 						to={`${ROUTES.CATALOG}/${movie.id}`}
                         onFocus={() => handleFocus(index)}
