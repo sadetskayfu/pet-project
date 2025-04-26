@@ -36,15 +36,12 @@
 		@include user-select-off;
 	}
 	@include max-width(500) {
+		margin-top: 0px;
 		flex-direction: column;
-		align-items: center;
 		row-gap: rem(5);
 		&__divider {
 			display: none;
 		}
-	}
-	@include mobile {
-		margin-top: 0px;
 		&__pagination-button {
 			height: max-content;
 		}
