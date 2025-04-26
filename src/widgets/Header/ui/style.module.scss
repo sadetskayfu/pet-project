@@ -6,6 +6,9 @@
     background-color: var(--theme-color-grey-dark);
     z-index: 100;
     padding-right: 16px;
+    @include mobile {
+		padding-right: 4px;
+	}
 }
 
 .inner {

@@ -40,6 +40,8 @@ export const MovieCard = memo((props: MovieCardProps) => {
 						aria-haspopup="dialog"
 						onClick={() => onEdit(id, title, editButtonRef)}
 						color="light"
+						borderRadius="s"
+						borderPlacement="top"
 					>
 						<Edit />
 					</IconButton>
@@ -54,6 +56,8 @@ export const MovieCard = memo((props: MovieCardProps) => {
 						variant="clear"
 						color="red"
 						size="xs"
+						borderRadius="s"
+						borderPlacement="bottom"
 						onClick={() => onDelete(id, title, deleteButtonRef)}
 					>
 						<Trash />

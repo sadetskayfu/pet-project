@@ -55,10 +55,10 @@
         font-size: #{fluid-text(28, 26)};
     }
     &.h5 {
-        font-size: #{rem(24)};
+        font-size: #{fluid-text(24, 20)};
     }
     &.h6 {
-        font-size: #{rem(22)};
+        font-size: #{fluid-text(20, 18)};
     }
     &.default {
         font-size: var(--font-size-default);

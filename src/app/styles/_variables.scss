@@ -50,7 +50,7 @@
 
 	// Font
 	--font-family-base: 'Kumbh Sans', 'sans-serif';
-	--font-size-l: #{rem(20)};
+	--font-size-l: #{rem(22)};
 	--font-size-default: #{rem(18)};
 	--font-size-s: #{rem(16)};
 
@@ -127,6 +127,10 @@
 		--button-height-s: #{rem(40)};
 		--button-padding-inline-s: #{rem(14)};
 		--button-padding-block-s: #{rem(9)};
+
+		--font-size-default: #{rem(16)};
+		--font-size-s: #{rem(14)};
+		--font-size-l: #{rem(18)};
 	}
 	@include mobile-s {
 		--section-padding: #{rem(50)};

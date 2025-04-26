@@ -13,24 +13,21 @@
     border-radius: var(--border-radius-m);
     transition: border-color 0.2s;
     border-bottom: var(--border-weight-hard) solid transparent;
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        height: 50%;
+        width: 100%;
+        background: linear-gradient(
+            to top,
+            var(--theme-color-dark) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
+    } 
     @include hover {
-        .details {
-            opacity: 1;
-            
-        }
-        .age-limit-badge {
-            opacity: 1;
-        }
         img {
             transform: scale(1.05);
-        }
-    }
-    &:focus-within {
-        .details {
-            opacity: 1;
-        }
-        .age-limit-badge {
-            opacity: 1;
         }
     }
     &:focus-visible {
@@ -39,26 +36,26 @@
 }
 
 .image {
+    position: relative;
     width: 100%;
     height: auto;
     aspect-ratio: 9 / 14;
     font-size: rem(40);
     img {
         transition: transform 0.4s;
-    } 
+    }
 }
 
 .details {
-    opacity: 0;
     border-radius: inherit;
     position: absolute;
     inset: 0;
-    background-color: var(--color-dark-opacity-hard);
     display: flex;
     flex-direction: column;
     justify-content: end;
     padding: var(--padding);
     transition: opacity 0.2s;
+    z-index: 1;
 }
 
 .description {
@@ -71,6 +68,7 @@
     position: absolute;
     top: var(--padding);
     left: var(--padding);
+    z-index: 1;
 }
 
 .age-limit-badge {
@@ -78,7 +76,7 @@
     bottom: var(--padding);
     right: var(--padding);
     opacity: 0.7;
-    transition: opacity 0.2s;
+    z-index: 1;
 }
 
 .actions {
@@ -87,6 +85,9 @@
     right: var(--padding);
     display: flex;
     flex-direction: column;
+    background-color: var(--color-dark-opacity-hard);
+    border-radius: var(--border-radius-s);
+    z-index: 1;
 }
 
 .skeleton {

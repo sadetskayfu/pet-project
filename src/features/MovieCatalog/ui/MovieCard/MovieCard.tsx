@@ -75,6 +75,8 @@ export const MovieCard = memo((props: MovieCardProps) => {
 							variant="clear"
 							size="xs"
 							color="inherit"
+							borderPlacement="top"
+							borderRadius="s"
 							stopPropagation
 						>
 							<Star />
@@ -94,6 +96,7 @@ export const MovieCard = memo((props: MovieCardProps) => {
 							variant="clear"
 							size="xs"
 							color="inherit"
+							borderRadius="none"
 							stopPropagation
 						>
 							<Eye />
@@ -113,6 +116,8 @@ export const MovieCard = memo((props: MovieCardProps) => {
 							variant="clear"
 							size="xs"
 							color="inherit"
+							borderRadius="s"
+							borderPlacement="bottom"
 							stopPropagation
 						>
 							<BookMark />

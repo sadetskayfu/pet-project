@@ -50,6 +50,7 @@ export const MovieCard = memo((props: MovieCardProps) => {
 							stopPropagation
 							size="xs"
 							variant="clear"
+							borderRadius="s"
 						>
 							<Trash />
 						</IconButton>

@@ -40,9 +40,12 @@
     &__tabs {
         display: flex;
         column-gap: rem(10);
-        overflow-x: hidden;
         button {
             width: 100%;
+        }
+        @include mobile-s {
+            flex-direction: column;
+            row-gap: rem(10);
         }
     }
 }

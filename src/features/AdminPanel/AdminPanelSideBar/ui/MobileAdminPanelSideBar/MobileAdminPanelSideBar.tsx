@@ -27,7 +27,7 @@ const MobileAdminPanelSideBar = () => {
 	return (
 		<AsideMenu open={isOpen} setOpen={setIsOpen} placement="left">
 			<AsideMenuTrigger>
-				<IconButton variant="clear" className={styles['trigger-button']} size="m" borderRadius="m">
+				<IconButton variant="outlined" className={styles['trigger-button']} size="m" borderRadius="m">
 					<Filter />
 				</IconButton>
 			</AsideMenuTrigger>
