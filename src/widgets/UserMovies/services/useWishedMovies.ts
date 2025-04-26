@@ -6,10 +6,10 @@ export const useWishedMovies = (
 	params: UserMoviesQueryParams,
 	enabled: boolean
 ) => {
-	const { data, error, isLoading, isRefetching } = useQuery({
+	const { data, error, isLoading } = useQuery({
 		...movieApi.getWishedMoviesQueryOptions(userId, params),
 		enabled
 	})
 
-	return { data, error, isLoading, isRefetching }
+	return { data, error, isLoading }
 }

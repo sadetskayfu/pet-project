@@ -29,7 +29,6 @@ export const MovieList = ({ searchValue }: { searchValue: string }) => {
 	const {
 		data: movies,
 		isLoading,
-		isRefetching,
 		error,
 		fetchNextPage,
 		isFetchingNextPage,
@@ -70,7 +69,7 @@ export const MovieList = ({ searchValue }: { searchValue: string }) => {
 		<div className={styles["movie-list"]}>
 			{error ? (
 				<ErrorAlert error={error} message="Не удалось получить медиа" />
-			) : (isLoading || isRefetching) ? (
+			) : isLoading ? (
 				<Skeletons className={styles["item-list"]} withContainer count={10}>
 					<MovieCardSkeleton />
 				</Skeletons>

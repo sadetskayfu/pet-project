@@ -10,6 +10,7 @@ import { getRatingBadgeColor } from "@/shared/helpers/getRatingBadgeColor"
 import { movieMetaDataLabels } from "@/shared/helpers/movieMetaDataLabels"
 import { MediaType } from "@/entities/movies"
 import styles from "./style.module.scss"
+import { getFirstLetter } from "@/shared/helpers/formattingString"
 
 export interface MovieCardProps {
 	className?: string
@@ -97,12 +98,15 @@ const SharedContent = memo(
 		rating,
 		ageLimit,
 		mediaType,
+		title,
 	}: Partial<MovieCardProps>) => {
 		const ratingBadgeColor = useMemo(() => getRatingBadgeColor(rating!), [rating])
 
 		return (
 			<>
-				<Avatar className={styles["image"]} borderRadius="m" src={src} />
+				<Avatar className={styles["image"]} borderRadius="m" src={src}>
+					{getFirstLetter(title)}
+				</Avatar>
 				<div className={styles["details"]}>
 					<Typography color="soft" size="helper">
 						{movieMetaDataLabels.getCountryLabels(countries!)}

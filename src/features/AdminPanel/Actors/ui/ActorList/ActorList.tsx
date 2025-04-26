@@ -35,7 +35,6 @@ export const ActorList = memo(({ searchValue }: { searchValue: string }) => {
 	const {
 		data: actors,
 		isLoading,
-		isRefetching,
 		error,
 		fetchNextPage,
 		isFetchingNextPage,
@@ -80,7 +79,7 @@ export const ActorList = memo(({ searchValue }: { searchValue: string }) => {
 		<div className={styles['actor-list']}>
 			{error ? (
 				<ErrorAlert error={error} message="Не удалось получить актеров" />
-			) : (isLoading || isRefetching) ? (
+			) : isLoading ? (
 				<Skeletons count={15} withContainer className={styles["item-list"]}>
 					<ActorCardSkeleton />
 				</Skeletons>
