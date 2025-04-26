@@ -1,7 +1,6 @@
 import { useReviews } from "../services/useReviews"
 import { ErrorAlert } from "@/widgets/ErrorAlert"
 import { memo } from "react"
-import { useVisibleSection } from "@/shared/hooks"
 import { ReviewSwiper } from "@/widgets/ReviewSwiper"
 import { LongArrow } from "@/shared/assets/icons"
 import { SectionTitle } from "@/shared/ui/SectionTitle"
@@ -14,12 +13,10 @@ interface PopularReviewsForMovieProps {
 export const PopularReviewsForMovie = memo((props: PopularReviewsForMovieProps) => {
 	const { movieId, totalReviews } = props
 
-	const { sectionRef, isVisibleSection } = useVisibleSection()
-
-	const { reviews, error } = useReviews(movieId, isVisibleSection)
+	const { reviews, error } = useReviews(movieId)
 
 	return (
-		<div ref={sectionRef} className="section">
+		<div className="section">
 			<div className='section__header'>
                 <SectionTitle label="Популярные отзывы"/>
 				<div className='section__header-icons'>

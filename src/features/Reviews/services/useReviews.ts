@@ -4,7 +4,6 @@ import { useInfiniteQuery } from "@tanstack/react-query"
 export const useReviews = (
 	movieId: number,
 	queryParams: ReviewInfinityListQueryParams,
-	enabled: boolean
 ) => {
 	const {
 		data,
@@ -16,7 +15,6 @@ export const useReviews = (
 		fetchNextPage,
 	} = useInfiniteQuery({
 		...reviewApi.getReviewsForMovieInfinityQueryOptions(movieId, queryParams),
-		enabled,
 	})
 
 	return {

@@ -13,16 +13,11 @@ import { reviewSelectors } from "../../../model/reviewSlice"
 import { useToggleReviewLike } from "../../../services/useToggleReviewLike"
 import { useToggleReviewDislike } from "../../../services/useToggleReviewDislike"
 import React, { useCallback, useMemo, useRef, useState } from "react"
-import {
-	useDelayedLoading,
-	usePrivateHandler,
-	useVisibleSection,
-} from "@/shared/hooks"
+import { useDelayedLoading, usePrivateHandler } from "@/shared/hooks"
 import { ReviewCardSkeleton } from "../../ReviewCard/ReviewCard/ReviewCardSkeleton"
 import { ReviewDialog } from "../../ReviewDialog/ReviewDialog"
 import { ConfirmationDeleteDialog } from "@/widgets/ConfirmationDeleteDialog"
 import { useDeleteReview } from "../../../services/useDeleteReview"
-import { useMergeRefs } from "@floating-ui/react"
 import styles from "./style.module.scss"
 
 export type MutationReviewData = {
@@ -55,8 +50,6 @@ export const ReviewList = (props: ReviewListProps) => {
 		reviewSelectors.getExpandedReviewMessages
 	)
 
-	const { sectionRef, isVisibleSection } = useVisibleSection()
-
 	const { movieId, movieTitle, mediaType, hasMutationRef } = useReviewsContext()
 
 	const {
@@ -66,7 +59,7 @@ export const ReviewList = (props: ReviewListProps) => {
 		hasNextPage,
 		isFetchingNextPage,
 		fetchNextPage,
-	} = useReviews(movieId, queryParams, isVisibleSection)
+	} = useReviews(movieId, queryParams)
 
 	const { showSkeleton } = useDelayedLoading(isLoading, 500)
 
@@ -133,62 +126,61 @@ export const ReviewList = (props: ReviewListProps) => {
 		<div
 			aria-label={`Список отзывов для медиа ${movieTitle}`}
 			tabIndex={-1}
-			ref={useMergeRefs([sectionRef, saveFocusRef])}
+			ref={saveFocusRef}
 			className={styles["review-list-container"]}
 		>
-			{isVisibleSection &&
-				(error ? (
-					<ErrorAlert error={error} message="Ошибка при получении отзывов" />
-				) : showSkeleton || (reviews && reviews.length > 0) ? (
-					<>
-						<Virtuoso
-							useWindowScroll
-							totalCount={showSkeleton ? totalSkeletons : reviews?.length}
-							data={showSkeleton ? Array(totalSkeletons).fill(null) : reviews}
-							itemContent={(_, review) =>
-								showSkeleton ? (
-									<ReviewCardSkeleton />
-								) : (
-									<ReviewCard
-										key={review.id}
-										data={review}
-										className={styles["review-card"]}
-										isUserReview={review.userId === user?.id}
-										isOpenComments={openComments[review.id]}
-										isExpandedMessage={expandedReviewMessages[review.id]}
-										onToggleLike={handleToggleReviewLike}
-										onToggleDislike={handleToggleReviewDislike}
-										onEdit={review.userId === user?.id ? startEdit : undefined}
-										onDelete={review.userId === user?.id ? startDelete : undefined}
-									>
-										<CommentList
-											totalComments={review.totalComments}
-											reviewUserName={review.user.displayName || review.user.email}
-											queryParams={{}}
-											reviewId={review.id}
-										/>
-									</ReviewCard>
-								)
-							}
+			{error ? (
+				<ErrorAlert error={error} message="Ошибка при получении отзывов" />
+			) : showSkeleton || (reviews && reviews.length > 0) ? (
+				<>
+					<Virtuoso
+						useWindowScroll
+						totalCount={showSkeleton ? totalSkeletons : reviews?.length}
+						data={showSkeleton ? Array(totalSkeletons).fill(null) : reviews}
+						itemContent={(_, review) =>
+							showSkeleton ? (
+								<ReviewCardSkeleton />
+							) : (
+								<ReviewCard
+									key={review.id}
+									data={review}
+									className={styles["review-card"]}
+									isUserReview={review.userId === user?.id}
+									isOpenComments={openComments[review.id]}
+									isExpandedMessage={expandedReviewMessages[review.id]}
+									onToggleLike={handleToggleReviewLike}
+									onToggleDislike={handleToggleReviewDislike}
+									onEdit={review.userId === user?.id ? startEdit : undefined}
+									onDelete={review.userId === user?.id ? startDelete : undefined}
+								>
+									<CommentList
+										totalComments={review.totalComments}
+										reviewUserName={review.user.displayName || review.user.email}
+										queryParams={{}}
+										reviewId={review.id}
+									/>
+								</ReviewCard>
+							)
+						}
+					/>
+					{!showSkeleton && (
+						<PaginationButton
+							loading={isFetchingNextPage}
+							onFetchNextPage={fetchNextPage}
+							hasNextPage={hasNextPage}
+							message="Больше отзывов нету"
 						/>
-						{!showSkeleton && (
-							<PaginationButton
-								loading={isFetchingNextPage}
-								onFetchNextPage={fetchNextPage}
-								hasNextPage={hasNextPage}
-								message="Больше отзывов нету"
-							/>
-						)}
-					</>
-				) : (
-					<div>
-											<Typography textAlign="center" component="p" color="soft">
+					)}
+				</>
+			) : (
+				<div>
+					<Typography textAlign="center" component="p" color="soft">
 						{totalReviews === 0
 							? "Нету ниодного отзыва. Станьте первыми"
 							: "По вашим критериям не найдено ниодного отзыва. Попробуйте изменить фильтры"}
 					</Typography>
-					</div>
-				))}
+				</div>
+			)}
 			{user && (
 				<ReviewDialog
 					movieTitle={movieTitle}

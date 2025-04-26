@@ -9,7 +9,7 @@
 }
 
 .comment-list {
-	padding-top: var(--padding-20);
+	padding-block: var(--padding-20);
 }
 
 .open-comment-form-button {
@@ -24,6 +24,7 @@
 }
 
 .footer {
+	margin-top: calc(var(--padding-20) * -1);
 	display: flex;
 	justify-content: center;
 	column-gap: rem(5);

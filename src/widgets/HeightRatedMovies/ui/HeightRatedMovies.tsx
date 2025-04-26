@@ -2,16 +2,13 @@ import { SectionTitleWithArrows } from "@/shared/ui/SectionTitle"
 import { MovieSwiper } from "@/widgets/MovieSwiper"
 import { useMovies } from "../services/useMovies"
 import { ErrorAlert } from "@/widgets/ErrorAlert"
-import { useVisibleSection } from "@/shared/hooks"
 import { memo } from "react"
 
 export const HeightRatedMovies = memo(() => {
-	const { isVisibleSection, sectionRef } = useVisibleSection()
-
-	const { movies, error } = useMovies(isVisibleSection)
+	const { movies, error } = useMovies()
 
 	return (
-		<div ref={sectionRef} className="section">
+		<div className="section">
 			<SectionTitleWithArrows label="Медиа с высоким рейтингом" />
 			{error ? (
 				<ErrorAlert

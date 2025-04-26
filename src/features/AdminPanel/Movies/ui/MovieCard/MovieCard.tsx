@@ -68,7 +68,7 @@ export const MovieCard = memo((props: MovieCardProps) => {
 		<BaseMovieCard
 			src={cardImgUrl}
 			genres={genres.map((genre) => genre.name)}
-			countries={countries.map((country) => country.code)}
+			countries={countries.map((country) => country.label)}
 			title={title}
 			actions={actions}
 			mediaType={type}

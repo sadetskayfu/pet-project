@@ -3,15 +3,12 @@ import { MovieSwiper } from "@/widgets/MovieSwiper"
 import { useMovies } from "../services/useMovies"
 import { ErrorAlert } from "@/widgets/ErrorAlert"
 import { memo } from "react"
-import { useVisibleSection } from "@/shared/hooks"
 
 export const PopularMovies = memo(() => {
-	const { sectionRef, isVisibleSection } = useVisibleSection()
-
-	const { movies, error } = useMovies(isVisibleSection)
+	const { movies, error } = useMovies()
 
 	return (
-		<div ref={sectionRef} className="section">
+		<div className="section">
 			<SectionTitleWithArrows label="Популярное медиа" />
 			{error ? (
 				<ErrorAlert error={error} message="Не удалось получить популярное медиа" />

@@ -14,7 +14,6 @@ import {
 } from "../model"
 import {
 	infiniteQueryOptions,
-	keepPreviousData,
 	queryOptions,
 } from "@tanstack/react-query"
 
@@ -156,7 +155,7 @@ export const reviewApi = {
 			initialPageParam: {} as Cursor,
 			getNextPageParam: (result) => result.nextCursor,
 			select: (result) => result.pages.flatMap((page) => page.data),
-			placeholderData: keepPreviousData,
+			//placeholderData: keepPreviousData,
 		})
 	},
 }

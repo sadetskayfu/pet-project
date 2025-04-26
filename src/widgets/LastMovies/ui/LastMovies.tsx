@@ -3,15 +3,12 @@ import { MovieSwiper } from "@/widgets/MovieSwiper"
 import { useMovies } from "../services/useMovies"
 import { ErrorAlert } from "@/widgets/ErrorAlert"
 import { memo } from "react"
-import { useVisibleSection } from "@/shared/hooks"
 
 export const LastMovies = memo(() => {
-	const { isVisibleSection, sectionRef } = useVisibleSection()
-
-	const { movies, error } = useMovies(isVisibleSection)
+	const { movies, error } = useMovies()
 
 	return (
-		<div ref={sectionRef} className="section">
+		<div className="section">
 			<SectionTitleWithArrows label="Новинки" />
 			{error ? (
 				<ErrorAlert error={error} message="Ошибка при получении новинок" />
