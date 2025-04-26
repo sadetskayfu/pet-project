@@ -1,4 +1,4 @@
-const BASE_URL = 'https://yar-media-otzovik-api.onrender.com'
+const BASE_URL = '/api'
 //const BASE_URL = 'http://localhost:3000'
 
 type ErrorData = {
