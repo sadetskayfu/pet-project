@@ -1,3 +1,7 @@
+.popover {
+    max-width: calc(100vw - var(--container-padding-x) * 2);
+}
+
 .content {
     background-color: var(--theme-color-grey-dark);
     box-shadow: var(--box-shadow-paper);

@@ -81,7 +81,7 @@ export const PopoverContent = (props: PopoverContentProps) => {
 				context={context}
 				modal={modal}
 			>
-				<div className={containerClassName} ref={refs.setFloating} style={{...floatingStyles, zIndex}} role="presentation">
+				<div className={classNames(styles['popover'], [containerClassName])} ref={refs.setFloating} style={{...floatingStyles, zIndex}} role="presentation">
 					<div
 						className={classNames(styles['content'], [className], mods)}
 						style={style}
