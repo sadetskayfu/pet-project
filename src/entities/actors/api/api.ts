@@ -2,7 +2,6 @@ import { jsonApiInstance } from '@/shared/api'
 import { Actor, ActorForMovie, ActorsResponse, CreateActorBody } from '../model/Actor'
 import {
 	infiniteQueryOptions,
-	keepPreviousData,
 	queryOptions,
 } from '@tanstack/react-query'
 
@@ -54,7 +53,7 @@ export const actorApi = {
 			initialPageParam: 0,
 			getNextPageParam: (result) => result.nextCursor,
 			select: (result) => result.pages.flatMap((page) => page.data),
-			placeholderData: keepPreviousData,
+			//placeholderData: keepPreviousData,
 			staleTime: Infinity,
 		})
 	},

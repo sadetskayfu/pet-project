@@ -33,7 +33,7 @@ export const WishedPanel = memo((props: WishedPanelProps) => {
 
 	const deleteButtonRef = useRef<HTMLButtonElement>(null)
 
-	const { data, error, isLoading } = useWishedMovies(
+	const { data, error, isLoading, isRefetching } = useWishedMovies(
 		userId,
 		{
 			page,
@@ -100,6 +100,8 @@ export const WishedPanel = memo((props: WishedPanelProps) => {
 		}
 	}, [movies, isMe, startDelete])
 
+	const loading = isLoading || isRefetching
+
 	return (
 		<>
 			<div className={styles["panel"]}>
@@ -118,15 +120,15 @@ export const WishedPanel = memo((props: WishedPanelProps) => {
 								fullWidth
 							/>
 						)}
-						{isLoading && (
+						{loading && (
 							<Skeletons withContainer count={12} className={styles["movie-list"]}>
 								<MovieCardSkeleton />
 							</Skeletons>
 						)}
-						{!isLoading && movies && movies.length > 0 && (
+						{!loading && movies && movies.length > 0 && (
 							<div className={styles["movie-list"]}>{renderMovies}</div>
 						)}
-						{!isLoading && movies && movies.length === 0 && (
+						{!loading && movies && movies.length === 0 && (
 							<Typography textAlign="center">
 								По вашему запросу не найдено ниодного медиа. Попробуйте изменить
 								поисковое название

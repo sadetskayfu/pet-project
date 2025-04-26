@@ -50,6 +50,7 @@ export const MovieCatalogList = ({
 	const {
 		data: movies,
 		isLoading,
+		isRefetching,
 		error,
 		isFetchingNextPage,
 		hasNextPage,
@@ -92,7 +93,7 @@ export const MovieCatalogList = ({
 			/>
 			{error ? (
 				<ErrorAlert error={error} message="Ошибка при получении медиа" />
-			) : isLoading ? (
+			) : (isLoading || isRefetching) ? (
 				<Skeletons
 					count={12}
 					withContainer

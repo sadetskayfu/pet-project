@@ -1,6 +1,5 @@
 import {
 	infiniteQueryOptions,
-	keepPreviousData,
 	queryOptions,
 } from "@tanstack/react-query"
 import {
@@ -112,7 +111,7 @@ export const movieApi = {
 			initialPageParam: {} as Cursor,
 			getNextPageParam: (result) => result.nextCursor,
 			select: (result) => result.pages.flatMap((page) => page.data),
-			placeholderData: keepPreviousData,
+			//placeholderData: keepPreviousData,
 			staleTime: Infinity,
 		})
 	},
@@ -203,7 +202,7 @@ export const movieApi = {
 					`/movies/watched/${userId}?${getUserMoviesQueries(params)}`,
 					{ signal }
 				),
-			placeholderData: keepPreviousData
+			//placeholderData: keepPreviousData
 		})
 	},
 
@@ -218,7 +217,7 @@ export const movieApi = {
 					`/movies/wished/${userId}?${getUserMoviesQueries(params)}`,
 					{ signal }
 				),
-			placeholderData: keepPreviousData
+			//placeholderData: keepPreviousData
 		})
 	},
 }

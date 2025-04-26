@@ -1,4 +1,4 @@
-const BASE_URL = 'https://yar-media-otzovik-api.onrender.com';
+const BASE_URL = 'https://yar-media-otzovik-api.onrender.com'
 
 type ErrorData = {
   message?: string
