@@ -16,8 +16,8 @@ import { Star } from "@/shared/assets/icons"
 import { ReviewDialog } from "../ReviewDialog/ReviewDialog"
 import { usePrivateHandler } from "@/shared/hooks"
 import { SectionTitle } from "@/shared/ui/SectionTitle"
-import styles from "./style.module.scss"
 import { MediaType } from "@/entities/movies"
+import styles from "./style.module.scss"
 
 interface ReviewsForMovieProps {
 	movieId: number

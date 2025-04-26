@@ -168,7 +168,7 @@ export const CommentList = (props: CommentListProps) => {
 					withContainer
 					className={styles["comment-list"]}
 					min={1}
-					max={4}
+					max={10}
 					count={totalComments}
 				>
 					<CommentCardSkeleton />

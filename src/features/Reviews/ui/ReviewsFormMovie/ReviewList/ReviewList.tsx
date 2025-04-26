@@ -118,7 +118,7 @@ export const ReviewList = (props: ReviewListProps) => {
 	}, [deleteReview, movieTitle, mutationReviewData.reviewId])
 
 	const totalSkeletons = useMemo(
-		() => Math.max(1, Math.min(totalReviews, 5)),
+		() => Math.max(1, Math.min(totalReviews, 10)),
 		[totalReviews]
 	)
 

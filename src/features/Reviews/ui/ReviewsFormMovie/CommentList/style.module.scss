@@ -35,7 +35,10 @@
 	&__divider {
 		@include user-select-off;
 	}
-	@include max-width(500) {
+	&__pagination-button {
+		margin-left: calc(var(--padding-50) * -1);
+	}
+	@include max-width(560) {
 		margin-top: 0px;
 		flex-direction: column;
 		row-gap: rem(5);
@@ -44,6 +47,7 @@
 		}
 		&__pagination-button {
 			height: max-content;
+			margin-left: 0px;
 		}
 		&__close-button {
 			margin-bottom: var(--padding-20);
