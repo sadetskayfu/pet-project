@@ -59,7 +59,7 @@ export const MovieCard = memo((props: MovieCardProps) => {
 					className={styles["image-container"]}
 					onFocus={onFocus}
 				>
-					<SharedContent {...otherProps} />
+					<SharedContent title={title} {...otherProps} />
 				</Link>
 			) : (
 				<div
