@@ -66,7 +66,7 @@ export const ActorTabPanel = memo((props: ActorTabPanelProps) => {
 				loading={actorsQuery.isLoading}
 				renderValue={(option, onDelete) => (
 					<Chip
-						avatar={<Avatar src={option.photoUrl} />}
+						avatar={<Avatar src={option.photoUrl}>{getFirstLetter(option.firstName)}</Avatar>}
 						color="secondary"
 						key={option.id}
 						label={`${getFirstLetter(option.firstName)}. ${option.lastName}`}
