@@ -1,9 +1,9 @@
 .dialog {
-    padding: var(--container-padding-x);
+    padding-inline: var(--container-padding-x);
 }
 
 .content {
-    max-height: 100vh;
+    max-height: var(--full-height-with-padding);
     overflow-y: auto;
     background-color: var(--theme-color-dark);
     border-radius: var(--border-radius-m);
