@@ -223,9 +223,6 @@ const MovieForm = (props: MovieFormProps) => {
 								onClose={onDelete}
 							/>
 						)}
-						menuProps={{
-							height: 300,
-						}}
 						required
 						fullWidth
 						multiple
@@ -269,9 +266,6 @@ const MovieForm = (props: MovieFormProps) => {
 								onClose={onDelete}
 							/>
 						)}
-						menuProps={{
-							height: 300,
-						}}
 						multiple
 						required
 						fullWidth

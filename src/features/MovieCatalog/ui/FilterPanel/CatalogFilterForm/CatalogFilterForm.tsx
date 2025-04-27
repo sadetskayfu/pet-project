@@ -99,9 +99,6 @@ export const CatalogFilterForm = memo((props: CatalogFilterFormProps) => {
 							tabIndex={-1}
 						/>
 					)}
-					menuProps={{
-						height: 400,
-					}}
 					multiple
 					fullWidth
 					hiddenLabel
@@ -122,7 +119,7 @@ export const CatalogFilterForm = memo((props: CatalogFilterFormProps) => {
 					name="year"
 					label="Год выпуска"
 					options={yearOptions}
-					menuProps={{ cols: yearColumns, height: 400 }}
+					menuProps={{ cols: yearColumns }}
 					selectVariant="bg"
 					placeholder="Год выпуска"
 					hiddenLabel

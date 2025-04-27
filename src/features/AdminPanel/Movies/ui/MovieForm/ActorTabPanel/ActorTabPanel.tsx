@@ -84,9 +84,6 @@ export const ActorTabPanel = memo((props: ActorTabPanelProps) => {
 						{...props}
 					/>
 				)}
-				menuProps={{
-					height: 400,
-				}}
 				multiple
 				notFilter
 				hiddenLabel
