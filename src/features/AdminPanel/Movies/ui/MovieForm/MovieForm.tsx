@@ -224,7 +224,7 @@ const MovieForm = (props: MovieFormProps) => {
 							/>
 						)}
 						menuProps={{
-							height: 400,
+							height: 300,
 						}}
 						required
 						fullWidth
@@ -270,7 +270,7 @@ const MovieForm = (props: MovieFormProps) => {
 							/>
 						)}
 						menuProps={{
-							height: 400,
+							height: 300,
 						}}
 						multiple
 						required
