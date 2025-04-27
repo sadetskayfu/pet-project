@@ -54,7 +54,7 @@ export const TextArea = memo(
                 variant,
                 size,
                 borderPlacement,
-                maxHeight = 100,
+                maxHeight = 200,
                 hiddenLabel,
                 helperText,
                 helperTextIds: externalHelperTextIds = [],
