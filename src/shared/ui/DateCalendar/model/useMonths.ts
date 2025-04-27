@@ -20,7 +20,7 @@ export const useMonths = () => {
 	const months = useMemo(
 		() =>
 			RUSSIAN_MONTHS.map((month, index) => ({
-				value: index + '',
+				value: index + 1 + '',
 				label: month,
 			})),
 		[]
