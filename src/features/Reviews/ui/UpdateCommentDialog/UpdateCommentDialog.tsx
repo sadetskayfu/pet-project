@@ -78,7 +78,6 @@ const UpdateCommentDialog = (props: UpdateCommentDialogProps) => {
 						<RHFTextArea<FormSchema>
 							name="message"
 							label="Ваш комментарий"
-							maxHeight={400}
                             variant="outlined"
                             hiddenLabel
                             placeholder="Введите ваше сообщение"
