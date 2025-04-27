@@ -403,7 +403,7 @@ export const AutocompleteComponent = <T, M extends boolean = false>(props: Autoc
 				if (filteredOptions.length === 0) {
 					return (
 						<OptionItem readOnly value="">
-							No options
+							Нет опций
 						</OptionItem>
 					)
 				} else {
