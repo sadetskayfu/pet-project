@@ -19,8 +19,8 @@ const RUSSIAN_MONTHS = [
 export const useMonths = () => {
 	const months = useMemo(
 		() =>
-			RUSSIAN_MONTHS.map((month) => ({
-				value: month,
+			RUSSIAN_MONTHS.map((month, index) => ({
+				value: index,
 				label: month,
 			})),
 		[]
