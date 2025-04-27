@@ -36,6 +36,7 @@ export const MovieSwiper = memo((props: MovieSwiperProps) => {
 						genres={movie.genres.map((genre) => genre.name)}
 						to={`${ROUTES.CATALOG}/${movie.id}`}
                         onFocus={() => handleFocus(index)}
+						mediaType={movie.type}
 					/>
 				</SwiperSlide>
 			))
