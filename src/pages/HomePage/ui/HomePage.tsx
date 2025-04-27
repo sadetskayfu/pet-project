@@ -9,7 +9,7 @@ const HomePage = () => {
     return (
         <div className='page'>
             <div className='container'>
-                <SectionTitle centering component="h2" label="Добро пожаловать на Yar-media-otzovik"/>
+                <SectionTitle centering component="h1" label="Добро пожаловать на Yar-media-otzovik"/>
                 <LastMovies />
                 <LastReviews />
                 <HeightRatedMovies />
