@@ -47,7 +47,7 @@ export const UpdateMovieDialog = (props: UpdateMovieDialogProps) => {
 				className={styles["content"]}
 			>
 				<DialogHeading>
-					<Typography size="h5" color="primary">
+					<Typography textAlign="center" size="h5" color="primary">
 						Измените медиа {movieTitle}
 					</Typography>
 				</DialogHeading>

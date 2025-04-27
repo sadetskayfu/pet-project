@@ -69,9 +69,6 @@ export const CatalogFilterForm = memo((props: CatalogFilterFormProps) => {
 							tabIndex={-1}
 						/>
 					)}
-					menuProps={{
-						height: 400,
-					}}
 					loading={genresQuery.isLoading}
 					fullWidth
 					multiple

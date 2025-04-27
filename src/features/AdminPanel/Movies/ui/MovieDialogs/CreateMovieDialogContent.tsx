@@ -14,7 +14,7 @@ export const CreateMovieDialogContent = () => {
 			className={styles["content"]}
 		>
 			<DialogHeading>
-				<Typography component="h3" size="h5" color="primary">
+				<Typography textAlign="center" component="h3" size="h5" color="primary">
 					Создайте медиа
 				</Typography>
 			</DialogHeading>
