@@ -61,6 +61,7 @@ export const ActorCard = memo((props: ActorCardProps) => {
 						aria-label="Изменить актера"
 						aria-haspopup="dialog"
 						size='xs'
+						color='light'
 					>
 						<Edit />
 					</IconButton>
