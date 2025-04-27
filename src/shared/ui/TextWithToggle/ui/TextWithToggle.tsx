@@ -12,6 +12,7 @@ interface TextWithToggleProps {
 	className?: string
 	children: string
 	maxHeight: number
+	minHeight?: number
 	expanded?: boolean
 	onToggle?: () => void
 	onClose?: () => void
@@ -27,6 +28,7 @@ export const TextWithToggle = memo((props: TextWithToggleProps) => {
 	const {
 		className,
 		maxHeight,
+		minHeight,
 		children,
 		expanded: controlledExpanded,
 		onToggle,
@@ -92,7 +94,7 @@ export const TextWithToggle = memo((props: TextWithToggleProps) => {
 		<div className={classNames(styles["container"], additionalClasses, mods)}>
 			<p
 				ref={typographyRef}
-				style={{ maxHeight: expanded ? "none" : maxHeight }}
+				style={{ maxHeight: expanded ? "none" : maxHeight, minHeight }}
 				className={styles["text"]}
 			>
 				{children}

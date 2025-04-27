@@ -64,7 +64,8 @@ export const DisplayReviewCard = memo((props: DisplayReviewCardProps) => {
 							getButtonLabel={(expanded) => (expanded ? "Скрыть" : "Читать все")}
 							centering
 							buttonColor="grey-dark"
-							maxHeight={200}
+							maxHeight={150}
+							minHeight={150}
 							onFocus={onFocus}
 							compositeButton
 							onMouseDown={(event) => event.preventDefault()}
