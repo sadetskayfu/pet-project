@@ -2,6 +2,7 @@ import { Typography } from '@/shared/ui/Typography'
 import { OptionItem, OptionItemProps } from '../OptionItem/OptionItem'
 import { memo } from 'react'
 import { Avatar } from '@/shared/ui/Avatar'
+import { getFirstLetter } from '@/shared/helpers/formattingString'
 import styles from './style.module.scss'
 
 interface ActorOptionItemProps extends Omit<OptionItemProps, 'children'> {
@@ -24,7 +25,9 @@ export const ActorOptionItem = memo((props: ActorOptionItemProps) => {
 				borderRadius="circular"
 				className={styles['avatar']}
 				src={src}
-			/>
+			>
+				{getFirstLetter(firstName)}
+			</Avatar>
 			<Typography color="inherit">
 				{firstName} {lastName}
 			</Typography>
