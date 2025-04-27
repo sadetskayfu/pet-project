@@ -38,7 +38,7 @@ export const UserMenu = memo(() => {
 				<MenuItemContent title="Профиль" />
 			</MenuItem>
 			{isAdmin && (
-				<MenuItem to={ROUTES.ADMIN} label="Панель администрации">
+				<MenuItem to={ROUTES.ADMIN_GENRES} label="Панель администрации">
 					<MenuItemContent title="Панель администрации" />
 				</MenuItem>
 			)}

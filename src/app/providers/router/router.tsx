@@ -11,14 +11,11 @@ import { AuthLayout } from "./AuthLayout/AuthLayout"
 import {
 	AdminActorPanel,
 	AdminGenrePanel,
-	AdminMainPanel,
 	AdminMoviePanel,
 } from "@/features/AdminPanel"
 import { MoviePage } from "@/pages/MoviePage"
 import { ProtectedRoute } from "./ProtectedRoute"
 import { NotFoundPage } from "@/pages/NotFoundPage"
-import { Suspense } from "react"
-import { CircularProgress } from "@/shared/ui/CircularProgress"
 
 export const router = createBrowserRouter([
 	{
@@ -52,7 +49,6 @@ export const router = createBrowserRouter([
 					</ProtectedRoute>
 				),
 				children: [
-					{ path: "", element: <Suspense fallback={<CircularProgress absCenter size="l"/>}><AdminMainPanel /></Suspense> },
 					{
 						path: "genres",
 						element: <AdminGenrePanel />,

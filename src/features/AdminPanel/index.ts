@@ -5,4 +5,4 @@ export const MobileAdminPanelSideBar = lazy(() => import('./AdminPanelSideBar/ui
 export const AdminGenrePanel = lazy(() => import('./Genres/ui/GenrePanel/GenrePanel'))
 export const AdminActorPanel = lazy(() => import('./Actors/ui/ActorPanel/ActorPanel'))
 export const AdminMoviePanel = lazy(() => import('./Movies/ui/MoviePanel/MoviePanel'))
-export const AdminMainPanel = lazy(() => import('./Main/MainPanel'))
+

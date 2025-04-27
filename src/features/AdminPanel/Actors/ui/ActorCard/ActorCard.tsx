@@ -55,7 +55,7 @@ export const ActorCard = memo((props: ActorCardProps) => {
 				render={
 					<IconButton
 						borderRadius="s"
-						borderPlacement="top"
+						borderPlacement="left"
 						variant="clear"
 						onClick={() => onEdit(id, actorData, editButtonRef)}
 						aria-label="Изменить актера"
@@ -74,7 +74,7 @@ export const ActorCard = memo((props: ActorCardProps) => {
 						onClick={() => onDelete(id, actorData, deleteButtonRef)}
 						color="red"
 						borderRadius="s"
-						borderPlacement="bottom"
+						borderPlacement="right"
 						variant="clear"
 						aria-label="Удалить актора"
 						size='xs'

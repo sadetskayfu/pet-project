@@ -38,7 +38,7 @@ const MobileAdminPanelSideBar = () => {
 				>
 					<ul className={styles["list"]}>{renderLinks}</ul>
 					<AsideMenuClose>
-						<IconButton className={styles['close-button']} variant="clear" borderRadius="m" size="m">
+						<IconButton className={styles['close-button']} variant="clear" borderRadius="m" size="s">
 							<XMark />
 						</IconButton>
 					</AsideMenuClose>
