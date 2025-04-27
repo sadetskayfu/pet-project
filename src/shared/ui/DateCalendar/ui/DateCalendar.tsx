@@ -135,7 +135,6 @@ export const DateCalendar = memo((props: DateCalendarProps) => {
 
 								if (day) {
 									const isSelected = day === selectedDay
-									console.log('map')
 									return (
 										<CompositeItem
 											key={key}

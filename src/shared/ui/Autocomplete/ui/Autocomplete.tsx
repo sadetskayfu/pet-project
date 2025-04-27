@@ -345,7 +345,7 @@ export const AutocompleteComponent = <T, M extends boolean = false>(props: Autoc
 			if (options.length === 0) {
 				return (
 					<OptionItem role="alert" value="" readOnly>
-						No options
+						Нет опций
 					</OptionItem>
 				)
 			}
@@ -476,7 +476,7 @@ export const AutocompleteComponent = <T, M extends boolean = false>(props: Autoc
 	const actions = useMemo(
 		() => [
 			loading ? (
-				<CircularProgress color="secondary" aria-label="Loading options" />
+				<CircularProgress color="secondary" aria-label="Загрузка опций" />
 			) : null,
 			...externalActions,
 			<IconButton

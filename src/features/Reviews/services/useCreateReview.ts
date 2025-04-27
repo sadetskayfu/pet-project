@@ -43,7 +43,7 @@ export const useCreateReview = (onSuccess?: () => void) => {
 
 			dispatch(
 				addNotification({
-					message: `Отзыв на меида "${data.movie.title}" успешно создан`,
+					message: `Отзыв на медиа "${data.movie.title}" успешно создан`,
 					severity: "success",
 				})
 			)

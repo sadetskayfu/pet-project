@@ -302,7 +302,7 @@ export const Select = <T, V extends string | string[]>(props: SelectProps<T, V>)
 					value=""
 					readOnly
 				>
-					Loading...
+					Загрузка...
 				</OptionItem>
 			)
 		}
@@ -310,7 +310,7 @@ export const Select = <T, V extends string | string[]>(props: SelectProps<T, V>)
 		if (!children || options.length === 0) {
 			return (
 				<OptionItem role='alert' value="" readOnly>
-					No options
+					Нет опций
 				</OptionItem>
 			)
 		}
@@ -426,7 +426,7 @@ export const Select = <T, V extends string | string[]>(props: SelectProps<T, V>)
 				onMouseDown={(event) => event.preventDefault()}
 				actions={useMemo(
 					() => [
-						loading ? <CircularProgress aria-label='Loading options' color='secondary'/> : null,
+						loading ? <CircularProgress aria-label='Загрузка опций' color='secondary'/> : null,
 						...actions,
 						<span className={styles['arrow']}>
 							<Arrow size="xxs" direction="bottom" />

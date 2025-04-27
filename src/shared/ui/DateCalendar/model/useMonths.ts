@@ -1,6 +1,7 @@
 
 import { format } from 'date-fns'
 import { useMemo } from 'react'
+import { ru } from 'date-fns/locale';
 
 export const useMonths = () => {
 	const monthsArray = useMemo(
@@ -12,7 +13,7 @@ export const useMonths = () => {
 		() =>
 			monthsArray.map((month) => ({
 				value: month + '',
-				label: format(new Date(2023, month - 1, 1), 'MMMM'),
+				label: format(new Date(2023, month - 1, 1), 'MMMM', { locale: ru }),
 			})),
 		[monthsArray]
 	)

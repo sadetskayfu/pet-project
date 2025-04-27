@@ -5,31 +5,31 @@ type WeekDay = {
 
 export const weekDays: WeekDay[] = [
     {
-        label: 'S',
-        ariaLabel: 'Sunday'
+        label: 'П',
+        ariaLabel: 'Понедельник'
     },
     {
-        label: 'M',
-        ariaLabel: 'Monday'
+        label: 'В',
+        ariaLabel: 'Вторник'
     },
     {
-        label: 'T',
-        ariaLabel: 'Tuesday'
+        label: 'С',
+        ariaLabel: 'Среда'
     },
     {
-        label: 'W',
-        ariaLabel: 'Wednesday'
+        label: 'Ч',
+        ariaLabel: 'Четверг'
     },
     {
-        label: 'T',
-        ariaLabel: 'Thursday'
+        label: 'П',
+        ariaLabel: 'Пятница'
     },
     {
-        label: 'F',
-        ariaLabel: 'Friday'
+        label: 'С',
+        ariaLabel: 'Суббота'
     },
     {
-        label: 'S',
-        ariaLabel: 'Saturday'
+        label: 'В',
+        ariaLabel: 'Воскресенье'
     }
 ]
